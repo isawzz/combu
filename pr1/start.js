@@ -1,14 +1,13 @@
 onload = start
 
 async function start() {
-  let body = document.body;
-  let d = mDiv(body, { position: 'fixed', top: 20, left: 20, padding: 10, rounding: 4, bg: '#333', fg: 'white', z: 9999 }, 'dFlash', 'hier ist ein super message!!!');
-  //animationChain1(d)
   Session.type = detectSessionType(); // console.log('session type:',Session.type);
   document.title = capitalize(Session.type);
 
-  // Example usage
-  const element = d; //document.querySelector('.animated-element');
+  
+  let body = document.body;
+  let d = mDiv(body, { position: 'fixed', top: 20, left: 20, padding: 10, rounding: 4, bg: '#333', fg: 'white', z: 9999 }, 'dFlash', 'hier ist ein super message!!!');
+  const element = d; 
   const animationList = [
     { propertyName: 'background', endValue: 'red', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
     { propertyName: 'opacity', endValue: 0.5, duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
