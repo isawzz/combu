@@ -59,12 +59,15 @@ gut jetzt ist es gegangen!!!
 572: *6:52 AM 8/12/2023-6:58 AM 8/12/2023
 - zurueck zu local!
 579: *6:58 AM 8/12/2023-7:09 AM 8/12/2023
-591: *7:09 AM 8/12/2023-
+... am wird auf telecave deleted!!!!!!!
+
+591: *7:09 AM 8/12/2023-7:13 AM 8/12/2023
 =>nie wieder node_modules auf telecave copieren!!!! und .git!!!!!
 =>new git project ma, kill combu
 git remote -v
 git remote set-url origin https://github.com/isawzz/ma
-
+596: *7:13 AM 8/12/2023-
+- mach ein gu mit asp.net
 
 
 
