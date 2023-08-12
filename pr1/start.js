@@ -2,23 +2,88 @@ onload = start
 
 async function start() {
   Session.type = detectSessionType(); // console.log('session type:',Session.type);
+  Session.basedir = '../base/';
   document.title = capitalize(Session.type);
 
-  
-  let body = document.body;
-  let d = mDiv(body, { position: 'fixed', top: 20, left: 20, padding: 10, rounding: 4, bg: '#333', fg: 'white', z: 9999 }, 'dFlash', 'hier ist ein super message!!!');
-  const element = d; 
-  const animationList = [
-    { propertyName: 'background', endValue: 'red', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
-    { propertyName: 'opacity', endValue: 0.5, duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
-    { propertyName: 'transform', endValue: 'translateX(100px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
-    { propertyName: 'transform', endValue: 'translateX(0px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
-    // { propertyName: 'border-radius', endValue: '100px', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
-  ];
+  // test0_flash_ani(); 
+  // http GET: test1_simple_live_GET(); test1_simple_node_GET(); test1_simple_flask_GET(); test1_simple_php_GET()
+  //test1_simple_telecave_GET()
 
-  animateChain(element, animationList);
+  // http POST: cannot do post with live-server!
 
 }
+
+async function test1_simple_telecave_GET() {
+  // das geht weil es am localhost ist! auf telecave geht es NICHT!!!
+  // simplest localhost php test for GET: genau wie live!
+  let result = await fetch('../pr1/php/api.php').then(x => x.text());
+  //result = jsyaml.load(result);
+  console.log('result text', result)
+}
+async function test1_simple_php_GET() {
+  // das geht weil es am localhost ist! auf telecave geht es NICHT!!!
+  // simplest localhost php test for GET: genau wie live!
+  let result = await fetch('../base/DB.yaml').then(x => x.text());
+  result = jsyaml.load(result);
+  console.log('result', result)
+}
+async function test1_simple_flask_GET() {
+  // ==>dafuer muss ich in terminal
+  //    >python app.py
+  // simplest flask test for GET: genau wie live!
+  let result = await fetch('../base/DB.yaml').then(x => x.text());
+  result = jsyaml.load(result);
+  console.log('result', result)
+}
+async function test1_simple_node_GET() {
+  // ==>dafuer muss ich in terminal
+  //    >cd pr1
+  //    >npx nodemon appnode.js
+  // simplest nodejs test for GET: genau wie live!
+  let result = await fetch('../base/DB.yaml').then(x => x.text());
+  result = jsyaml.load(result);
+  console.log('result', result)
+}
+async function test1_simple_live_GET() {
+  // ==>dafuer muss ich in terminal
+  //    >npx live-server (in browser geh in pr1)
+  // simplest live test for GET:
+  let result = await fetch('../base/DB.yaml').then(x => x.text());
+  result = jsyaml.load(result);
+  console.log('result', result)
+}
+
+async function mPost(data) {
+  let sess = Session.type;
+  console.log('sess', sess, 'data', data)
+  if (sess == 'php') {
+    console.log('PHP')
+    let url = Session.basedir + 'php/api.php';
+    data = { data: data, cmd: 'nix' };
+    console.log('url', url, '\nactual data posted', data)
+    let result = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+    console.log('___RESULT', typeof result, result)
+    //let b=await result.body;
+
+    // .then(x => console.log(x, typeof x, x.text())) //x.json())
+    // // .then(async (x) => await console.log(x,typeof x,x.text())) //x.json())
+    // //.then(x => jsyaml.load(x.res))
+    // .catch(error => { console.error('Error:', error); });
+  } else if (sess == 'live') {
+    let result = await fetch(data.path).then(x => data.cmd == 'json' ? x.json() : x.text());
+    if (data.cmd == 'yaml') result = jsyaml.load(result);
+    return result;
+  } else if (sess == 'nodejs') {
+    let result = await fetch(data.path).then(x => data.cmd == 'json' ? x.json() : x.text());
+    if (data.cmd == 'yaml') result = jsyaml.load(result);
+    return result;
+
+  }
+}
+
 
 function animationChain1(elem) {
   const element = toElem(elem);
@@ -126,7 +191,7 @@ function animateChain(element, animationList, index = 0) {
 
   // Chain the next animation after the current one finishes
   animationPromise.then(() => {
-    console.log('done',animationList[index].propertyName)
+    console.log('done', animationList[index].propertyName)
     animateChain(element, animationList, index + 1);
   }).catch((error) => {
     console.error('An error occurred:', error);
@@ -149,3 +214,26 @@ function mist() {
 
 
 }
+function test0_flash_ani() {
+  let body = document.body;
+  let d = mDiv(body, { position: 'fixed', top: 20, left: 20, padding: 10, rounding: 4, bg: '#333', fg: 'white', z: 9999 }, 'dFlash', 'hier ist ein super message!!!');
+  const element = d;
+  const animationList = [
+    { propertyName: 'background', endValue: 'red', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
+    { propertyName: 'opacity', endValue: 0.5, duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
+    { propertyName: 'transform', endValue: 'translateX(100px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
+    { propertyName: 'transform', endValue: 'translateX(0px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
+    // { propertyName: 'border-radius', endValue: '100px', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
+  ];
+
+  animateChain(element, animationList);
+
+}
+
+
+
+
+
+
+
+

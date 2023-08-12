@@ -2,7 +2,146 @@ _____ do 10.8.23 airport
 1: *7:06 PM 8/9/2023-6:10 AM 8/10/2023
 2: *6:10 AM 8/10/2023-6:28 AM 8/10/2023
 => mach ein harmloses file v>z0
-21: *6:29 AM 8/10/2023-
+21: *6:29 AM 8/10/2023-6:37 AM 8/10/2023
+30: *6:37 AM 8/10/2023-6:38 AM 8/10/2023
+for some reason muss ich damit das node js project in vs code funktioniert zuerst ins dir pr1 cd, und dann npx nodemon appnode.js aufrufen. (sonst findet er die files nicht!)
+32: *6:38 AM 8/10/2023-6:51 AM 8/10/2023
+46: *6:51 AM 8/10/2023-
+- jetzt schau wie es mit flask gehen kann!
+_____ fr 11.8.23 airport
+200: *4:46 AM 8/11/2023-5:01 AM 8/11/2023
+216: *5:01 AM 8/11/2023-5:57 AM 8/11/2023
+273: *5:57 AM 8/11/2023-6:01 AM 8/11/2023
+- total unlogisch!!!! steig von allem aus und wieder ein!!!
+- find app.py files
+278: *6:01 AM 8/11/2023-6:10 AM 8/11/2023
+- alle 3 live,node,flask gehen jetzt!
+- next ist php
+288: *6:10 AM 8/11/2023-6:15 AM 8/11/2023
+294: *6:15 AM 8/11/2023-1:51 PM 8/11/2023
+- soweit geht get, jetzt kommt post!!!!!!!
+ok - at
+ok - karotten
+ok - gu schwimmen
+ok - lauren bday morgen!
+ok - att paid
+ok - att  phones cancelled
+ok - gudrun uber
+400: *1:51 PM 8/11/2023-2:15 PM 8/11/2023
+401: *2:15 PM 8/11/2023-2:26 PM 8/11/2023
+413: *2:26 PM 8/11/2023-6:51 PM 8/11/2023
+_____ sa 12.8.23 airport
+440: *7:08 PM 8/11/2023-11:07 PM 8/11/2023
+TableTopia, BrettspieleWelt, Vassal, yucata.de
+460: *11:07 PM 8/11/2023-11:28 PM 8/11/2023
+481: *11:28 PM 8/11/2023-11:55 PM 8/11/2023
+=>weiter mit combu und games! weiter mit library!
+iw.interessant.TT|BS
+509: *11:56 PM 8/11/2023-12:13 AM 8/12/2023
+527: *12:13 AM 8/12/2023-12:16 AM 8/12/2023
+- geht ja eh!!! jetzt returned er einfach nein!!!
+531: *12:16 AM 8/12/2023-6:20 AM 8/12/2023
+532: *6:20 AM 8/12/2023-6:27 AM 8/12/2023
+540: *6:27 AM 8/12/2023-6:28 AM 8/12/2023
+542: *6:28 AM 8/12/2023-
+- detect session type:telecave
+
+it is the deconstruction of the worldly
+have no fear you are protected!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=>wenn ich muede bin muss ich mich zurueckziehen. ich habe dann nicht die kapazitaet fuer communication a la gpt!
+
+mo:
+- dentist absagen!!!! 22.8. 2h30 (ev verschieben auf oct!)
+- mo mi fr 11h30 =>schwimmen
+- die woche MUSS ich AP CS prep machen!
+
+Ich verstehe, dass du am Postschluessel interessiert bist.
+Allerdings könnte das, wenn ich zustimmen würde, einige Herausforderungen für mich schaffen.
+Ich mache mir Sorgen über die Unannehmlichkeiten oder Schwierigkeiten, die es für mich verursachen könnte.
+Es tut mir leid, aber ich kann deiner Bitte aufgrund der potenziellen Konsequenzen nicht nachkommen.
+Es ist wichtig für uns, eine reibungslose und problemfreie Situation für alle Beteiligten aufrechtzuerhalten.
+Gibt es einen anderen Weg, wie wir deine Bedürfnisse ansprechen können, der für niemanden Probleme verursacht?
+Lass uns sehen, ob wir eine Lösung finden können, die die Interessen aller berücksichtigt.
+Vielen Dank für dein Verständnis und deine Kooperation in dieser Angelegenheit.
+
+Natürlich, hier ist die Übersetzung der Tipps in deutscher Sprache:
+
+1. **Anerkenne die Anfrage:**
+   Beginne damit, ihre Anfrage respektvoll anzuerkennen: "Ich verstehe, dass du an [dem, was sie verlangen] interessiert bist."
+
+2. **Erkläre die Auswirkungen:**
+   Erkläre deutlich, wie die Erfüllung ihrer Anfrage sich auf andere auswirken könnte: "Allerdings könnte das, wenn ich zustimmen würde, einige Herausforderungen für [erwähne die Personen, die betroffen sein könnten] schaffen."
+
+3. **Teile die Bedenken:**
+   Drücke deine Bedenken darüber aus, wie die Erfüllung ihrer Anfrage möglicherweise Probleme verursachen könnte: "Ich mache mir Sorgen über die Unannehmlichkeiten oder Schwierigkeiten, die es für [erwähne die Personen oder die Situation] verursachen könnte."
+
+4. **Drücke dein Bedauern aus:**
+   Drücke höflich dein Bedauern darüber aus, dass du ihre Anfrage nicht erfüllen kannst: "Es tut mir leid, aber ich kann deiner Bitte aufgrund der potenziellen Konsequenzen nicht nachkommen."
+
+5. **Biete eine Erklärung an:**
+   Gib eine kurze Erklärung der Gründe für deine Entscheidung: "Es ist wichtig für uns, eine reibungslose und problemfreie Situation für alle Beteiligten aufrechtzuerhalten."
+
+6. **Schlage Alternativen vor:**
+   Wenn möglich, schlage alternative Lösungen oder Ansätze vor, die respektvoller gegenüber anderen sind: "Gibt es einen anderen Weg, wie wir deine Bedürfnisse ansprechen können, der für niemanden Probleme verursacht?"
+
+7. **Betonen der Zusammenarbeit:**
+   Zeige Bereitschaft zur Zusammenarbeit, um eine Lösung zu finden, die die Bedürfnisse aller respektiert: "Lass uns sehen, ob wir eine Lösung finden können, die die Interessen aller berücksichtigt."
+
+8. **Bedanke dich:**
+   Drücke Dankbarkeit für ihr Verständnis aus: "Vielen Dank für dein Verständnis und deine Kooperation in dieser Angelegenheit."
+
+9. **Halte das Gespräch positiv:**
+   Behalte während des Gesprächs einen positiven und respektvollen Ton. Konzentriere dich darauf, eine ausgewogene Lösung zu finden, die sowohl die Person, die die Anfrage stellt, als auch die potenziellen Auswirkungen auf andere respektiert.
+
+Bitte beachte, dass eine effektive Kommunikation von großer Bedeutung ist. Indem du deine Bedenken und Gründe für die Ablehnung ausdrückst und gleichzeitig Bereitschaft zur Zusammenarbeit zeigst, kannst du die Situation empathisch und respektvoll navigieren, sowohl im Hinblick auf die Person, die die Anfrage stellt, als auch auf die möglichen Auswirkungen auf andere.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 require_once "apihelpers.php";
 
-//die(); return;
+echo "NEIN!!!"; die(); 
 
 $raw = file_get_contents("php://input");
 $o = json_decode($raw);
