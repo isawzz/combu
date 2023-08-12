@@ -1,22 +1,22 @@
 onload = start
-
+// live nodejs flask php
 async function start() {
-  Session.type = detectSessionType(); // console.log('session type:',Session.type);
+  //#region done
+  Session.type = detectSessionType(); console.log('session type:',Session.type);
   Session.basedir = '../base/';
-  document.title = capitalize(Session.type);
+  document.title = capitalize(Session.type); 
 
   // test0_flash_ani(); 
-  // http GET: test1_simple_live_GET(); test1_simple_node_GET(); test1_simple_flask_GET(); test1_simple_php_GET()
-  //test1_simple_telecave_GET()
-
-  // http POST: cannot do post with live-server!
+  // http GET: test1_simple_live_GET(); test1_simple_node_GET(); test1_simple_flask_GET(); test1_simple_php_GET(); test1_simple_telecave_GET() //geht solange der php echo NEIN sagt!
+  //#endregion
+  // http POST: live: cannot do post with live-server!
 
 }
 
 async function test1_simple_telecave_GET() {
   // das geht weil es am localhost ist! auf telecave geht es NICHT!!!
   // simplest localhost php test for GET: genau wie live!
-  let result = await fetch('../pr1/php/api.php').then(x => x.text());
+  let result = await fetch('../common/api.php').then(x => x.text());
   //result = jsyaml.load(result);
   console.log('result text', result)
 }

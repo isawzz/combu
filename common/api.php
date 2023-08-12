@@ -1,13 +1,18 @@
 <?php
 require_once "apihelpers.php";
 
-echo "NEIN!!!"; die(); 
+//echo "NEIN!!!"; die();  //GEHT!!!
 
 $raw = file_get_contents("php://input");
 $o = json_decode($raw);
 $data = $o;
-$cmd = $o->cmd;
+//$cmd = $o->cmd;
+$cmd = isset($o->cmd) ? $o->cmd : '';
+
 $result = (object)[];
+
+//$result->message = "message";echo json_encode($result); die(); //GEHT!!!
+
 if ($cmd == "yaml") {
   $path = $data->path;
 	$res = file_get_contents($path);
@@ -99,8 +104,7 @@ if ($cmd == "yaml") {
     'symGSG' => $symGSG];
 	//$result = (object) ['sayings' => $sayings, 'info' => $info, 'c52' => $c52, 'cinno' => $cinno, 'syms' => $syms, 'symGSG' => $symGSG];
 }else{
-  $result->message='hallo das wars';
-  echo 'jajaja'; die();
+  $result->message='there was no cmd';
 }
 echo json_encode($result); 
 

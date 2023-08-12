@@ -43,8 +43,50 @@ iw.interessant.TT|BS
 531: *12:16 AM 8/12/2023-6:20 AM 8/12/2023
 532: *6:20 AM 8/12/2023-6:27 AM 8/12/2023
 540: *6:27 AM 8/12/2023-6:28 AM 8/12/2023
-542: *6:28 AM 8/12/2023-
+542: *6:28 AM 8/12/2023-6:35 AM 8/12/2023
+550: *6:35 AM 8/12/2023-6:42 AM 8/12/2023
+558: *6:42 AM 8/12/2023-6:42 AM 8/12/2023
+- man muss nicht refresh machen!!!
+- jetzt test ich ob es stimmt dass php das nicht erlaubt 
 - detect session type:telecave
+559: *6:42 AM 8/12/2023-6:46 AM 8/12/2023
+ok - ich koennt for now ausser dem base ein common machen!
+gut jetzt ist es gegangen!!!
+564: *6:46 AM 8/12/2023-6:47 AM 8/12/2023
+- cleanup telecave
+565: *6:47 AM 8/12/2023-6:51 AM 8/12/2023
+570: *6:51 AM 8/12/2023-6:52 AM 8/12/2023
+572: *6:52 AM 8/12/2023-6:58 AM 8/12/2023
+- zurueck zu local!
+579: *6:58 AM 8/12/2023-7:09 AM 8/12/2023
+591: *7:09 AM 8/12/2023-
+=>nie wieder node_modules auf telecave copieren!!!! und .git!!!!!
+=>new git project ma, kill combu
+git remote -v
+git remote set-url origin https://github.com/isawzz/ma
+
+
+
+
+
+
+
+
+
+
+
+- naming of telecave
+magufelam oder amalafegu 
+=>- wie nenne ich es? ma und ich mach ein gu ein fe ein am!!!! und ein la
+
+
+
+
+
+
+
+
+
 
 it is the deconstruction of the worldly
 have no fear you are protected!
