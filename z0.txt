@@ -60,27 +60,59 @@ gut jetzt ist es gegangen!!!
 - zurueck zu local!
 579: *6:58 AM 8/12/2023-7:09 AM 8/12/2023
 ... am wird auf telecave deleted!!!!!!!
-
 591: *7:09 AM 8/12/2023-7:13 AM 8/12/2023
 =>nie wieder node_modules auf telecave copieren!!!! und .git!!!!!
 =>new git project ma, kill combu
 git remote -v
 git remote set-url origin https://github.com/isawzz/ma
-596: *7:13 AM 8/12/2023-
-- mach ein gu mit asp.net
+596: *7:13 AM 8/12/2023-4:12 PM 8/12/2023
+696: *4:12 PM 8/12/2023-6:30 PM 8/12/2023
+697: *6:19 PM 8/12/2023-6:22 PM 8/12/2023
+_____ so 13.8.23 airport
+701: *6:22 PM 8/12/2023-6:40 PM 8/12/2023
+720: *6:40 PM 8/12/2023-1:55 AM 8/13/2023
+721: *1:55 AM 8/13/2023-2:11 AM 8/13/2023
+722: *2:11 AM 8/13/2023-2:32 AM 8/13/2023
+740: *2:33 AM 8/13/2023-2:41 AM 8/13/2023
+748: *2:42 AM 8/13/2023-3:04 AM 8/13/2023
+afplannov27(106)/fplan/leave
+749: *3:10 AM 8/13/2023-3:14 AM 8/13/2023
+754: *3:15 AM 8/13/2023-3:18 AM 8/13/2023
+758: *3:19 AM 8/13/2023-10:36 AM 8/13/2023
+760: *10:36 AM 8/13/2023-1:48 PM 8/13/2023
+761: *1:49 PM 8/13/2023-2:17 PM 8/13/2023
+790: *2:17 PM 8/13/2023-2:28 PM 8/13/2023
+_____ mo 14.8.23 airport
+900: *2:28 PM 8/13/2023-6:17 AM 8/14/2023
+901: *6:17 AM 8/14/2023-6:24 AM 8/14/2023
+how to run live-server + nodemon
+908: *6:24 AM 8/14/2023-6:31 AM 8/14/2023
+- run cita
+- cors, js-yaml, yaml, http, socket.io
+915: *6:31 AM 8/14/2023-6:36 AM 8/14/2023
+920: *6:36 AM 8/14/2023-6:37 AM 8/14/2023
+921: *6:38 AM 8/14/2023-6:38 AM 8/14/2023
+922: *6:38 AM 8/14/2023-6:42 AM 8/14/2023
+926: *6:42 AM 8/14/2023-6:46 AM 8/14/2023
+927: *6:46 AM 8/14/2023-6:57 AM 8/14/2023
+938: *6:57 AM 8/14/2023-6:59 AM 8/14/2023
+940: *7:00 AM 8/14/2023-7:03 AM 8/14/2023
+941: *7:03 AM 8/14/2023-
+- rename common to basecommon
+- copy from db in nodemaster zu db in ma
+- start live-server
+- hab jetzt auch sockets
+anime.min.js nicht da
+
+- ich war bei php zeug!
+choices:
+- telecave/ma calendar
 
 
 
 
 
 
-git remote add origin https://github.com/isawzz/gu.git
-
-
-
-- naming of telecave
-magufelam oder amalafegu 
-=>- wie nenne ich es? ma und ich mach ein gu ein fe ein am!!!! und ein la
 
 
 
@@ -90,38 +122,39 @@ magufelam oder amalafegu
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+asp.net: https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-7.0&viewFallbackFrom=aspnetcore-5.0&tabs=visual-studio-code
 
 it is the deconstruction of the worldly
 have no fear you are protected!
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 =>wenn ich muede bin muss ich mich zurueckziehen. ich habe dann nicht die kapazitaet fuer communication a la gpt!
 
 mo:
-- dentist absagen!!!! 22.8. 2h30 (ev verschieben auf oct!)
+- aufnahme
+- bank access zu boa mit meinem id
+- gu rec zeug psych arzt termin info:
+ok - p
+- fcc
+=>tel termin amanda h
+=>schwimmen gb 
+- dentist alles absagen!!!! 22.8. 2h30 (ev verschieben auf oct!)
 - mo mi fr 11h30 =>schwimmen
 - die woche MUSS ich AP CS prep machen!
 
@@ -166,94 +199,40 @@ Natürlich, hier ist die Übersetzung der Tipps in deutscher Sprache:
 Bitte beachte, dass eine effektive Kommunikation von großer Bedeutung ist. Indem du deine Bedenken und Gründe für die Ablehnung ausdrückst und gleichzeitig Bereitschaft zur Zusammenarbeit zeigst, kannst du die Situation empathisch und respektvoll navigieren, sowohl im Hinblick auf die Person, die die Anfrage stellt, als auch auf die möglichen Auswirkungen auf andere.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+_____________________________
+rh480=
+100 1. *E100
+30 2. gehen+M
+30 3. hh/kochen/gu
+10 4. was Ganz Neues 770 minuten
+30 5. klavier 1x alles durch (oder teil)
+30 6. out|spazier
+250 7. schlafen
+==>dann wieder von vorn! 
+E=
+1. kaffee+toast 
+2. cola+tw+pizza/kaesetoast|protein 
+3. heisse limo+muesli|twblau (leicht)
+
+klavier repertoire:
+- chopin fantaisie impromptu
+- beethoven sturm 1. und 3. satz
+- beethoven mondschein 1. und 3. satz
+- beethoven pathetique 1. satz
+- beethoven op 111 2. satz
+- mozart B-dur sonate
+- back ital. konzert
+- chopin etude #5
+- chopin op 10 #5
+- schubert impromptu op 90 #2, #3
+- chopin walzer #7
+- chopin ballade
+- chopin nocture op9 #3
+- chopin etude (die schoene!)
+- beethoven waldstein 1. satz
+- mozart C dur konzert 1. + 2. satz
+- beethoven konzert #3 1. + 3. satz
+- mozart C dur sonate 1. satz
 
 
 

@@ -2,20 +2,45 @@ onload = start
 // live nodejs flask php
 async function start() {
   //#region done
-  Session.type = detectSessionType(); console.log('session type:',Session.type);
+  Session.type = detectSessionType(); console.log('session type:', Session.type);
   Session.basedir = '../base/';
-  document.title = capitalize(Session.type); 
+  document.title = capitalize(Session.type);
 
   // test0_flash_ani(); 
   // http GET: test1_simple_live_GET(); test1_simple_node_GET(); test1_simple_flask_GET(); test1_simple_php_GET(); test1_simple_telecave_GET() //geht solange der php echo NEIN sagt!
   //#endregion
   // http POST: live: cannot do post with live-server!
-
+  //test1_simple_node_POST();
 }
 
+async function test1_simple_node_POST() {
+  // simplest nodejs test for GET: genau wie live!
+  // function post_json(url, o, callback) {
+  //post_json('http://localhost:3000/db/add/code', code, r => console.log('resp', r));
+  let o = {key:'key',value:23};
+  let route = 'post';
+  let loc = window.location.href;
+  let callback=x=>console.log(typeof x,x)
+  Session.port = loc.includes(':')?stringAfter(loc,':'):'80';
+  let url = 'http://localhost:4001/post'; //loc+'/'+route;
+  console.log('post to',url)
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(o)
+  }).then(response => response.json()).then(response => callback(response));
+
+  let result = await fetch('../base/DB.yaml').then(x => x.text());
+  result = jsyaml.load(result);
+  console.log('result', result)
+}
+
+//#region GET
 async function test1_simple_telecave_GET() {
-  // das geht weil es am localhost ist! auf telecave geht es NICHT!!!
-  // simplest localhost php test for GET: genau wie live!
+  // simplest telecave test for GET: genau wie live! GEHT DOCH!!!!!!!!!!!!
   let result = await fetch('../common/api.php').then(x => x.text());
   //result = jsyaml.load(result);
   console.log('result text', result)
@@ -52,38 +77,9 @@ async function test1_simple_live_GET() {
   result = jsyaml.load(result);
   console.log('result', result)
 }
+//#endregion
 
-async function mPost(data) {
-  let sess = Session.type;
-  console.log('sess', sess, 'data', data)
-  if (sess == 'php') {
-    console.log('PHP')
-    let url = Session.basedir + 'php/api.php';
-    data = { data: data, cmd: 'nix' };
-    console.log('url', url, '\nactual data posted', data)
-    let result = await fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
-    console.log('___RESULT', typeof result, result)
-    //let b=await result.body;
-
-    // .then(x => console.log(x, typeof x, x.text())) //x.json())
-    // // .then(async (x) => await console.log(x,typeof x,x.text())) //x.json())
-    // //.then(x => jsyaml.load(x.res))
-    // .catch(error => { console.error('Error:', error); });
-  } else if (sess == 'live') {
-    let result = await fetch(data.path).then(x => data.cmd == 'json' ? x.json() : x.text());
-    if (data.cmd == 'yaml') result = jsyaml.load(result);
-    return result;
-  } else if (sess == 'nodejs') {
-    let result = await fetch(data.path).then(x => data.cmd == 'json' ? x.json() : x.text());
-    if (data.cmd == 'yaml') result = jsyaml.load(result);
-    return result;
-
-  }
-}
-
+//#region animation
 
 function animationChain1(elem) {
   const element = toElem(elem);
@@ -197,7 +193,22 @@ function animateChain(element, animationList, index = 0) {
     console.error('An error occurred:', error);
   });
 }
+function test0_flash_ani() {
+  let body = document.body;
+  let d = mDiv(body, { position: 'fixed', top: 20, left: 20, padding: 10, rounding: 4, bg: '#333', fg: 'white', z: 9999 }, 'dFlash', 'hier ist ein super message!!!');
+  const element = d;
+  const animationList = [
+    { propertyName: 'background', endValue: 'red', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
+    { propertyName: 'opacity', endValue: 0.5, duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
+    { propertyName: 'transform', endValue: 'translateX(100px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
+    { propertyName: 'transform', endValue: 'translateX(0px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
+    // { propertyName: 'border-radius', endValue: '100px', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
+  ];
 
+  animateChain(element, animationList);
+
+}
+//#endregion
 
 function mist() {
   var ms = 2000;
@@ -214,20 +225,35 @@ function mist() {
 
 
 }
-function test0_flash_ani() {
-  let body = document.body;
-  let d = mDiv(body, { position: 'fixed', top: 20, left: 20, padding: 10, rounding: 4, bg: '#333', fg: 'white', z: 9999 }, 'dFlash', 'hier ist ein super message!!!');
-  const element = d;
-  const animationList = [
-    { propertyName: 'background', endValue: 'red', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
-    { propertyName: 'opacity', endValue: 0.5, duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-in-out' },
-    { propertyName: 'transform', endValue: 'translateX(100px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
-    { propertyName: 'transform', endValue: 'translateX(0px)', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
-    // { propertyName: 'border-radius', endValue: '100px', duration: 1000, delay: 0, fill: 'forwards', easing: 'ease-out' },
-  ];
+async function mPost(data) {
+  let sess = Session.type;
+  console.log('sess', sess, 'data', data)
+  if (sess == 'php') {
+    console.log('PHP')
+    let url = Session.basedir + 'php/api.php';
+    data = { data: data, cmd: 'nix' };
+    console.log('url', url, '\nactual data posted', data)
+    let result = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+    console.log('___RESULT', typeof result, result)
+    //let b=await result.body;
 
-  animateChain(element, animationList);
+    // .then(x => console.log(x, typeof x, x.text())) //x.json())
+    // // .then(async (x) => await console.log(x,typeof x,x.text())) //x.json())
+    // //.then(x => jsyaml.load(x.res))
+    // .catch(error => { console.error('Error:', error); });
+  } else if (sess == 'live') {
+    let result = await fetch(data.path).then(x => data.cmd == 'json' ? x.json() : x.text());
+    if (data.cmd == 'yaml') result = jsyaml.load(result);
+    return result;
+  } else if (sess == 'nodejs') {
+    let result = await fetch(data.path).then(x => data.cmd == 'json' ? x.json() : x.text());
+    if (data.cmd == 'yaml') result = jsyaml.load(result);
+    return result;
 
+  }
 }
 
 
