@@ -96,17 +96,140 @@ how to run live-server + nodemon
 926: *6:42 AM 8/14/2023-6:46 AM 8/14/2023
 927: *6:46 AM 8/14/2023-6:57 AM 8/14/2023
 938: *6:57 AM 8/14/2023-6:59 AM 8/14/2023
-940: *7:00 AM 8/14/2023-7:03 AM 8/14/2023
-941: *7:03 AM 8/14/2023-
 - rename common to basecommon
 - copy from db in nodemaster zu db in ma
 - start live-server
 - hab jetzt auch sockets
 anime.min.js nicht da
+940: *7:00 AM 8/14/2023-7:03 AM 8/14/2023
+941: *7:03 AM 8/14/2023-7:40 AM 8/14/2023
+_____ di 15.8.23 airport
+1: *8:02 PM 8/14/2023-6:59 AM 8/15/2023
+2: *6:59 AM 8/15/2023-7:00 AM 8/15/2023
+- sollte weitergehen mit pr1
+3: *7:00 AM 8/15/2023-7:10 AM 8/15/2023
+13: *7:10 AM 8/15/2023-7:16 AM 8/15/2023
+19: *7:16 AM 8/15/2023-7:22 AM 8/15/2023
+25: *7:22 AM 8/15/2023-7:25 AM 8/15/2023
+- simplest app.post route how to get the data
+- find .post in nodemaster
+- eintrag!
+- remove everything
+28: *7:25 AM 8/15/2023-7:34 AM 8/15/2023
+37: *7:34 AM 8/15/2023-7:40 AM 8/15/2023
+43: *7:40 AM 8/15/2023-7:48 AM 8/15/2023
+51: *7:48 AM 8/15/2023-8:13 AM 8/15/2023
+55: *8:14 AM 8/15/2023-8:29 AM 8/15/2023
+60: *8:29 AM 8/15/2023-9:28 AM 8/15/2023
+ne- online shopping amz prime
+61: *9:28 AM 8/15/2023-9:33 AM 8/15/2023
+=>go to the magic world instead - it is there ... always
+- fgu vorb, dann retreat
+- copy paste, first w/o bodyParser
+66: *9:33 AM 8/15/2023-9:43 AM 8/15/2023
+- jetzt ist es wieder mit callback
+76: *9:43 AM 8/15/2023-9:58 AM 8/15/2023
+91: *9:58 AM 8/15/2023-
+- try same on openai
 
+
+
+
+
+
+
+->magic calendar!
 - ich war bei php zeug!
 choices:
 - telecave/ma calendar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+terror gewalt und angst
+der koerper in panik mode
+bereitschaft loszurennen jederzeit
+takes a toll bin nicht sicher ob heut schlafen werde aber ich hoff es halt
+was wuensch ich mir ich wuensch mir nur noch ruhe ruhe fuer immer einfach nur allein wo sein wo keiner mich anbruellen kann
+aggression und gewalt
+ich bin ja selbst aggressiv auch ich habe ja aggressiv gehandelt
+
+und ich seh was es bedeutet, es bedeutet andere leute in panik versetzen und es bedeutet gefangen sein in einer art hoelle und keinen ausweg sehen
+
+ich seh wie dieser reine, liebe mensch in seinem gefaengnis ist und, ja, besessen von dem monster gewalt, und dieses monster ist halt unbewusste angst
+
+angst die einem nicht bewusst ist aeussert sich als gewalt - gewalt gegen sich selbst oder gewalt gegen andere
+
+es ist einfach nur angst deren man sich nicht bewusst ist und die daher dich in ihren besitz nimmt und blind wuetet. wuetet gegen andere oder wuetet gegen sich selbst
+
+wenn du siehst du hast angst, nicht 'vor' etwas, sondern es ist einfach riesengrosse angst da, dann macht das garnichts, wenn du weit genug denken kannst ist es sogar einfach nur energie und du kannst sie verwenden zB fuer irgendeine sache die du machen willst
+
+wenn du nicht merkst du hast einfach nur grosse grosse angst, dann wuetet es und wird alles blindwuetig zerstoeren
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

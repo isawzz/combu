@@ -10,20 +10,139 @@ async function start() {
   // http GET: test1_simple_live_GET(); test1_simple_node_GET(); test1_simple_flask_GET(); test1_simple_php_GET(); test1_simple_telecave_GET() //geht solange der php echo NEIN sagt!
   //#endregion
   // http POST: live: cannot do post with live-server!
-  //test1_simple_node_POST();
+  //test_post_json() //geht awaited aber nicht die daten!!!
+  //test_gpt_usage_example() //ja, geht!!!
+  // let result = await test_post_json_openai({name:'amanda',msg:'hallo welt'}); // geht!!!! super! das war genau was ich wollte!
+  //let result = await test_post_json_arena_1({ name: 'amanda', msg: 'hallo welt' }); // geht!!!! super! das war genau was ich wollte!
+  let result = await test_post_json_arena_2({name:'amanda',msg:'hallo welt'}); // geht!!!! super! das war genau was ich wollte!
+  console.log('result', result)
+}
+function test_gpt_usage_example() {
+  // Example usage
+  const data = {
+    username: 'yourUsername',
+    password: 'yourPassword',
+    name: 'felix'
+  };
+
+  (async () => {
+    try {
+      const response = await test_post_json(data);
+      if (response) {
+        console.log(response); // Log the response data
+      } else {
+        console.log('An error occurred or response was null.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  })();
+}
+async function test_post_json_arena_2(data) {
+  // Send data using an HTML form
+  // const formData = new FormData();
+  // formData.append('username', data.username);
+  // formData.append('password', data.password);
+  // formData.append('name', data.name);
+  const response = await fetch('http://localhost:4001/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+
+  // Check if the request was successful
+  if (!response.ok) {
+    // Handle error
+    throw new Error('Server response was not ok');
+  }
+  // Extract the response data
+  const data1 = await response.json();
+
+  // Log the response from the server
+  //console.log(data1);
+  return data1;
+}
+async function test_post_json_arena_1(data) {
+  try {
+    // POST request using the Fetch API
+    const response = await fetch('http://localhost:4001/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    const json = await response.json();
+
+    return json;
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 
+async function test_post_json_openai(data) {
+  try {
+    const response = await fetch('http://localhost:4001/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    return responseData;
+  } catch (error) {
+    console.error('Error:', error);
+    return null; // or you can throw an error if you prefer
+  }
+}
+
+
+
+async function test_post_json0() {
+  // HTML form data to send
+  const data = {
+    username: 'yourUsername',
+    password: 'yourPassword',
+    name: 'felix'
+  };
+
+  // POST request using the Fetch API
+  fetch('http://localhost:4001/submit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(response => response.json()) //hier koennte auch response.text() stehen!
+    .then(data => {
+      console.log(data); // Log the response from the server
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+}
 async function test1_simple_node_POST() {
   // simplest nodejs test for GET: genau wie live!
   // function post_json(url, o, callback) {
   //post_json('http://localhost:3000/db/add/code', code, r => console.log('resp', r));
-  let o = {key:'key',value:23};
+  let o = { key: 'key', value: 23 };
   let route = 'post';
   let loc = window.location.href;
-  let callback=x=>console.log(typeof x,x)
-  Session.port = loc.includes(':')?stringAfter(loc,':'):'80';
+  let callback = x => console.log(typeof x, x)
+  Session.port = loc.includes(':') ? stringAfter(loc, ':') : '80';
   let url = 'http://localhost:4001/post'; //loc+'/'+route;
-  console.log('post to',url)
+  console.log('post to', url)
   fetch(url, {
     method: 'POST',
     headers: {
@@ -33,9 +152,9 @@ async function test1_simple_node_POST() {
     body: JSON.stringify(o)
   }).then(response => response.json()).then(response => callback(response));
 
-  let result = await fetch('../base/DB.yaml').then(x => x.text());
-  result = jsyaml.load(result);
-  console.log('result', result)
+  // let result = await fetch('../base/DB.yaml').then(x => x.text());
+  // result = jsyaml.load(result);
+  // console.log('result', result)
 }
 
 //#region GET
