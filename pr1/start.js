@@ -4,39 +4,23 @@ async function start() {
   //#region done
   Session.type = detectSessionType(); console.log('session type:', Session.type);
   Session.basedir = '../base/';
-  document.title = capitalize(Session.type);
+  
 
   // test0_flash_ani(); 
   // http GET: test1_simple_live_GET(); test1_simple_node_GET(); test1_simple_flask_GET(); test1_simple_php_GET(); test1_simple_telecave_GET() //geht solange der php echo NEIN sagt!
-  //#endregion
   // http POST: live: cannot do post with live-server!
   //test_post_json() //geht awaited aber nicht die daten!!!
   //test_gpt_usage_example() //ja, geht!!!
   // let result = await test_post_json_openai({name:'amanda',msg:'hallo welt'}); // geht!!!! super! das war genau was ich wollte!
   //let result = await test_post_json_arena_1({ name: 'amanda', msg: 'hallo welt' }); // geht!!!! super! das war genau was ich wollte!
-  let result = await test_post_json_arena_2({name:'amanda',msg:'hallo welt'}); // geht!!!! super! das war genau was ich wollte!
-  console.log('result', result)
-}
-function test_gpt_usage_example() {
-  // Example usage
-  const data = {
-    username: 'yourUsername',
-    password: 'yourPassword',
-    name: 'felix'
-  };
+  // let result = await test_post_json_arena_2({name:'amanda',msg:'hallo welt'}); // geht!!!! super! das war genau was ich wollte!
+  // console.log('result', result)
+  
+  document.title = capitalize(Session.type);
+  //#endregion
 
-  (async () => {
-    try {
-      const response = await test_post_json(data);
-      if (response) {
-        console.log(response); // Log the response data
-      } else {
-        console.log('An error occurred or response was null.');
-      }
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
-  })();
+  //post in nodejs flask php
+  
 }
 async function test_post_json_arena_2(data) {
   // Send data using an HTML form
@@ -344,7 +328,7 @@ function mist() {
 
 
 }
-async function mPost(data) {
+async function ___mPost(data) {
   let sess = Session.type;
   console.log('sess', sess, 'data', data)
   if (sess == 'php') {
@@ -373,6 +357,27 @@ async function mPost(data) {
     return result;
 
   }
+}
+function test_gpt_usage_example() {
+  // Example usage
+  const data = {
+    username: 'yourUsername',
+    password: 'yourPassword',
+    name: 'felix'
+  };
+
+  (async () => {
+    try {
+      const response = await test_post_json(data);
+      if (response) {
+        console.log(response); // Log the response data
+      } else {
+        console.log('An error occurred or response was null.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  })();
 }
 
 
