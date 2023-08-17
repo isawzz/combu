@@ -20,7 +20,33 @@ async function start() {
   //#endregion
 
   //post in nodejs flask php
-  
+  let data = {cmd:'assets',path:'c52'};
+  console.log('<==',data)
+  let result = await mPost(data);
+  console.log('==>',result.original)
+
+}
+async function mPost(data){
+  let url = Session.type == 'nodejs'?'http://localhost:4001/post'
+  :Session.type == 'live'? 'http://localhost:4001/post' //irgendeinen (prefer php)
+  :Session.type == 'flask'?'http://localhost:6001/post'
+  : '../basecommon/api.php';
+  //console.log('posting to',url)
+  try {
+    // POST request using the Fetch API
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const json = await response.json();
+    //console.log('from server',json)
+    return json;
+  } catch (error) {
+    console.error('Error:', error);
+  }
 }
 async function test_post_json_arena_2(data) {
   // Send data using an HTML form
