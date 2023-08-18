@@ -145,20 +145,85 @@ _____ do 17.8.23 airport
 413: *5:54 AM 8/17/2023-5:58 AM 8/17/2023
 417: *5:58 AM 8/17/2023-6:10 AM 8/17/2023
 429: *6:10 AM 8/17/2023-6:14 AM 8/17/2023
-431: *6:14 AM 8/17/2023-
+431: *6:14 AM 8/17/2023-9:16 AM 8/17/2023
+450: *9:17 AM 8/17/2023-10:30 AM 8/17/2023
 - hat appnode jetzt cors?
 - clear base
 - simplest post data
+451: *10:30 AM 8/17/2023-10:33 AM 8/17/2023
+=>4. post flask starten
+454: *10:33 AM 8/17/2023-10:34 AM 8/17/2023
+ok - open app.py
+455: *10:34 AM 8/17/2023-10:39 AM 8/17/2023
+ok - find Flask in nodemaster videmo gefunden!
+460: *10:39 AM 8/17/2023-10:41 AM 8/17/2023
+462: *10:41 AM 8/17/2023-10:41 AM 8/17/2023
+ok how to flask cors
+463: *10:41 AM 8/17/2023-10:43 AM 8/17/2023
+- how to cors in nodejs?
+465: *10:43 AM 8/17/2023-10:45 AM 8/17/2023
+468: *10:45 AM 8/17/2023-10:51 AM 8/17/2023
+474: *10:52 AM 8/17/2023-7:24 PM 8/17/2023
+_____ fr 18.8.23 airport
+600: *7:25 PM 8/17/2023-7:30 PM 8/17/2023
+rausfinden wo das wise project ist?
+605: *7:30 PM 8/17/2023-7:38 PM 8/17/2023
+613: *7:38 PM 8/17/2023-
+- open aroot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- how to post route in flask???
+==>wise&otherwise!!!!
+choices:
+1. wae aufh
+2. spaz mit gu
+3. klavier 1xchopin
+=>4. post flask starten
+5. ws mit a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - flow
+Cello suite No. 1 Prelude ukulele Play Along with Tabs
 
 
 
 
 
 
-
-
-restart von internet!!! (check ethernet!!!)
+wae aufh
+klavier
+spazier => brombeeren + gu
+ok - restart von internet!!! (check ethernet!!!)
 gu project sell stuff
 ausdrucken von med records
 messages to bonsell,herges,kim,vandermeer

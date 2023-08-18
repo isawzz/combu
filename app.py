@@ -3,11 +3,17 @@ from datetime import timedelta
 
 #app = Flask(__name__,static_folder='.')
 app = Flask(__name__, static_url_path='', static_folder='')
+from flask_cors import CORS; CORS(app)
 static_folder = 'pr1'
 
 @app.route("/")
-def user():
+def _get():
     return send_from_directory(static_folder, 'index.html')
+
+@app.route('/post', methods=['POST'])  # post data contains settings to be added (!)
+def _post():
+	data = request.get_json(force=True)
+	return data
 
 
 if __name__ == "__main__":
