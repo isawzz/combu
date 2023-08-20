@@ -34,7 +34,7 @@
 - type: English
   start: The man in the moon
   end: drinks claret
-- type: India
+- type: saying of India
   start: His talking is like
   end: mixed vegetables
 - type: Sechuana
@@ -247,7 +247,7 @@
 - type: Scottish
   start: When the barns full you may thresh
   end: before the door
-- type: India
+- type: saying of India
   start: A book is a good friend which reveals
   end: the mistakes of the past
 - type: Danish
@@ -1084,7 +1084,7 @@
 - type: Jamaican
   start: The longest liver
   end: sees the most
-- type: Jersey
+- type: saying of Jersey
   start: Many beasts eat hay
   end: and many more eat bread
 - type: Nigerian
@@ -1252,7 +1252,7 @@
 - type: Syrian
   start: The eye does not rise
   end: above the eyebrow
-- type: India
+- type: saying of India
   start: He who goes to the hills goes
   end: to his mother
 - type: Japanese
@@ -1312,7 +1312,7 @@
 - type: Mozambican
   start: Sweet things never
   end: fill the spoon
-- type: Jersey
+- type: saying of Jersey
   start: Hot smoke is better than
   end: cold wind
 - type: Malayan
@@ -1534,7 +1534,7 @@
 - type: Belgian
   start: He who throws away his straw throws away
   end: his bread
-- type: India
+- type: saying of India
   start: Matmakers do not
   end: lie on mats
 - type: Dutch
@@ -1579,7 +1579,7 @@
 - type: Chinese
   start: A tiger doesnt eat
   end: stale meat
-- type: India
+- type: saying of India
   start: A fireplace has
   end: only three stones
 - type: West African
@@ -1669,7 +1669,7 @@
 - type: Bornean
   start: When the staff is broken the lame must
   end: go on all fours
-- type: India
+- type: saying of India
   start: A blind cow requires
   end: a separate house
 - type: Spanish
@@ -1690,7 +1690,7 @@
 - type: Italian
   start: Every shop has
   end: its trick
-- type: India
+- type: saying of India
   start: What do the great know of
   end: prices
 - type: Portuguese
@@ -1750,7 +1750,7 @@
 - type: Spanish
   start: He that cuts
   end: does not deal
-- type: India
+- type: saying of India
   start: There are more ways of getting to a sweetheart than
   end: butting down a wall
 - type: Portuguese
@@ -1780,7 +1780,7 @@
 - type: Slovakian
   start: The worm thinks there is nothing sweeter
   end: than horseradish
-- type: India
+- type: saying of India
   start: Sweetmeats are not distributed
   end: during a battle
 - type: Maltese
@@ -2002,7 +2002,7 @@
 - type: English
   start: An hours cold will
   end: suck out seven years' heat
-- type: India
+- type: saying of India
   start: It is too late to give barley when
   end: you are at the top of the hill
 - type: Italian
@@ -2026,7 +2026,7 @@
 - type: Dutch
   start: He has seen
   end: the wolf
-- type: India
+- type: saying of India
   start: Use a thorn to
   end: remove a thorn
 - type: American
@@ -2104,7 +2104,7 @@
 - type: Polish
   start: If you wish to enjoy leisure
   end: join the army
-- type: India
+- type: saying of India
   start: 'After eating nine hundred rats, the cat is now'
   end: going on a pilgrimage
 - type: German
@@ -2155,13 +2155,13 @@
 - type: Bulgarian
   start: He who has too much butter
   end: greases his boots
-- type: Guernsey
+- type: saying of Guernsey
   start: No one goes to cut furze
   end: without gloves
 - type: Laplander
   start: He who shares the meat
   end: is always left with the bone
-- type: India
+- type: saying of India
   start: Thin dogs
   end: bark loudest
 - type: Bantu
@@ -2236,7 +2236,7 @@
 - type: Russian
   start: A bad dancer always has trouble with
   end: his balls
-- type: India
+- type: saying of India
   start: Give a brahman clarified butter and he
   end: wriggles with delight
 - type: Scottish
@@ -2293,7 +2293,7 @@
 - type: Mexican
   start: Each one scratches himself with
   end: his own nails
-- type: Guernsey
+- type: saying of Guernsey
   start: When the bushel measure is full
   end: it runs over
 - type: Jamaican
@@ -2725,7 +2725,7 @@
 - type: Yiddish
   start: In a lake there is
   end: a variety of fish
-- type: India
+- type: saying of India
   start: If you go on the branches I will
   end: go on the leaves
 - type: Madagascan
@@ -2767,7 +2767,7 @@
 - type: Scottish
   start: When the burn does not babble it is either
   end: over-empty or over-full
-- type: Guernsey
+- type: saying of Guernsey
   start: The little pig gets
   end: the big parsnip
 - type: Italian
@@ -2956,7 +2956,7 @@
 - type: Irish
   start: You cant pluck
   end: a frog
-- type: India
+- type: saying of India
   start: She who wields a big wooden ladle
   end: rules all
 - type: Kenyan
@@ -3313,7 +3313,7 @@
 - type: Italian
   start: Every door has its
   end: knocker
-- type: India
+- type: saying of India
   start: He who carries the bludgeon
   end: owns the buffalo
 - type: Moorish
@@ -3364,7 +3364,7 @@
 - type: Irish
   start: Three creatures that do not clean their snouts -
   end: 'the dog, the pig, and the farmer'
-- type: India
+- type: saying of India
   start: A meal without meat
   end: is like feeding on grass
 - type: Czech
@@ -3469,7 +3469,7 @@
 - type: Irish
   start: An empty barn
   end: needs no roof
-- type: India
+- type: saying of India
   start: Who is able to wipe off what is written
   end: on the forehead?
 - type: West African
@@ -3562,7 +3562,7 @@
 - type: Samoan
   start: With high chiefs one does not
   end: argue about the moon
-- type: India
+- type: saying of India
   start: The elephant walks
   end: and the curs bark
 - type: Yiddish
@@ -3592,7 +3592,7 @@
 - type: Sardinian
   start: The salt is worth more than the
   end: fish
-- type: India
+- type: saying of India
   start: An ass and a packsaddle and no
   end: anxieties
 - type: Swiss
@@ -4063,7 +4063,7 @@
 - type: Spanish
   start: April and May make flour for
   end: the whole year
-- type: India
+- type: saying of India
   start: One who is tempted today by a cucumber
   end: will be tempted tomorrow by a goat
 - type: Russian
@@ -4108,7 +4108,7 @@
 - type: English
   start: The man in boots does not
   end: know the man in shoes
-- type: India
+- type: saying of India
   start: On a green tree there are many
   end: parrots
 - type: Persian
@@ -5122,7 +5122,7 @@
 - type: Tanganyikan
   start: The hippopotamus that shows itself
   end: doesn't upset the boat
-- type: India
+- type: saying of India
   start: Big tree -
   end: big breeze
 - type: French
@@ -5365,7 +5365,7 @@
 - type: Polish
   start: When there is butter
   end: there are flies
-- type: India
+- type: saying of India
   start: He who holds the ladle
   end: commands everybody
 - type: French
@@ -5455,7 +5455,7 @@
 - type: Irish
   start: Tell not your secret
   end: to a fence
-- type: India
+- type: saying of India
   start: A coconut shell full of water
   end: is an ocean to an ant
 - type: German
@@ -5827,7 +5827,7 @@
 - type: Samoan
   start: The knee feels the
   end: tapping
-- type: India
+- type: saying of India
   start: In the sandal tree are
   end: serpents
 - type: Yiddish
@@ -6046,7 +6046,7 @@
 - type: Montenegrin
   start: Those who hurry much
   end: remain on the road
-- type: India
+- type: saying of India
   start: When three women join together
   end: the stars come out in broad daylight
 - type: Dutch
@@ -6304,7 +6304,7 @@
 - type: Irish
   start: A full cabin is better than
   end: an empty castle
-- type: India
+- type: saying of India
   start: A pot of wood will not
   end: cook twice
 - type: Livonian
@@ -6328,7 +6328,7 @@
 - type: Cameroonian
   start: On the muddy bank there is always
   end: a white bird
-- type: India
+- type: saying of India
   start: 'For the weak, forty-nine'
   end: wins
 - type: Polish
@@ -6361,7 +6361,7 @@
 - type: Belgian
   start: It isnt in a coal sack that one finds
   end: white flour
-- type: India
+- type: saying of India
   start: A bear is
   end: an unsafe bedmate
 - type: Dutch
@@ -6577,7 +6577,7 @@
 - type: Finnish
   start: 'Age does not give sense,'
   end: it only makes one go slowly
-- type: India
+- type: saying of India
   start: Man is like a
   end: bubble of water on the ocean
 - type: Turkish
@@ -6595,7 +6595,7 @@
 - type: Hungarian
   start: He who sells poison
   end: uses a flowery signboard
-- type: Guernsey
+- type: saying of Guernsey
   start: It is not they who plow nearest the hedge who
   end: are the richest
 - type: Japanese
@@ -6775,10 +6775,10 @@
 - type: Irish
   start: One dog
   end: can't fight
-- type: India
+- type: saying of India
   start: What reliance can be placed on
   end: a sneeze?
-- type: India
+- type: saying of India
   start: When the eyes are closed
   end: the world is dark
 - type: African
@@ -7102,7 +7102,7 @@
 - type: Nigerian
   start: 'A child is like a camels neck,'
   end: it goes where it pleases
-- type: India
+- type: saying of India
   start: The life of a camel is
   end: only forty days
 - type: Greek
@@ -7219,7 +7219,7 @@
 - type: Italian
   start: The chestnut is for
   end: the one who takes its shell off
-- type: India
+- type: saying of India
   start: Suit your appearance to
   end: the country
 - type: Mesopotamian
@@ -7228,7 +7228,7 @@
 - type: Scottish
   start: When the pots full
   end: it will boil over
-- type: India
+- type: saying of India
   start: You should consider the society of friends
   end: as a momentary flash of lightning
 - type: Portuguese

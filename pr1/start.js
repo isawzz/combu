@@ -170,7 +170,7 @@ async function test1_simple_node_POST() {
 //#region GET
 async function test1_simple_telecave_GET() {
   // simplest telecave test for GET: genau wie live! GEHT DOCH!!!!!!!!!!!!
-  let result = await fetch('../common/api.php').then(x => x.text());
+  let result = await fetch('../basecommon/api.php').then(x => x.text());
   //result = jsyaml.load(result);
   console.log('result text', result)
 }
