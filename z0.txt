@@ -213,18 +213,119 @@ violin,piano,fgu,wae*
 - ok ich hab jetzt das newdi, was jetzt?
 42: *10:20 AM 8/19/2023-11:40 AM 8/19/2023
 50: *11:40 AM 8/19/2023-12:24 PM 8/19/2023
-90: *12:24 PM 8/19/2023-12:28 PM 8/19/2023
-- emoshort
-- jetzt will ich sehen wie ich da draus ein favicon machen kann!
-(in js)
-
-
 tap saying to toggle ending
 - poetry cards edit!!!
 poetry cards
 mach noch ein padding!
 - try loading from same dir!
 - cleanup and upload!
+90: *12:24 PM 8/19/2023-12:28 PM 8/19/2023
+_____ so 20.8.23 airport
+200: *7:42 PM 8/19/2023-5:35 AM 8/20/2023
+201: *5:35 AM 8/20/2023-5:37 AM 8/20/2023
+203: *5:37 AM 8/20/2023-5:43 AM 8/20/2023
+209: *5:43 AM 8/20/2023-5:59 AM 8/20/2023
+225: *5:59 AM 8/20/2023-6:04 AM 8/20/2023
+230: *6:04 AM 8/20/2023-6:08 AM 8/20/2023
+235: *6:08 AM 8/20/2023-6:08 AM 8/20/2023
+236: *6:08 AM 8/20/2023-6:10 AM 8/20/2023
+238: *6:10 AM 8/20/2023-6:22 AM 8/20/2023
+250: *6:22 AM 8/20/2023-6:53 AM 8/20/2023
+281: *6:53 AM 8/20/2023-
+_____ mo 21.8.23 airport
+400: *4:43 AM 8/21/2023-5:02 AM 8/21/2023
+419: *5:02 AM 8/21/2023-5:07 AM 8/21/2023
+libretranslate ist mist, weg damit
+424: *5:07 AM 8/21/2023-5:52 AM 8/21/2023
+argospm update
+argospm install translate-en_de
+argos-translate --from en --to de "Hello World!"
+469: *5:52 AM 8/21/2023-6:30 AM 8/21/2023
+codes: zh fr en de it es ja la ru cy
+pip install googletrans==3.1.0a0
+507: *6:30 AM 8/21/2023-6:49 AM 8/21/2023
+526: *6:49 AM 8/21/2023-
+- computer so einrichten dass alle sprachen versteht und reden kann
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="ryNqvb" jsaction="click:E6Tfl,GFf3ac,tMZCfe; contextmenu:Nqw7Te,QP7LD; mouseout:Nqw7Te; mouseover:E6Tfl,c2aHje" jsname="W297wb">gato</span>
+
+https://translate.google.com/?sl=de&tl=es&text=katze&op=translate
+- pip install googletrans 
+ha ia ka ja
+- use gpt for translation
+deepl.com api iwg b...DL
+- ich brauch nur: wort und 
+nimm das allSyms, nimm das emoji.txt, und combine zu 1 file
+dann im iconviewer zeig alle emojis
+- ich sollte es einfach in ruhe lassen und ein kind sein auch ein kind kann nix bestimmen. und in wien kann ich immer noch den ganzen tag fluechten und so frueh aufstehen dass er mich nie erwischt
+- it is in whatever way and I can out
+- emoshort
+- jetzt will ich sehen wie ich da draus ein favicon machen kann!
+(in js)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -232,7 +333,45 @@ mach noch ein padding!
 it is NOT my business and NOT under my umbrella!!!!
 
 
+Of course! Balancing multiple activities requires careful time management. Here's a proposed workday schedule that includes all the activities you've mentioned:
 
+**7:00 AM - 8:00 AM:** Morning routine (wake up, breakfast, morning hygiene)
+
+**8:00 AM - 9:00 AM:** Morning walk (This should get you about 7.5K steps if you walk briskly for an hour)
+
+**9:00 AM - 10:00 AM:** Violin practice 
+
+**10:00 AM - 10:15 AM:** Short break (Stretch, hydrate)
+
+**10:15 AM - 11:15 AM:** Piano practice
+
+**11:15 AM - 12:15 PM:** Programming 
+
+**12:15 PM - 1:00 PM:** Lunch 
+
+**1:00 PM - 2:00 PM:** Tutorials (Choose a topic or skill you want to delve into)
+
+**2:00 PM - 3:00 PM:** Programming 
+
+**3:00 PM - 3:15 PM:** Short break (Stretch, hydrate, maybe play a short tune on the piano or violin for fun)
+
+**3:15 PM - 4:00 PM:** Household chores 
+
+**4:00 PM - 5:00 PM:** Afternoon walk (Another 7.5K steps)
+
+**5:00 PM - 6:00 PM:** Cooking and dinner 
+
+**6:00 PM - 7:00 PM:** Programming or Tutorials (Depending on what you feel like. If you're mentally tired, it might be better to watch tutorials or engage in lighter programming tasks)
+
+**7:00 PM - 7:15 PM:** Short break 
+
+**7:15 PM - 8:15 PM:** Personal time (You can use this time for any activity that relaxes you, or even additional practice on the violin or piano if you're up for it)
+
+**8:15 PM - 9:00 PM:** Wind down (Read a book, meditate, do some light stretching, or any other relaxation activity)
+
+**9:00 PM:** Bedtime (or adjust based on your personal sleep needs and preferences)
+
+This is just a template, and you should adjust the timing and duration based on your energy levels and personal preferences. It's essential to listen to your body and mind and make sure you're not feeling burnt out. The key is to strike a balance that keeps you engaged and productive, but also rested and relaxed.
 
 
 

@@ -1,5 +1,75 @@
-onload = _start;
+onload = start;
 
+async function start() {
+	const res = await fetch("https://libretranslate.com/translate", {
+		method: "POST",
+		body: JSON.stringify({
+			q: "Hello!",
+			source: "en",
+			target: "es"
+		}),
+		headers: { "Content-Type": "application/json" }
+	});
+	
+	console.log(await res.json());	
+}
+async function test2(){
+	let url = 'https://libretranslate.com/languages';
+	let result = await fetch(url, {
+		method: 'GET',
+		// mode: 'no-cors',  // Set the mode to 'no-cors' for the fetch
+		headers: {
+			'Content-Type': 'application/json',
+			// 'Access-Control-Allow-Origin': '*' // This header would typically be set server-side, not client-side
+		}
+	})
+		.then(response => {
+			return response.json();
+			if (response.type === 'opaque') {
+				// Can't read the response content with an opaque response, but you can still check for success
+				console.log('Request was successful');
+			}
+		})
+		.catch(error => {
+			console.error('There was an error with the fetch request:', error);
+		});
+
+	console.log('result',result)
+
+}
+async function test1() {
+	let url = `https://translate.google.com/?sl=de&tl=es&text=katze&op=translate`;
+	fetch(url, {
+		method: 'GET',
+		mode: 'no-cors',  // Use 'cors' mode for cross-origin requests, 'same-origin' for same-origin requests, or 'no-cors' if you don't need to read the response
+		// mode: 'cors',  // Use 'cors' mode for cross-origin requests, 'same-origin' for same-origin requests, or 'no-cors' if you don't need to read the response
+		headers: {
+			'Content-Type': 'text/html',
+		}
+	})
+		.then(response => {
+			if (response.ok) {
+				return response.text(); // If the response content type is text/html, use .text() to parse the body
+			}
+			throw new Error('Network response was not ok.');
+		})
+		.then(html => {
+			console.log('Fetched HTML:', html);
+		})
+		.catch(error => {
+			console.error('There was an error with the fetch request:', error);
+		});
+}
+
+async function test0() {
+	//mach ein get request zu https://translate.google.com/?sl=de&tl=es&text=katze&op=translate
+	let url = `https://translate.google.com/?sl=de&tl=es&text=katze&op=translate`;
+	let result = await fetch(url).then(x => x.text());
+	console.log(result)
+
+
+
+}
 async function _start() {
 	let text = await fetch('../prepper/emoji.txt').then(x => x.text());
 	let lines = getQualifiedLines(text);
