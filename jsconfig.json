@@ -15,5 +15,6 @@
     "../y/*",
     "../../base/alibs/*",
     "../../base/assets/*",
+    "_hideTEMP",
   ]
 }

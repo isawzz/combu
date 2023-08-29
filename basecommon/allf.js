@@ -11422,7 +11422,7 @@ function byType1(type, func) {
 }
 function C_draw() {
   if (!C.changed) return;
-  cClear(CV, CX);
+  cClear(C, CX);
   for (const type in C.items) { let f = get_func(type, 'draw'); for (const item of C.items[type]) { f(item); } }
   C.changed = false;
 }
@@ -12826,7 +12826,7 @@ function cCircle(c, sz, n, disp = -90) {
   return centers;
 }
 function cClear(cnv = null, ctx = null) {
-  if (nundef(cnv)) { cnv = CV; ctx = CX; if (!ctx) return; }
+  if (nundef(cnv)) { cnv = C; ctx = CX; if (!ctx) return; }
   ctx.save();
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, cnv.width, cnv.height);
@@ -23758,12 +23758,12 @@ function funGraph(ctx, axes, func, color, thick) {
   }
   ctx.stroke();
 }
-function G_clear() { gameloop_stop(); clear_timeouts(); mClear('dTable'); C = G = CV = CX = null; }
+function G_clear() { gameloop_stop(); clear_timeouts(); mClear('dTable'); C = G = C = CX = null; }
 function G_init(name) {
-  if (CV) G_clear();
+  if (C) G_clear();
   [dLeft, dCenter] = mColFlex(dTable, [0, 5]);
   let res = mCanvas(dCenter, { w: 500, h: 500, bg: '#222', rounding: 10 });
-  [CV, CX] = [res.cv, res.cx];
+  [C, CX] = [res.cv, res.cx];
   let bpp = _mPlayPause(dCenter, { fz: 28, fg: 'lightgreen', display: 'flex', ajcenter: true }, onclick_playpause);
   G = { running: false, bPP: bpp };
   C = { changed: true, name: name, items: {}, root: get_func(name, 'init')() };
@@ -31679,7 +31679,7 @@ function iAdd(item, liveprops, addprops) {
   let id, l;
   if (isString(item)) { id = item; item = valf(Items[id], {}); }
   let el = valf(liveprops.div, liveprops.ui, iDiv(item), null);
-  id = valnwhite(item.id, (el ? el.id : getUID()), getUID());
+  id = valnwhite(addprops.id, item.id, (el ? el.id : getUID()), getUID());
   item.id = id; if (nundef(Items[id])) Items[id] = item; if (el) el.id = id;
   if (nundef(item.live)) item.live = {};
   l = item.live;
@@ -37222,7 +37222,7 @@ function lsys_init(offx = 0, offy = 0, options = {}) {
     sentence: system.axiom,
     rules: system.rules,
     t: 'root',
-    p2: { x: CV.width / valf(system.xstart, 2), y: CV.height },
+    p2: { x: C.width / valf(system.xstart, 2), y: C.height },
     angle: toRadian(90),
     len: valf(system.len, 100),
     age: 0,
@@ -68878,7 +68878,7 @@ function tree_add() {
   else if (root.phase == 'autumn') {
     root.jitter = false;
     C.changed = true;
-    let falling = C.items.leaf.filter(l => l.p.y < CV.height);
+    let falling = C.items.leaf.filter(l => l.p.y < C.height);
     if (isEmpty(falling)) {
       C.changed = false; root.phase = 'winter';
     } else {
@@ -68900,7 +68900,7 @@ function tree_init(offx = 0, offy = 0, options = {}) {
     done: false,
     t: 'root',
     age: 0,
-    p2: { x: offx + CV.width / 2, y: offy + CV.height },
+    p2: { x: offx + C.width / 2, y: offy + C.height },
     len: valf(options.len, 100),
     angle: toRadian(90),
     thickness: valf(options.thick, 20),

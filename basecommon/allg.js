@@ -1368,7 +1368,7 @@ var currentPlaymode;
 var currentSeed;
 var CurrentSessionData;
 var currentUser = 'Gunter';
-var CV;
+var C;
 var CWIDTH = CSZ * .7
 var CX;
 var CYCLES = 0;
