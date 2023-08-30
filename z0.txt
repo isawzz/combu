@@ -405,8 +405,14 @@ initial pos is corners, centers, center (9 players max)
 - haut nicht hin weil values nicht literals sind!!!
 1-9
 get your digit
-230: *7:46 AM 8/30/2023-
+230: *7:46 AM 8/30/2023-8:16 AM 8/30/2023
+- warum zeigt er nur 1 player????
+260: *8:16 AM 8/30/2023-1:28 PM 8/30/2023
+E -1:28 PM 8/30/2023
+300: *1:28 PM 8/30/2023-
 
+5.5h bis 7h abend: wie teil ich mir diese zeit ein?
+- next try
 
 
 
