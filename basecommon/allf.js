@@ -20946,7 +20946,7 @@ function evaluate() {
     if (unitTimeUp()) {
       setTimeout(() => gameOver('Great job! Time for a break!'), DELAY);
     } else {
-      TOMain = setTimeout(startGame, DELAY);
+      TOMain = setTimeout(setGoal, DELAY);
     }
   } else if (Score.levelChange && nextLevel <= G.maxLevel) {
     G.level = nextLevel;
@@ -47377,7 +47377,7 @@ function onClickSpecAndCode() {
   S.settings.openTab = 'CodeTab';
   redrawScreen();
 }
-function onClickStartButton() { startGame(); }
+function onClickStartButton() { setGoal(); }
 function onClickStartGame() {
   _sendRoute('/begin/1', d6 => {
     timit.showTime('sending status');
@@ -51559,7 +51559,7 @@ function proceed(nextLevel) {
       dLevelComplete.innerHTML = 'CONGRATULATIONS! You are done!';
     } else {
       let nextGame = gameSequence[iGame];
-      startGame(nextGame);
+      setGoal(nextGame);
     }
   } else if (LevelChange) startLevel(nextLevel);
   else startRound();
@@ -57147,7 +57147,7 @@ async function SessionStart() {
   initSidebar();
   initSettingsP0();
   CurrentSessionData = { user: currentUser, games: [] };
-  if (immediateStart && IS_TESTING) { hide('freezer'); show('divControls'); startGame(); }
+  if (immediateStart && IS_TESTING) { hide('freezer'); show('divControls'); setGoal(); }
   else if (immediateStart) { show('freezer'); hide('divControls'); }
   else { hide('freezer'); hide('divControls'); openSettings(); }
 }
@@ -62644,7 +62644,7 @@ function startgame(game, players, options = {}) {
   ensure_polling();
   phpPost(o, 'startgame');
 }
-function startGame() {
+function setGoal() {
   meme = new component(30, 30, 'red', 10, 120);
   meme.gravity = 0.05;
   score = new component('30px', 'Consolas', 'black', 280, 40, 'text');

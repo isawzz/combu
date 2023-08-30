@@ -377,9 +377,85 @@ _____ di 29.8.23 airport
 1: *8:23 PM 8/28/2023-6:25 AM 8/29/2023
 2: *6:25 AM 8/29/2023-6:49 AM 8/29/2023
 26: *6:49 AM 8/29/2023-7:17 AM 8/29/2023
-54: *7:18 AM 8/29/2023-
+54: *7:18 AM 8/29/2023-7:52 AM 8/29/2023
+84: *7:52 AM 8/29/2023-
+_____ mi 30.8.23 airport
+100: *5:35 AM 8/30/2023-5:37 AM 8/30/2023
+102: *5:37 AM 8/30/2023-5:55 AM 8/30/2023
+- switch zu para
+- send real data, resend after 100ms
+erstmal: synchronized mit update jede 500ms
+	setInterval(render, 50);
+id should be color
 - auch der text soll geladen werden!!!
 - verwende allPlayers und thisPlayer
+120: *5:56 AM 8/30/2023-6:20 AM 8/30/2023
+- play pause button
+144: *6:20 AM 8/30/2023-6:24 AM 8/30/2023
+ich brauch RT
+1. take time when sending
+2. take time when receiving
+3. calc diff
+4. rendering soll so machen:
+1. if !tprev tprev=tnow,tnow=tnow,diff=0
+148: *6:25 AM 8/30/2023-6:26 AM 8/30/2023
+initial pos is corners, centers, center (9 players max)
+149: *6:27 AM 8/30/2023-6:49 AM 8/30/2023
+171: *6:49 AM 8/30/2023-7:46 AM 8/30/2023
+- haut nicht hin weil values nicht literals sind!!!
+1-9
+get your digit
+230: *7:46 AM 8/30/2023-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 hijack!
