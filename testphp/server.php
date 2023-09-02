@@ -8,6 +8,11 @@ function fileAppend($filename,$row){
 }
 
 session_start();
+
+$posted = $_SERVER['REQUEST_METHOD'] === 'POST' ? json_decode(file_get_contents("php://input"), true) : [];
+
+echo json_encode(['posted' => $posted, 'session' => $_SESSION]);
+exit;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'updatePositions') {
 	$data = json_decode(file_get_contents("php://input"), true);
 	$timestamp = $data['timestamp'];
@@ -34,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
 			$_SESSION['users'][] = $userId;
 	}
 
-	echo json_encode(['status' => 'success']);
+	echo json_encode(['status' => '?', 'users' => $_SESSION['users']]);
 	exit;
 }
 

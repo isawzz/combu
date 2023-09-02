@@ -540,13 +540,19 @@ v
 933: *9:56 AM 9/2/2023-9:57 AM 9/2/2023
 934: *9:57 AM 9/2/2023-9:58 AM 9/2/2023
 935: *9:58 AM 9/2/2023-10:02 AM 9/2/2023
-939: *10:02 AM 9/2/2023-
+939: *10:02 AM 9/2/2023-10:22 AM 9/2/2023
+959: *10:22 AM 9/2/2023-10:24 AM 9/2/2023
+961: *10:25 AM 9/2/2023-10:27 AM 9/2/2023
+- remove green text color
 0 gul steelblue statt red
 - darf nicht das live element schicken!!!
 - wie krieg ich das rect vom canvas? getCanvasRect
 - jeder hat eine andre start position
 - no br nach reset button
 - wo soll das goal gesetzt werden?
+962: *10:27 AM 9/2/2023-10:57 AM 9/2/2023
+992: *10:58 AM 9/2/2023-
+1 spiel damit mich bewege!
 - every 100ms send a message with updated piece position AND
 get back all positions AND render!!!
 user user color

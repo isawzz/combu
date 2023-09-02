@@ -13,13 +13,16 @@
 
 <body>
 	<!-- Dropdown list for user IDs -->
-	<button onclick="sendGetReset()">RESET</button>
-	<ul id="userList"></ul><br>
+	<div style="display:flex;justify-content:space-between;height:22px">
+		<button onclick="sendGetReset()">RESET</button>
+		<div id="dUsernames"></div>
+		<div id="dLoggedInAs" style="min-width:140px;text-align:right">logged out</div>
+	</div>
 	<input type="text" id="messageInput" placeholder="Type a message" />
 	<button onclick="sendPostMessage()">Send POST</button>
 	<button onclick="sendGetPositions()">Download Positions</button>
 	<p id="latencyOutput">Latency: N/A</p>
-	<textarea id="messagesOutput" rows="30" cols="78"></textarea>
+	<textarea id="messagesOutput" rows="20" cols="78"></textarea>
 	<canvas id="gameCanvas" width="500" height="300" style="background-color:#111;"></canvas>
 </body>
 

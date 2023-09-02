@@ -1,34 +1,44 @@
-var canvas, ctx, userId, users, FRESH_START=false;
+var canvas, ctx, userId, users, FRESH_START = false, FPS = 200;
 onload = start
 
 function start() {
 	test1();
 }
-function test1(){
+function test1() {
 	canvas = document.getElementById('gameCanvas'); ctx = canvas.getContext('2d');
 	canvas.onclick = setGoalPosition;
 
 	fillList();
 
-	if (FRESH_START)	{setUserId('amanda'); return;}
+	if (FRESH_START) { setUserId('amanda'); return; }
 
 	userId = sessionStorage.getItem('userId'); // Check if a userId already exists in sessionStorage
-	setUserId(valf(userId,'felix'));
+	setUserId(valf(userId, 'felix'));
+	startGameloop();
 
 }
+async function startGameloop(){
+	// send user data to host,
+	await sendPostUpdatePositions();
+	// get back all users' data
+	// present on canvas - no interpolation for now!
+}
+
+
+
 function test0() {
 	canvas = document.getElementById('gameCanvas'); ctx = canvas.getContext('2d');
 	canvas.onclick = sendMousePosition;
 
 	fillList();
 
-	if (FRESH_START)	{setUserId('amanda'); return;}
+	if (FRESH_START) { setUserId('amanda'); return; }
 
 	userId = sessionStorage.getItem('userId'); // Check if a userId already exists in sessionStorage
-	setUserId(valf(userId,'felix'));
+	setUserId(valf(userId, 'felix'));
 	// console.log('userId from sessionStorage', userId)
 	// if (!userId) { userId = "felix"; sessionStorage.setItem('userId', userId); }
-	// document.getElementById('userList').value = userId;
+	// document.getElementById('dUsernames').value = userId;
 
 }
 
@@ -46,33 +56,35 @@ function drawRectC(pos, sz = 10, color = 'red') {
 
 }
 function fillList() {
-	var userList = document.getElementById("userList");
+	var dUsernames = document.getElementById("dUsernames");
+	//mCenterFlex(dUsernames);
 
 	// Clear the list (if you want to refresh its contents)
-	userList.innerHTML = '';
+	dUsernames.innerHTML = '';
 
-	let r=getCanvasRect(),offs=8;
-	let [x,y,w,h]=[r.x,r.y,r.w,r.h];
+	let r = getCanvasRect(), offs = 8;
+	let [x, y, w, h] = [r.x, r.y, r.w, r.h];
 	users = {
-		felix:{ name: 'felix', color: 'blue', startPos:{x:0+offs,y:0+offs} },
-		amanda:{ name: 'amanda', color: 'green', startPos:{x:w-offs,y:h-offs} },
-		gul:{ name: 'gul', color: 'deepskyblue', startPos:{x:0+offs,y:h-offs} },
-		mitra:{ name: 'mitra', color: 'hotpink', startPos:{x:w-offs,y:0+offs} },
+		felix: { name: 'felix', color: 'blue', startPos: { x: 0 + offs, y: 0 + offs } },
+		amanda: { name: 'amanda', color: 'green', startPos: { x: w - offs, y: h - offs } },
+		gul: { name: 'gul', color: 'deepskyblue', startPos: { x: 0 + offs, y: h - offs } },
+		mitra: { name: 'mitra', color: 'hotpink', startPos: { x: w - offs, y: 0 + offs } },
 	}; // You can customize this array
 	for (const name in users) {
-		var li = document.createElement("li");
-		mStyle(li,{fg:users[name].color,display:'inline',maleft:10,cursor:'pointer'})
+		var li = document.createElement("div");
+		mStyle(li, { fg: users[name].color, display: 'inline', maleft: 10, cursor: 'pointer' })
 		li.innerHTML = name;
-		li.onclick = ev=>setUserId(ev.target.innerText);
+		li.onclick = ev => setUserId(ev.target.innerHTML);
 		li.id = name;
-		userList.appendChild(li);
+		dUsernames.appendChild(li);
 	}
+	console.log('list',dUsernames)
 }
-function getCanvasCenter(){
-	return {x:canvas.width/2,h:canvas.height/2};
+function getCanvasCenter() {
+	return { x: canvas.width / 2, h: canvas.height / 2 };
 }
-function getCanvasRect(){
-	return {x:0,y:0,w:canvas.width,h:canvas.height};
+function getCanvasRect() {
+	return { x: 0, y: 0, w: canvas.width, h: canvas.height };
 }
 function getMousePosition(parent, ev) {
 	const rect = parent.getBoundingClientRect();
@@ -83,8 +95,6 @@ function getMousePosition(parent, ev) {
 async function sendPostUpdatePositions(ev) {
 	const message = document.getElementById('messageInput').value;
 	const timestamp = new Date().getTime();
-	const goal = getMousePosition(canvas, ev)
-	const pos = { x: goal.x - 20, y: goal.y - 20 }
 	console.log('userId', userId)
 
 	const postData = {
@@ -94,7 +104,7 @@ async function sendPostUpdatePositions(ev) {
 		message: message,
 		userId: userId
 	};
-	addKeys(U,postData);
+	addKeys(U, postData);
 
 	const start = performance.now();
 	const response = await fetch('server.php', {
@@ -106,11 +116,14 @@ async function sendPostUpdatePositions(ev) {
 	});
 	const end = performance.now();
 	const latency = end - start;
-	const data = await response.json();
+	const astext = await response.text();
+	console.log('text',astext)
+	const data = JSON.parse(astext); //await response.json();
 
 	showLatency(latency);
-	showGoal(goal);
-	showPiece(pos);
+	console.log('data',data);
+	// showGoal(goal);
+	// showPiece(pos);
 }
 async function sendMousePosition(ev) {
 	const message = document.getElementById('messageInput').value;
@@ -189,23 +202,8 @@ async function sendGetMessages() {
 	textarea.value = JSON.stringify(data, null, 2);
 	textarea.scrollTop = textarea.scrollHeight;
 }
-function setGoalPosition(ev){
-
-}
-function setUserId(name) {
-	let item = U = users[name];
-	let elem = iDiv(item);
-	//console.log('elem',elem)
-	// Remove 'selected' class from all list items
-	var allItems = document.querySelectorAll("#userList li");
-	allItems.forEach(el=> {		el.classList.remove("selected");	});
-
-	// Add 'selected' class to the clicked item
-	elem.classList.add("selected");
-	//console.log('selected user',item);
-
-	userId = item.name; //document.getElementById('userList').value;
-	sessionStorage.setItem('userId', userId);
+function setGoalPosition(ev) {
+	U.goal = getMousePosition(canvas, ev);
 }
 function showLatency(latency) {
 	document.getElementById('latencyOutput').innerText = `Latency: ${latency.toFixed(2)}ms`;
@@ -221,16 +219,17 @@ function setUserId(name) {
 	let elem = mBy(name);
 	//console.log('elem',elem)
 	// Remove 'selected' class from all list items
-	var allItems = document.querySelectorAll("#userList li");
-	allItems.forEach(el=> {		el.classList.remove("selected");	});
+	var allItems = document.querySelectorAll("#dUsernames div");
+	allItems.forEach(el => { el.classList.remove("selected"); });
 
 	// Add 'selected' class to the clicked item
 	elem.classList.add("selected");
 	//console.log('selected user',item);
 
-	userId = item.name; //document.getElementById('userList').value;
+	userId = item.name; //document.getElementById('dUsernames').value;
 	item.pos = item.startPos;
-	item.goal = getCanvasCenter;
+	item.goal = getCanvasCenter();
 	sessionStorage.setItem('userId', userId);
+	mBy('dLoggedInAs').innerHTML = `logged in as <span style="color:${item.color}">${name}</span>`
 }
 
