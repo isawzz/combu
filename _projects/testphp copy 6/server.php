@@ -8,35 +8,6 @@ function fileAppend($filename,$row){
 }
 
 session_start();
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'updatePositions') {
-	$data = json_decode(file_get_contents("php://input"), true);
-	$timestamp = $data['timestamp'];
-	$message = $data['message'];
-	$goal = $data['goal'];
-	$pos = $data['pos'];
-	$userId = $data['userId'];  // capture the unique ID
-
-	//fileAppend('messages.csv',[$timestamp, $message, $userId]); // Append message, timestamp, and unique ID to CSV
-	$_SESSION[$userId] = [
-		'timestamp' => $timestamp,
-		'goal' => $goal,
-		'pos' => $pos,
-		'message' => $message
-	];
-
-	// Check if 'users' session array exists, if not, create it
-	if (!isset($_SESSION['users'])) {
-		$_SESSION['users'] = [];
-	}
-
-	// If the userId is not already in the users array, add it
-	if (!in_array($userId, $_SESSION['users'])) {
-			$_SESSION['users'][] = $userId;
-	}
-
-	echo json_encode(['status' => 'success']);
-	exit;
-}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);

@@ -44124,19 +44124,22 @@ function mStyle(elem, styles, unit = 'px') {
   if (isdef(styles.w100)) styles.w = '100%'; else if (isdef(styles.wrest)) styles.w = 'rest';
   if (isdef(styles.h100)) styles.h = '100%'; else if (isdef(styles.hrest)) styles.h = 'rest';
   let dParent = elem.parentNode;
-  let pad = parseInt(valf(dParent.style.padding, '0'));
-  let rp = getRect(dParent);
-  let r = getRect(elem, dParent);
-  if (styles.w == 'rest') {
-    let left = r.l;
-    let w = rp.w;
-    let wrest = w - left - pad;
-    styles.w = wrest;
-  }
-  if (styles.h == 'rest') {
-    let r1 = getRect(dParent.lastChild, dParent);
-    let hrest = rp.h - (r1.y) - pad;
-    styles.h = hrest;
+  if (isdef(dParent)){
+    console.log('dParent',dParent)
+    let pad = dParent && isdef(dParent.style.padding)?parseInt(dParent.style.padding):0;
+    let rp = getRect(dParent);
+    let r = getRect(elem, dParent);
+    if (styles.w == 'rest') {
+      let left = r.l;
+      let w = rp.w;
+      let wrest = w - left - pad;
+      styles.w = wrest;
+    }
+    if (styles.h == 'rest') {
+      let r1 = getRect(dParent.lastChild, dParent);
+      let hrest = rp.h - (r1.y) - pad;
+      styles.h = hrest;
+    }
   }
   let bg, fg;
   if (isdef(styles.bg) || isdef(styles.fg)) {

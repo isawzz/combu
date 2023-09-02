@@ -5,7 +5,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Latency Test</title>
-	<link rel="stylesheet" href="style.css" />
 	<script src="../basecommon/allg.js"></script>
 	<script src="../basecommon/allf.js"></script>
 	<script src="script.js"></script>
@@ -13,11 +12,15 @@
 
 <body>
 	<!-- Dropdown list for user IDs -->
-	<button onclick="sendGetReset()">RESET</button>
-	<ul id="userList"></ul><br>
+	<button onclick="resetUsers()">RESET</button><br>
+	<select id="userIdSelect" onchange="setUserId()">
+		<option value="user1">User 1</option>
+		<option value="user2">User 2</option>
+		<!-- Add as many users as you need -->
+	</select>
 	<input type="text" id="messageInput" placeholder="Type a message" />
-	<button onclick="sendPostMessage()">Send POST</button>
-	<button onclick="sendGetPositions()">Download Positions</button>
+	<button onclick="sendPOST()">Send POST</button>
+	<button onclick="downloadPositions()">Download Positions</button>
 	<p id="latencyOutput">Latency: N/A</p>
 	<textarea id="messagesOutput" rows="30" cols="78"></textarea>
 	<canvas id="gameCanvas" width="500" height="300" style="background-color:#111;"></canvas>

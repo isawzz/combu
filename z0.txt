@@ -494,12 +494,6 @@ SCOPING!!!! ein let zuviel in start!!!- userId wurde scheinbar nicht gepostet!!!
 - schick die userdata
 - wann kommt der user rein?
 598: *7:34 AM 9/1/2023-5:50 PM 9/1/2023
-- mach ein session reset!!!!
-- einen reset buttton
-- schickt action sessionReset
-- php host bekommt noch ein if clause wo er nur
-session_unset();
-aufruft!
 600: *5:50 PM 9/1/2023-5:50 PM 9/1/2023
 geige 60 minuten
 660: *5:50 PM 9/1/2023-7:29 PM 9/1/2023
@@ -507,7 +501,55 @@ active*1pm
 gu spazier/kueche/zaehne putzen/schlafengehen/muell raus
 _____ sa 2.9.23 airport
 800: *7:30 PM 9/1/2023-5:10 AM 9/2/2023
-801: *5:10 AM 9/2/2023-
+801: *5:10 AM 9/2/2023-5:12 AM 9/2/2023
+803: *5:12 AM 9/2/2023-5:16 AM 9/2/2023
+807: *5:16 AM 9/2/2023-5:18 AM 9/2/2023
+- brauch noch einen button
+- mach ein session reset!!!!
+- einen reset buttton
+- schickt action sessionReset
+- php host bekommt noch ein if clause wo er nur
+session_unset();
+aufruft!
+809: *5:18 AM 9/2/2023-5:19 AM 9/2/2023
+sendPOST macht keinen sinn mehr!!!
+810: *5:19 AM 9/2/2023-5:26 AM 9/2/2023
+817: *5:26 AM 9/2/2023-5:28 AM 9/2/2023
+819: *5:28 AM 9/2/2023-5:28 AM 9/2/2023
+- geht mit user1 und user2!
+- was soll jetzt passieren?
+820: *5:28 AM 9/2/2023-5:40 AM 9/2/2023
+832: *5:40 AM 9/2/2023-5:44 AM 9/2/2023
+- link rel
+- jetzt soll jeder user eine eigene farbe kriegen
+836: *5:45 AM 9/2/2023-5:54 AM 9/2/2023
+845: *5:54 AM 9/2/2023-6:23 AM 9/2/2023
+- remove selected class from all items
+874: *6:23 AM 9/2/2023-6:24 AM 9/2/2023
+875: *6:24 AM 9/2/2023-6:27 AM 9/2/2023
+876: *6:27 AM 9/2/2023-6:33 AM 9/2/2023
+882: *6:33 AM 9/2/2023-6:40 AM 9/2/2023
+889: *6:40 AM 9/2/2023-6:42 AM 9/2/2023
+891: *6:42 AM 9/2/2023-6:43 AM 9/2/2023
+892: *6:43 AM 9/2/2023-6:44 AM 9/2/2023
+893: *6:45 AM 9/2/2023-6:51 AM 9/2/2023
+899: *6:51 AM 9/2/2023-9:43 AM 9/2/2023
+v
+920: *9:43 AM 9/2/2023-9:47 AM 9/2/2023
+924: *9:47 AM 9/2/2023-9:56 AM 9/2/2023
+933: *9:56 AM 9/2/2023-9:57 AM 9/2/2023
+934: *9:57 AM 9/2/2023-9:58 AM 9/2/2023
+935: *9:58 AM 9/2/2023-10:02 AM 9/2/2023
+939: *10:02 AM 9/2/2023-
+0 gul steelblue statt red
+- darf nicht das live element schicken!!!
+- wie krieg ich das rect vom canvas? getCanvasRect
+- jeder hat eine andre start position
+- no br nach reset button
+- wo soll das goal gesetzt werden?
+- every 100ms send a message with updated piece position AND
+get back all positions AND render!!!
+user user color
 
 
 
