@@ -1,0 +1,37 @@
+<!-- Filename: index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Latency Test</title>
+	<script>
+		async function sendPOST() {
+			const message = document.getElementById('messageInput').value;
+			const timestamp = new Date().getTime(); // Client-side timestamp in milliseconds
+
+			const start = performance.now();
+			const response = await fetch('server.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ timestamp, message })
+			});
+			const end = performance.now();
+
+			const latency = end - start;
+			document.getElementById('latencyOutput').innerText = `Latency: ${latency.toFixed(2)}ms`;
+		}
+	</script>
+</head>
+
+<body>
+	<input type="text" id="messageInput" placeholder="Type a message" />
+	<button onclick="sendPOST()">Send POST</button>
+	<p id="latencyOutput">Latency: N/A</p>
+</body>
+
+</html>
