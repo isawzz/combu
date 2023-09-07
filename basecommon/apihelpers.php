@@ -1,4 +1,9 @@
 <?php
+function fileAppend($filename,$row){
+  $handle = fopen('messages.csv', 'a');
+  fputcsv($handle, $row);
+  fclose($handle);
+}
 function db_connect() {
   if ($_SERVER['SERVER_NAME'] == "localhost") {
     $dbhost = "localhost";

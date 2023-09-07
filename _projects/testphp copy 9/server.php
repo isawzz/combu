@@ -23,16 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'session') {
-	header('Content-Type: application/json');
-	echo json_encode((object)$_SESSION);
-	exit;
-}
-
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'reset') {
 	header('Content-Type: application/json');
 	session_unset();
-	echo json_encode((object)$_SESSION);
+	echo json_encode($_SESSION);
 	exit;
 }
 ?>
