@@ -701,11 +701,347 @@ wie hole das asset base db.yaml?
 1. brauch ich yaml
 5:53 AM 9/6/2023 793
 _____ do 7.9.23 airport 900
+6:04 AM 9/7/2023 900
+6:12 AM 9/7/2023 908
+6:16 AM 9/7/2023 912
+sessionStorage how long alive? as long as tab exists
+new tab => new session storage
+6:19 AM 9/7/2023 915
+i could use both sessionStorage AND localStorage!
+(sessionStorage ist nur fuer reload)
+6:20 AM 9/7/2023 916
+users,games,tables,apps loaded from server (file)
+client,lastState loaded from 1. sessionStorage, 2. localStorage
+6:21 AM 9/7/2023 917
+lastState: wo war der grad (app/game/table/home) navigation state
+6:22 AM 9/7/2023 918
+1. get assets and DB dafuer wollt ich eigentlich ein verkuerztes emoji file machen!!!
+6:27 AM 9/7/2023 923
+https://twemoji.maxcdn.com/v/latest/twemoji.min.js
+_____ fr 8.9.23 airport 1
+5:43 AM 9/8/2023 1
+5:48 AM 9/8/2023 6
+5:57 AM 9/8/2023 15
+6:15 AM 9/8/2023 33
+6:19 AM 9/8/2023 37
+load 1 image only
+man wuerde sich vorstellen eine js function: loadImage(path)
+dazu ein input element wo man den path reinschreibt
+6:26 AM 9/8/2023 44
+sendGet
+6:54 AM 9/8/2023 72
+8:20 AM 9/8/2023 75
+alle tierbilder in kleinere umwandeln!
+mach mal maxheight=480
+8:25 AM 9/8/2023 80
+schau wie gross die cards in magniy sind!
+8:31 AM 9/8/2023 86
+alle laden! in einem flexgrid
+8:41 AM 9/8/2023 87 drifted off
+where is code to download ALL images from php? testanimals3
+8:44 AM 9/8/2023 90
+where is usage of loadImages?
+8:47 AM 9/8/2023 93
+jetzt sollen alle height haen
+9:21 AM 9/8/2023 127
+action 1pm
+_____ sa 9.9.23 airport 300
+6:07 AM 9/9/2023 300
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+kurzfassung (less than 500 characters)
+Dear Dr. Bonsell,
+
+Our problem: Believing he's fully recovered from TBI, Gunter demands a return to his pre-injury responsibilities, considering us family as hindrance.
+
+Ignoring the necessary road test, he drove to the bank, locked us out of our account. I took his license and keys, leading to alarming aggression. A nurse referred us to the police.
+
+However, his steadfast belief in having to regain control continues to cause conflicts. He  categorically dismisses our input.
+
+Please help!
+Angelika
+
+
+middle:
+Dear Dr. Vandermeer,
+
+I urgently seek your professional guidance regarding an escalation in our situation. Concerns for Gunter's safety and our family's well-being prompt this request.
+
+Believing he's fully recovered from TBI, Gunter aggressively demands a return to his pre-injury responsibilities, and considers us family as hindering his goal.
+
+Ignoring warnings and the required road test, he drove to the bank, and locked us out of our account. Luckily there was no accident. I confiscated his license and keys, leading to alarming aggression.
+
+After consulting a nurse and involving the police, Gunter showed some restraint. However, his steadfast belief in having to regain full control persists, causing recurring conflicts. Gunter, though intelligent, struggles with task initiation and completion, lacks insight, and categorically dismisses our input, hindering two-way communication.
+
+Dr. Vandermeer, please advise us how to best proceed! I have also contacted Dr. Kim (rehab) and Dr. Bonsell (neurology)
+
+Thank you, sincerely,
+Angelika
+
+
+Dear Doctor Kim,
+
+Due to an escalating situation with Gunter, I am in desperate need and would be very thankful for some professional guidance. I am concerned for the safety and wellbeing of Gunter as well as for the rest of the family. My hope is that with your expertise we might be able to intervene and effectively find a way to navigate this complex situation.
+
+The primary issue at hand is that Gunter’s behavioral problems have been worsening. As he is convinced that he has fully recovered from his brain injury, he insists that he must return to his pre-injury responsibilities, such as taking sole charge of our finances. Gunter seems to feel that the assessment by the doctors has been faulty, and not tailored to his specific situation, and therefore not accurate or applicable.
+
+In recent weeks, his obsession with re-establishing himself as the immutable head of the household has made him distrustful of his family, believing that we are unjustly hindering him from regaining control over our finances.
+
+Disregarding our warnings, dismissing the recommended road test as too expensive and unnecessary, Gunter drove to the bank. There he changed the passwords to our main bank account, thereby locking me out of online access. Aside from changing the passwords, Gunter transferred a substantial sum from another account to our checking account without realizing that it was actually his mother's money. Luckily no car accident occurred, but his lack of understanding led him to put himself and others in danger. I have since confiscated his driver’s license and the keys, however these he continues to grab from me when he sees the chance.
+
+Gunter's reaction to me restricting his access to his bank cards, IDs and keys, was alarming. He became increasingly aggressive, causing me to feel unsafe. I confined myself to my room for two days, hoping that he would eventually calm down and show willingness for two-way communication. Unfortunately, there was no change in his behavior, and he continued to aggressively assert his demands.
+
+Feeling desperate and unsafe, I reached out to the on-call nurse for advice, who recommended involving the police. When the police arrived, they engaged with both of us in a respectful manner, informing Gunter that any physical aggression towards me would result in his arrest. This intervention had a significant impact on his behavior, and he began to display more restraint. 
+
+While there was a period of relative calm after this incident, Gunter's steadfast belief that he must regain his former responsibilities without our involvement has not wavered. He has once again started to make threats and demand my cooperation, often in completely unreasonable ways. While we do not want to restrict him, he is unwilling to ask for help, cooperate, or compromise, and refuses to consider our perspective.
+
+Outwardly, Gunter presents as a highly intelligent and capable individual. He is adept at handling tasks like navigating public transportation, assisting his father, and engaging in complex technical discussions. However, his obvious struggles to initiate and complete tasks he plans as well as lack of insight into his shortcomings, paired with unwillingness to allow us to help or make compromises on his decisions and demands has made communication very difficult. He appears to lack an understanding of the consequences of his actions, dismisses the concerns of others, and insists on taking unilateral decisions while confusing critical facts.
+
+Dr. Herges, we are at a loss as to how to best support Gunter in this challenging situation. His safety and well-being, as well as that of our family, are of paramount concern to us. While we do not want to restrict him, he is unwilling to ask for help, cooperate, and compromise, and refuses to consider our perspective. We believe that your expertise and guidance are essential in helping us navigate this complex and delicate matter. Please advise us on how best to proceed.
+
+Sincerely,
+
+Angelika (wife & caregiver)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lieber Guggi!
+
+ich werde jetzt auf jeden einzelnen punkt von Dir eingehen und versuchen, Dir zu erklaeren, wie meine Email gemeint war und wie meine Sichtweise ist. Vielleicht schaffen wir es auf diesem weg, schriftlich, in Ruhe einen guten Weg der uns allen das Leben erleichtert, zu finden.
+
+"Ich bitte um Enschuldigung, daß Angelika Euch alle in so eine Email bezüglich interne Konflikte einbezogen hat. Von Euch allen wird keine Antwort erwartet und schon gar kein activer Aufwand irgendwelche Tätigkeiten für uns zu übernehmen. Klarerweise geht es da eindeutig um Dinge wie wir unser weitere Lebensphase umsetzen werden. Das müssen eindeutig Angelika und ich umsetzen."
+
+fuer mich ist das jetzt kein interner konflikt mehr sondern ich versuche menschen denen Du sehr nahestehst und denen Du vielleicht eher geneigt bist - unter den derzeitigen umstaenden - zuzuhoeren dafuer zu gewinnen, uns zu helfen. jede moegliche hilfe ist nun gefragt, weil wir sind in dieser situation steckengeblieben und ich fuehle mich dem nicht mehr gewachsen. auch aerztliche und psychologische hilfe werde ich einbeziehen. ich beziehe Dich hier in das gespraech ein, damit Du eine chance hast alle meinungen zu hoeren und nicht das gefuehl hast man redet ueber Dich aber nicht mit Dir.
+
+das ist ein versuch: wenn das nur zu Aufregung fuer Dich und erhoehtem stress fuehrt werde ich was andres versuchen. hier appelliere ich an Deine Vernunft aber ich weiss selbst dass es sein kann dass das nicht klappt.
+
+ 
+
+"Unsere Familie hat ganz offsichlich eine enorm beachtliche Leistung erbracht um mit meinem Unfall und vollständigen Ausfallen während mehrer Monate weiter aktiv als Familie zu bleiben. Dabei wurden eine lange Liste von meinen laufenden Aufgaben übernommen und Menge Entscheidungen getroffen und eine große Anzahl von internen Änderungen durchgeführt."
+
+Du hast enorm viele Aufgaben und Leistungen vor Deinem Unfall mit grosser Intelligenz und Erfolg ueber viele Jahre hin erbracht! Du warst es gewohnt, die meisten entscheidungen in dieser Familie zu treffen. Du erwaehnst oft, dass wir alle Entscheidungen zusammen treffen aber aus meiner Sicht ist spaetestens 2009 mit der letzten Uebersiedlung klar gewesen, dass die Entscheidungen von Dir getroffen werden und meine Mitarbeit dabei im wesentlichen war, Dir zuzustimmen. Es fiel mir auch nicht schwer, da Deine Entscheidungen letztlich vernuenftig und vertretbar waren, und mir bewusst war dass Du Dich in den Dingen des taeglichen Lebens besser auskennst als ich.
+
+Dann kam der Unfall, und ein sehr grosser Teil deines Frontalkortex wurde dadurch zerstoert. Ueber die ersten 1.5 Jahre hast Du Dich enorm regeneriert, doch ungluecklicherweise eine condition named Anosognosia entwickelt, die verhindert dass Du Dir Deiner Limitationen / Fehler die im Gehorn passieren bewusst sein kannst, und die Dir es so erscheinen liess, als waerst Du vollstaendig wiederhergestellt und koenntest das Leben sowie vor dem Unfall weiterfuehren. Du hast auch dadurch den eindruck erhalten, dass Du es nicht noetig hast, die kognitiven Uebungen sowohl mit den Therapeuten als auch mit mir/uns (Gertraut hat ja auch sehr mitgearbeitet mit Mathe zetteln, etc.) und am Computer, wo es unzaehlige hervorragende moeglichkeiten fuer Dich gab (immer noch gibt!!!) die ich Dir zeigte und mich sehr sehr bemuehte ueber viele Monate Dich dafuer zu motivieren.
+
+Besonders wieder in das Programmieren einzusteigen dass immer Deine grosse Leidenschaft war so wie auch meine, und wo Du so kreativ sein konntest waere wunderschoen fuer Dich gewesen (ist es immer noch!!!) aber es ist nun mal nicht moeglich dass Du da ansetzt wo Du vor dem Unfall warst, und weil Du das scheinbar irgendwo in Deinem innern spuerst hast Du auch nichts diesbezueglich wirklich getan. Ja, Du liest buecher, Ja, Du hast Dir ein Projekt ueberlegt und 'designed', aber die Wirkliche Arbeit, die bedeutet: code schreiben, die ist bisher ausgeblieben und Deine erklaerung ist: Du kannst es nur auf Deinem alten Microsoft Computer machen.
+
+Ich hab Dir unzaehlige male nahegelegt einen guten neuen Computer fuer Dich zu kaufen, der sogar inzwischen Dein altes Microsoft Notebook in performance schlagen wuerde! was Du ablehnst. Wir haben Dir oftmals versucht zu erklaeren, dass Dein Microsoft account und damit zugriff auf Deine Microsoft Computer aufgrund Deines jetzingen Status als Long-Term Disabled (es ist NICHT ein Urlaub, lieber Guggi!) von Microsoft entsprechend deren Richtlinien gesperrt wurde - was wir bereits als Du in diesen Status uebergegangen bist (nach einer short-term disability leave im ersten halbjahr) sowohl von Microsoft HR als auch von Deinem frueheren Chef uns erklaert wurde. Das bedeutet, Du kannst diese Computer garnicht benutzen (Bitlocker).
+
+Dein Arzt hat letztes Jahr nach dem grossen Neuropsychologischen test aufgrund all der Befunde Deine DAUERHAFTE Arbeitsunfaehigkeit bestaetigt. Dein zustand hat sich seit 1 Jahr NICHT gebessert sondern verschlechtert, weil Du in der kommunikation immer schwerer zu erreichen bist und einfach nichts mehr glaubst das nicht Deinem persoenlichen truegerischen Eindruck von vollstaendiger kognitiver recovery entspricht. Du hast mir sogar schon mehrfach untersagt ueber Aerzte und deren Meinung mit Dir zu reden und gesagt dass die Aerzte Dich alle falsch einschaetzen. 
+ 
+
+"Das Betrachten all dieser Tätigkeiten ist für mich sehr beeindruckend und enorm beachtlich. Niemand braucht irgendeine Angst vor mir haben und es existiert bei mir gar kein Stress mehr. Ich bin ja einfach im langen Urlaub und erhalte immer noch viel mehr Geld als wir brauchen. Ein paar der Entscheidungen und Änderungen kommen mir sehr wahrscheinlich fehlerhaft vor. besonders ärgerlich für mich sind die Weiterführung solcher übernommener Aufgaben, Verschweigungen, Änderungen und sehr aggressives Blockieren dass ich selber diese Aufgaben wieder durchführen möchte nachdem ich offensichlich die meisten Auswirkungen des Unfalls bereits seit Jahren erfolgreich überwunden habe und keinerlei nennenswerte negative Effekte mehr habe. Ich werde dazu mehr und konkret auf die unten genannten Punkte eingehen."
+
+Zur Weiterfuehrung uebernommener Aufgaben: es ist notwendig, Rechnungen muessen bezahlt werden, verschiedene andre Dinge, sowie Taxes, etc., koennen wir froh sein dass der Felix all das schafft! Du hast zwar den Wunsch aber das Problem ist, dass Du (auch bei Punkten auf deiner Todo-list die Du ohne weiteres angehen koenntest) meist nicht wirklich zur Tat schreitest und wenn Du das tust und irgendwas klappt nicht, nicht Dir hilfe oder rat suchst. Ein weiteres problem ist, dass Du zB, als Du die post geholt hast mehr und mehr eigenmaechtig und ohne mich zu informieren Post irgendwohin gegeben hast und mir einfach gesagt, Du machst das schon ich soll mir keine gedanken machen, oder, noch bedenklicher, Fragen von mir beantwortete hast mit: zuerst will ich den Autoschluessel zurueck und dergleichen versuche, aus der Information einen deal zu machen.
+
+Ich kann nicht gleichzeitig fuer Deine Sicherheit - ja, auch gegen Deinen Wunsch aber aufgrund aetzlicher Vorschriften und einstimmigem Eindruck von uns die wir uns um Dich kuemmern - sorgen und fuer das Aufrechterhalten unseres Lebens hier (indem ich auf Post reagiere und bei komplexeren Dingen dem Felix die Informationen weitergebe damit er uns helfen kann), und das tun was Du willst (zB Autoschluessel...). Ich entscheide mich fuer ersteres. 
+
+Denk mal so: fuer mich waer es sehr leicht, einfach alles zu machen was Du willst nur damit Du friedlich bleibst, aber dann wuerdest Du Deine eigene Gesundheit durch Autofahren gefaehrden und unsere finanzielle Situation durch Deinen mangelnden Ueberblick sehr rasch ziemlich verschlechtern, was letztlich auf Dich selbst zurueckfaellt. ich versuch mein allerbestes, ich weiss ich hab selber viele Defizite, aber daher hol ich mir Hilfe wenn ich nicht weiter weiss und bisher hat alles ganz ok geklappt.
+
+zu: "Verschweigungen, aggressives Blockieren": weil es Dich triggert und Du so wuetend wirst bei den Thematiken "Deine frueheren Verantwortungen" versuche ich diese themen im gespaerch zu vermeiden. Blockieren, zB dass Du auto faehrst ist etwas das natuerlich eine abwaegung ist, aber ich tendiere dazu es fuer besser zu halten, wenn Du solange nicht ein experte fuer Gehirntrauma (der sich auch mit dem Keppra und seizures... auskennt) das OK gibt, nicht faehrst. Weiters ist es einfach nicht mehr machbar, jedesmal mit Dir ueber die Post oder aehnliches zu 'verhandeln' was wieder nur dazu fuehrt dass Du sehr wuetend wirst wenn ich Dir sage, ich kann Dir den autoschluessel... nicht geben...
+
+ 
+
+"Das größte Problem mit all den bestehenden Konflikten ist, daß alles einen zu hohen Zeit und Energieaufwand für Angelika und Felix bedeutet. Ich hingegen stimme voll zu, daß ein erneutes Ausfallen meiner Durchführungen all dieser Aufgaben verhindert werden muß. Daher bin ich bereit bestimmte Systemänderungen umzusetzen: Anstatt weiterhin alle Umsetzungen durchzuführen sollen sich Felix und Angelika auf viel weniger aufwendige Überwachungen fokusieren. Entscheidungen was genau gemacht gehört oder nicht MUSS exclusive nur von Angelika und mir getroffen werden. Andere Familienmitglieder haben für Entscheidungen dazu kein Wahlrecht aber dürfen sich als Umsetzer anbieten was wieder exclusive von Angelika und mir zusammen entschieden wird. Weiters dürfen alle Familienmitglieder gerne sachliche Argumente liefern."
+
+Gut, dazu ganz klar: die Aufgaben Post/Rechnungen/Finanzen... zu erfuellen ist inzwischen - danke Felix - ein SEHR GERINGER und SEHR TOLERABLER Aufwand fuer uns. Felix hat vieles automatisiert und extrem effiziente Systeme in kraft gesetzt. 
+
+Das was ein UNGLAUBLICHER AUFWAND, ENORMER STRESS und GROSSE SORGEN in uns allen (mir, Fe, Amanda, Lauren...) hervorruft ist DEINE VERHALTENSWEISE IM ALLEINGANG ZU VERSUCHEN DIE KONTROLLE ZU UEBERNEHMEN, wobei Du alle moeglichen tricks anwendest, bedenkliche aktionen die schwer rueckgaengig zu machen sind einleitest, und vor allem HOECHST BEDROHLICH UND AGGRESSIV mir gegenueber bist sodass ich vor kurzem bereits die Polizei heranziehen musste und haettest Du Dich danach nicht wieder besser reguliert, dann muesste ich tatsaechlich ausziehen, Guggi! Bitte BEDENKE DAS!!!! was das bedeutet, wenn ich mich nichtmal mehr traue in Deine Naehe!!!!!!! 
+
+ich bin auch nur ein Mensch, ein Mensch der die Schocks der letzten Jahre nicht ungeschoren ueberstanden hat. Meine persoenliche belastbarkeit hat grenzen, und streit und Deine weit ueberlegene phyische Kraft und diese Konflikte sind fuer mich enormer stress und belastung.
+
+das ist auch der Gund warum ich jetzt beschlossen habe andere Menschen und deren moegliche Hilfe zumindest zu versuchen zu mobilisieren, weil ich merke dass meine kraft langsam zu ende geht.
+
+Nochmal: die Aufgaben die zu tun sind sind ein VERSCHWINDEND KLEINER aufwand fuer uns im vergleich zu dem aufwand, dich zu ueberwachen oder ueberhaupt dem aufwand dich einzubeziehen in diese aufgaben.
+
+ich glaub das ist wahrscheinlich die wichtigste aussage in dieser email die Du verstehen musst, falls das moeglich ist. Wenn nicht, dann ist der naechste Schritt wirklich garnicht mehr zu versuchen ein solch klaerendes Gespraech mit Dir zu fuehren. Damit faellt noch ein Teil der moeglichen Kommunikation weg. 
+
+"Leeb Properties LLC ist eine sehr kleine und viele Jahre alte und nun abgebaute Firma um für ein paar Leuten in unserer Familie eingezahltes Geld mit US Aktieninvestments zu vermehren. Nach letzter Entscheidung werden nun alle Anteile und Gewinne wieder zurückerstattet sobald möglich und Felix hilft auch mit der Erstellung von verlangten US Steuererklaerungen für Österreicher. Ein paar Mechanismen müssen da auch noch erneut eingerichtet werden. E.g. wo angelegtes Geld in $ weiter zwischengelagert werden kann. Da ist Felix auch hauptsächlich beschäftigt.
+
+Ich habe aber immer noch keinen online Zugriff auf unser privates Konto bei Bank of Amerika und habe leider das notwenige Passwort bisher nicht übergeben bekommen. Das ist von mir nicht akzeptabel da mir dadurch viele notwenige Infos fehlen. Ich habe einfach bei der Bank mir ein neues Online Passwort gesetzt. Die Familie wird voraussichtlich Zugriff auf monatliche Kontoauszüge erhalten um checken zu können was alles wie von uns umgesetzt wurde."
+
+Aus der tatsache dass Du uns aus dem account ausgesperrt hast folgt, dass wir Dich garnicht monitoren koennten, selbst wenn wir mit Deiner Idee, dass Du alles verwaltest, einverstanden waeren. Das Hauptproblem ist aber, wie ich versucht habe zu erklaeren, dass Deine ALLEINIGE Verwaltung von unsren Finanzen und aehnlichem garnicht MOEGLICH ist sondern aus meiner Sicht wie gesagt enorme Probleme bereiten wuerde.
+
+Es wird daran gearbeitet, fuer Dich - allerdings in Wien - eine Situation vorzubereiten wo Du Dein Konto hast, auf dieses Geld eingezahlt wird dass Du zum Leben brauchst und auf das dann auch nur Du den zugriff hast, dass Du dann selbstaendig verwalten kannst. In diesem Rahmen, so dass Du, im Idealfall, selbstaendig Leben kannst und in Kontrolle Deiner persoenlichen Beduerfnisse und finanzieller Verwaltung bist (Umbrella-System). Das ist immer noch unser Ziel, wobei damit sichergestellt wird, dass es Dir an nichts fehlen soll, dass Du das gefuehl haben kannst, alleiniger Herr ueber Deine Entscheidungen und Dein Leben zu sein. 
+
+Gleichzeitig, wird das auch fuer mich gemacht.
+
+Der longterm plan ist, dass jeder ein Konto hat und ein selbstaendiges Leben fuehren kann.
+
+Ich werde in dieser Situation mich erholen von dem Stress der letzten jahre, besonders der letzten Wochen, der wirklich ziemlich unerwartet kam, und werde mich weiterhin um Dein Wohlbefinden kuemmern (Essen, Haushalt, Unternehmungen, Medizinische Termine, etc.), allerdings mit der moeglichkeit des Rueckzugs damit ich ueberhaupt ordentlich schlafen kann und mich regenerieren. Ich bin ueberzeugt dass wir ein sehr zufriedenes harmonisches ungestoertes lustiges Leben auf dieser Basis gemeinsam fuehren koennen. Konflikte sollen vollkommen vermieden werden, und damit wird grosse Lebensfreude sich wieder einstellen. Glaub mir das Guggi! Wir alle beide sind Menschen die von natur aus froehlich sind und faehig das Leben sehr positiv und kreativ zu gestalten! Auch mit Humor ausgestattet.
+
+"Versicherungen wurden verändert. Einige dieser Änderungen sind ziemlich sonderbar und ich habe bereits neue interessante Angebote erhalten, die ich genauer im Detail vergleichen möchte. E.g. inwieweit unsere Urlaubsreisen abgedeckt waren und ein Mietauto war niemandem klar und hat mir einige Tage gedauert Material zu finden und durchzugehen.
+
+Ich habe immer noch 2 Führerscheine. Einen US und meinen aus Wien. Ich habe den US Führerschein zweimal offiziell überprüfen lassen und in beiden Fällen die Antworten waren klar und enthielten kein Problem für mich. Ich darf hier offiziell Autofahren. Nur leider haben mindestens ein Arzt empfohlen einen Rehabilitations Test zu machen der verhindern soll dass ein anderer und offensichtlich schuldige Person mich einfach auf den alten Unfall beziehend erfolgreich anklagen kann. Dieser Test kann das voll verhindern. Die Ärzte haben auf einen Spezialisten hingewiesen der 640$ will während ich den gleichen Test in einer Fahrschule für um 300$ machen kann oder sogar offiziell über das Magistrat nur 40$ Kosten soll. An dieser Aufgabe arbeite ich noch und daß Angelika mir mein Handy unbrauchbar gemacht hat dauert es einfach viel länger. Sie hat mir auch meinen US Führerschein, einige Kreditkarten und die Autoschlüssel weggenommen. Auch das geht so nicht weiter."
+
+Guggi, bez Deines Fuehrerscheins: er ist zwar gueltig, aber aus aerztlicher Sicht bist Du gefaehrdet und daher muss dieser spezielle Test gemacht werden (durchgefuehrt von einem Spezialisten, das heisst die 2 andern alternativen die Du erwaehnst sind zwar billiger aber NICHT das was wir brauchen!). Bezueglich eines moeglichen Unfalls stimmt Deine Aussage nicht ganz: selbst wenn Du den Test bestehst bist Du aufgrund Deiner epileptischen Anfaelle und dem entsprechenden Medikament das Du einnimmst NICHT innerhalb der Versicherung abgedeckt, das wurde uns auch ausdruecklich erklaert. Abgesehen davon, dass es Dir auch nicht viel nuetzt wenn Du einen Unfall hast und Dir was passiert wer jetzt was zahlt (!). Du hast eine gueltige Kredcitkarte und kannst diese verwenden, es ist eh die die Du ueblicherweise immer verweendest. 
+
+
+
+
+-Angelika
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wie ist wirklich die reihenfolge?
+1. get DB && assets
+2. get client && clients last state (for when reload)
+(dafuer verwende ich sessionStorage)
+3. 
+
+
+
+was nun?
 rem cons allf 19085
 2. brauch ich filesend in php und live fetch file
 3. brauch ich global DB
 
+https://www.youtube.com/watch?v=TNVlppGz0zM
+https://www.youtube.com/watch?v=4h9OUtPy_CU
 
 For shutdown, the stuck person will typically require low stimulation. Quiet spaces, predictability, soothing music or no music at all. Rest, low energy activities. They will need to listen to their body's impulse to immobilize and allow the immobilization to happen. They may need to be alone in solitude (not isolation).
 

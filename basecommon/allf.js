@@ -44125,7 +44125,7 @@ function mStyle(elem, styles, unit = 'px') {
   if (isdef(styles.h100)) styles.h = '100%'; else if (isdef(styles.hrest)) styles.h = 'rest';
   let dParent = elem.parentNode;
   if (isdef(dParent)){
-    console.log('dParent',dParent)
+    //console.log('dParent',dParent)
     let pad = dParent && isdef(dParent.style.padding)?parseInt(dParent.style.padding):0;
     let rp = getRect(dParent);
     let r = getRect(elem, dParent);
