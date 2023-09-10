@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Collection</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="../basecommon/allg.js"></script>
+	<script src="../basecommon/allf.js"></script>
+	<script src="done.js"></script>
+	<script src="start.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Collections</h1>
+		<div class="menu">
+			<button id="newButton" onclick="onclickNew()">New</button>
+			<button id="addButton" onclick="onclickAdd()">Add</button>
+			<button id="browseButton" onclick="onclickBrowse()">Browse</button>
+		</div>
+	</header>
+
+	<div id="dNewCollection" style="display:none">
+		<img id="image" ondragover="allowDrop(event)" ondrop="dropImage(event)">
+
+		<!-- Form for Category and Name -->
+		<div id="form-container">
+			<form>
+				<label for="category">Category:</label>
+				<input type="text" id="category" name="category" placeholder="Enter category">
+
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" placeholder="Enter name">
+			</form>
+		</div>
+	</div>
+	<div id="dBrowseCollection" style="display:none">
+		<img id="image" src="" alt="Dropped Image" ondragover="allowDrop(event)" ondrop="dropImage(event)">
+
+		<!-- Form for Category and Name -->
+		<div id="form-container">
+			<form>
+				<label for="category">Category:</label>
+				<input type="text" id="category" name="category" placeholder="Enter category">
+
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" placeholder="Enter name">
+			</form>
+		</div>
+	</div>
+
+	<!-- Modal for displaying existing collections -->
+	<div id="collectionModal" class="modal">
+		<div class="modal-content">
+			<h2>Select a Collection</h2>
+			<ul>
+				<li><button class="modal-button" data-collection="Collection 1">Collection 1</button></li>
+				<li><button class="modal-button" data-collection="Collection 2">Collection 2</button></li>
+				<li><button class="modal-button" data-collection="Collection 3">Collection 3</button></li>
+				<!-- Add more collection buttons as needed -->
+			</ul>
+			<button class="modal-close" id="modalClose">Close</button>
+		</div>
+	</div>
+
+</body>
+
+</html>

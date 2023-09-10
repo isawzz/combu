@@ -1,9 +1,3 @@
-onload = start;
-
-function start() { test2_startCollection(); }
-function test2_startCollection(){
-
-}
 function test1_loadAllAnimals() {
 	loadImages();
 }
@@ -48,21 +42,6 @@ async function uploadSmallImage(ev) {
 		console.error('Error uploading image.');
 	}
 }
-
-function _allowDrop(event) {
-	event.preventDefault(); // Prevent the default behavior of the drop event
-}
-function _dropImage(event) {
-	event.preventDefault(); // Prevent the default behavior of the drop event
-
-	// Get the data (URL) of the dropped item
-	const imageURL = event.dataTransfer.getData("URL");
-
-	// Set the source of the image element to the dropped URL
-	const imageElement = document.getElementById("image");
-	imageElement.src = imageURL;
-}
-
 function addImageWithLabel(image, dParent, imgStyles, labelStyles, imgSrc, labelText) {
 	let mp0Style = { margin: 0, padding: 0, display: 'block' };
 	let d = mDiv(dParent, mp0Style);
@@ -143,17 +122,4 @@ async function uploadNewImage(ev,url) {
 		console.error('Error uploading image.');
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

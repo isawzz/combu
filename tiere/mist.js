@@ -1,5 +1,19 @@
 
 
+function _allowDrop(event) {
+	event.preventDefault(); // Prevent the default behavior of the drop event
+}
+function _dropImage(event) {
+	event.preventDefault(); // Prevent the default behavior of the drop event
+
+	// Get the data (URL) of the dropped item
+	const imageURL = event.dataTransfer.getData("URL");
+
+	// Set the source of the image element to the dropped URL
+	const imageElement = document.getElementById("image");
+	imageElement.src = imageURL;
+}
+
 async function sendGet(x) {
 	const response = await fetch('server.php?action=' + x);
 	//const data = await response.json();
@@ -59,6 +73,7 @@ function getImageFromPhpHost() {
 			console.error('Error fetching image:', error);
 		});
 }
+
 
 
 

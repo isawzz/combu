@@ -69,10 +69,9 @@ input[type="text"] {
 
 #image {
 	border: 2px dashed #ccc;
-	width: 300px;
+	min-width: 300px;
 	height: 300px;
 	text-align: center;
-	padding: 10px;
 	margin: 20px auto;
 	display: block;
 	max-width: 100%;
