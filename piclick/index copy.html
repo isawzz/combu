@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Viewer</title>
+</head>
+<body>
+    <input type="file" id="fileInput" accept="image/*">
+    <img id="imageDisplay" src="" alt="Selected Image" height="300px">
+    
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const imageDisplay = document.getElementById("imageDisplay");
+        
+        // Add a change event listener to the file input
+        fileInput.addEventListener("change", function(event) {
+            const selectedFile = event.target.files[0];
+            
+            if (selectedFile) {
+                // Create a URL for the selected file
+                const imageURL = URL.createObjectURL(selectedFile);
+                
+                // Set the source of the image element to the URL
+                imageDisplay.src = imageURL;
+            }
+        });
+    </script>
+</body>
+</html>
+

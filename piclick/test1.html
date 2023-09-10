@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag and Drop Image</title>
+    <style>
+        /* Define styles for the drop zone */
+        #dropZone {
+            width: 300px;
+            height: 400px;
+            border: 2px dashed #ccc;
+            text-align: center;
+            padding: 10px;
+        }
+        /* Style the img element */
+        #image {
+            border: 2px solid #000;
+            min-width: 200px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="dropZone" ondragover="allowDrop(event)" ondrop="dropImage(event)">
+        Drop an image here
+    </div>
+    <img id="image" src="proxy.php?url=" alt="Dropped Image">
+    
+    <script>
+        function allowDrop(event) {
+            event.preventDefault(); // Prevent the default behavior of the drop event
+        }
+
+        function dropImage(event) {
+            event.preventDefault(); // Prevent the default behavior of the drop event
+
+            // Get the data (URL) of the dropped item
+            const imageURL = event.dataTransfer.getData("URL");
+
+            // Set the source of the image element to the proxy endpoint
+            const imageElement = document.getElementById("image");
+            imageElement.src = `/proxy?url=${encodeURIComponent(imageURL)}`;
+        }
+    </script>
+</body>
+</html>
