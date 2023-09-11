@@ -19084,7 +19084,7 @@ function detectSessionType() {
   let loc = window.location.href;
   //console.log('loc',loc);
   DA.sessionType =
-    loc.includes('telecave')? 'telecave': loc.includes('8080') ? 'php'
+    loc.includes('telecave') ? 'telecave' : loc.includes('8080') ? 'php'
       : loc.includes(':40') ? 'nodejs'
         : loc.includes(':60') ? 'flask' : 'live';
   return DA.sessionType;
@@ -23716,11 +23716,31 @@ function fromArrayLighter(arr) {
   let c = fromArray(arr);
   return pSBC(0.4, c);
 }
+async function fromAssets(path){return await fromBase('../base/assets/'+path)}
+async function fromBase(path){
+  //prepends ../base/ to path param
+  let data = {
+    path: '../base/'+path,
+    cmd: path.includes('.') ? stringAfterLast(path, '.') : 'yaml',
+  };
+  return await fetch(data.path);
+
+}
 function fromLocalStorage(name = '_all') { return JSON.parse(localStorage.getItem(name)); }
 function fromRCMxToNumArrSq(f, r) {
   return ((21 + (f)) + ((r) * 10));
 }
+function fromSessionStorage(name = '_all') { return JSON.parse(sessionStorage.getItem(name)); }
 function FROMSQ(m) { return (m & 0x7F); }
+function fromTimestamp(timestamp, options, lang='de-DE') {
+  const date = new Date(timestamp);
+  // addKeys({ lang: 'de', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }, options);
+  // addKeys({ lang: 'de', year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }, options);
+  if (nundef(options)) options = { year: '2-digit', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+  // let langdict={en:'en-US',de:'de-DE'}; let lang = valf(langdict[options.lang],'en-US');
+  return new Intl.DateTimeFormat(lang, options).format(date);
+}
+function fromUID(s) { return Number(stringBefore(stringAfter(s, '_'), '_')); }
 function fromUmlaut(w) {
   if (isList(w)) {
     let res = [];
@@ -44124,9 +44144,9 @@ function mStyle(elem, styles, unit = 'px') {
   if (isdef(styles.w100)) styles.w = '100%'; else if (isdef(styles.wrest)) styles.w = 'rest';
   if (isdef(styles.h100)) styles.h = '100%'; else if (isdef(styles.hrest)) styles.h = 'rest';
   let dParent = elem.parentNode;
-  if (isdef(dParent)){
+  if (isdef(dParent)) {
     //console.log('dParent',dParent)
-    let pad = dParent && isdef(dParent.style.padding)?parseInt(dParent.style.padding):0;
+    let pad = dParent && isdef(dParent.style.padding) ? parseInt(dParent.style.padding) : 0;
     let rp = getRect(dParent);
     let r = getRect(elem, dParent);
     if (styles.w == 'rest') {
@@ -55274,7 +55294,7 @@ function rLetter(except) { return rLetters(1, except)[0]; }
 function rLetters(n, except = []) {
   let all = 'abcdefghijklmnopqrstuvwxyz';
   for (const l of except) all = all.replace(l, '');
-  console.log('all', all, except)
+  //console.log('all', all, except)
   return rChoose(toLetters(all), n);
 }
 function rMappings() {
@@ -55722,6 +55742,14 @@ function RsortIds(workingSpec, R) {
   return null;
 }
 function rSuit(suit = 'HSDC') { return rChoose(suit); }
+function rUID(prefix = null, n = null) {
+  return (prefix ?? rLetter()) + '_' + new Date().getTime() + '_' + Math.random().toString(36).substr(3, n ?? 4);
+  const timestamp = new Date().getTime(); // Get the current timestamp
+  const random = Math.random().toString(36).substr(2, 9); // Generate a random string
+  let res = `${prefix}${timestamp}${random}`;
+  if (n > 0) res = res.substr(0, n);
+  return res;
+}
 function rumor_playerdata_complete() {
   for (const pldata of Z.playerdata) {
     if (isEmpty(pldata.state) || !isEmpty(pldata.state.remaining)) return false;

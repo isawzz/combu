@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Image Collection</title>
+	<link rel="stylesheet" href="../base/alibs/bs4/bs4.3.min.css">
+	<script src="../basecommon/allg.js"></script>
+	<script src="../basecommon/allf.js"></script>
+	<script src="../tiere/done.js"></script>
+	<script src="../tiere/start.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1>Collections</h1>
+		<div>
+			<a onclick="onclickNew()">New</a>
+			<a onclick="onclickBrowse()">Browse</a>
+		</div>
+	</header>
+
+	<div id="dNewCollection" style="display:none">
+		<img id="image" ondragover="allowDrop(event)" ondrop="dropImage(event)">
+		<div id="dfNew">
+			<form>
+				<label for="category">Category:</label>
+				<input type="text" id="category" name="category" placeholder="Enter category">
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" placeholder="Enter name">
+			</form>
+		</div>
+	</div>
+	<div id="dBrowseCollection" style="display:none">
+		HALLO
+	</div>
+</body>
+
+</html>

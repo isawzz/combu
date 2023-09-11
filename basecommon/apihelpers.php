@@ -1,4 +1,37 @@
 <?php
+function listFilesInDirectoryAndSave($directoryPath, $outputFilePath) {
+  $fileList = [];
+
+  // Check if the directory exists
+  if (is_dir($directoryPath)) {
+      // Scan the directory and get the list of files and directories
+      $items = scandir($directoryPath);
+
+      // Loop through the items
+      foreach ($items as $item) {
+          // Exclude "." and ".." (current directory and parent directory)
+          if ($item !== "." && $item !== "..") {
+              // Check if the item is a file (not a directory)
+              if (is_file($directoryPath . DIRECTORY_SEPARATOR . $item)) {
+                  // Get the filename without extension
+                  $filenameWithoutExtension = pathinfo($item, PATHINFO_FILENAME);
+                  $fileList[] = $filenameWithoutExtension; // Add the filename to the list
+              }
+          }
+      }
+
+      // Save the list of filenames to the output file
+      if (!empty($fileList)) {
+          file_put_contents($outputFilePath, implode(PHP_EOL, $fileList));
+          return true; // Success
+      } else {
+          return false; // No files found
+      }
+  } else {
+      // Handle the case where the directory doesn't exist
+      return false;
+  }
+}
 function fileAppend($filename,$row){
   $handle = fopen('messages.csv', 'a');
   fputcsv($handle, $row);

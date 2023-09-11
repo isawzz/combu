@@ -772,11 +772,93 @@ name a few links where I can find nice pictures to copy paste or drag somewhere
 start a new collection 
 wie soll das gehen?
 oben ist eine input box: name of collection
-_____ so 10.9.23 airport 300
+_____ so 10.9.23 airport 700
 6:53 PM 9/9/2023 700
+prompt:
+write a simple web app to collect images from the web (by drag drop). the user should be able to start a new collection, add to an existing collection, and browse collections. images are added via drag drop from a web page or choosing files on the local computer. they are displayed with 300px height in the image box (used for drop), and as soon as dropped, automatically uploaded to the php server. each image should also have a category and a name that can optionally be added by the user. when browsing collections, the name can be changed, and more than 1 category might be selected for an image.
+5:15 AM 9/10/2023 701
+5:23 AM 9/10/2023 709
+das drop space soll anders ausschauen!!! so aehnlich wie bei dem andern frueheren program
+5:27 AM 9/10/2023 713
+image should NOT have a padding
+5:29 AM 9/10/2023 715
+cleanup dir und mach tiere project
+5:39 AM 9/10/2023 725
+5:41 AM 9/10/2023 727
+standard lib: mPopulateSelect......
+5:51 AM 9/10/2023 737
+muss es ganz anders machen das styling!!!
+und zwar mit dem live serverr
+6:05 AM 9/10/2023 751
+wo hatte ich das schoene bs4 nav element? in am live zB
+6:30 AM 9/10/2023 770
+6:44 AM 9/10/2023 784
+hol das zeug aus am
+6:51 AM 9/10/2023 791
+was soll er jetzt machen?
+1:08 PM 9/10/2023 850
+1:08 PM 9/10/2023 851
+1:14 PM 9/10/2023 857
+5:42 PM 9/10/2023 858
+action 1pm*
+7:38 PM 9/10/2023 1000
+generate a unique id
+das ddimage element herzaubern
+_____ mo 11.9.23 airport 1
+5:31 AM 9/11/2023 1
+rUID(prefix,n)
+6:01 AM 9/11/2023 30
+ex fuer extract =>use fromUID
+6:07 AM 9/11/2023 36
+formatDate
+6:49 AM 9/11/2023 78
+wo sind die emoticon pngs?
+6:55 AM 9/11/2023 84
+128 pngs => telecave und base/assets/emoji
+7:30 AM 9/11/2023 90v
+emojis neu
+mach mir ein yaml file mit: category/name.png
+cat: [name...
+dann hol ich mir das emo raus!
+8:03 AM 9/11/2023 100
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a co-dependent relationship involves one person solving the other person's problems (2 people trying to solve each other's problems)
+one enables the other one's immature behavior.
+enabler becomes occupied with meeting the other person's needs, and live without meeting their own needs.
+
+is it true? honesty trust respect
+
+shame based person approaches relationships
+meine eltern bestes beispiel, aber ich auch gutes beispiel
+complex trauma: the person with the most power is a narcissist.
+ja, das ist unsre situation
 
 
 
