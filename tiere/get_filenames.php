@@ -21,11 +21,15 @@ if (empty($path)) {
     exit;
 }
 $result = [];
-if (is_dir($path)) {
-    $cat = pathinfo($path, PATHINFO_FILENAME);
-    $result = recGetFilenames($cat,$path);
-}
+$paths = explode(',',$path);
+foreach ($paths as $p) {
+    $k = pathinfo($p, PATHINFO_FILENAME);
 
+    if (is_dir($p)) {
+        $cat = pathinfo($p, PATHINFO_FILENAME);
+        $result[$k] = recGetFilenames($cat,$p);
+    }
+}
 header('Content-Type: application/json');
 echo json_encode($result);
 ?>

@@ -1,3 +1,29 @@
+function aggregate(di) {
+	let result = [];
+	for(const k in di){
+		let o=di[k];
+		if (isDict(o)) result =result.concat(aggregate(o));
+		else if (isList(o)) result = result.concat(o);
+		else result.push(o);
+	}
+	return result;
+}
+async function mFetch(url){
+	const response = await fetch(url); 
+	//const data = await response.json();
+	const astext = await response.text();
+	const data = tryJSONParse(astext);
+	return data;
+}
+async function loadFilenames(path) {
+	const response = await fetch('archive_names.php?path='+path);
+	//const data = await response.json();
+	const astext = await response.text();
+	const data = tryJSONParse(astext);
+	return data;
+}
+async function loadEmojiNames(cat) {	return await loadFilenames('../base/assets/img/emoji/'+(isdef(cat)?cat:''));}
+
 function showNavbar(titles, funcNames) {
 	if (nundef(funcNames)) {
 		//standard is that funcs are named: onclick${title}
@@ -22,4 +48,3 @@ function showNavbar(titles, funcNames) {
 		`;
 	document.body.innerHTML += html;
 }
-

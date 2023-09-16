@@ -821,6 +821,81 @@ mach mir ein yaml file mit: category/name.png
 cat: [name...
 dann hol ich mir das emo raus!
 8:03 AM 9/11/2023 100
+8:25 AM 9/11/2023 122
+8:43 AM 9/11/2023 123
+action 1pm
+9:25 AM 9/11/2023 153
+emails
+10:17 AM 9/11/2023 173
+action 1pm
+12:00 PM 9/11/2023 250
+12:40 PM 9/11/2023
+what I really want is eat something like ice cream
+but I hate how I feel afterwards
+_____ di 12.9.23 airport 300
+5:36 AM 9/12/2023 300
+jetzt alle cats auf einmal!
+5:53 AM 9/12/2023 317
+6:25 AM 9/12/2023 349
+kann man das nicht besser machen???
+ideally koennte sagen loadEmpji mit einer liste von cats
+6:38 AM 9/12/2023 362
+jetzt mach ich ein recLoadFilenames
+6:40 AM 9/12/2023 364
+8:50 AM 9/12/2023 470
+_____ mi 13.9.23 airport 500
+6:00 AM 9/13/2023 500
+6:02 AM 9/13/2023 502
+6:43 AM 9/13/2023 543
+6:57 AM 9/13/2023 557
+cleanup archive
+12:18 PM 9/13/2023 600
+auf den LG spielen!
+_____ do 14.9.23 airport 700
+4:53 AM 9/14/2023 700
+4:56 AM 9/14/2023 703
+5:04 AM 9/14/2023 711
+welche gibt es noch?
+5:11 AM 9/14/2023 718
+performance test list vs einzeln holen!
+5:12 AM 9/14/2023 719
+suche performance.
+5:39 AM 9/14/2023 746
+=>filezilla
+p
+6:30 AM 9/14/2023 816
+a1pm
+alles eingescanned
+11:21 AM 9/14/2023 1000
+11:57 AM 9/14/2023 1
+12:04 PM 9/14/2023 8
+am besten ist wahrscheinlich genauso wie base/assets
+assets.db ... yaml soll content in yaml file gehen
+assets.img.emoji.nature ... 
+alle yaml files sollen in dicts verwandelt werden
+alle img dirs sollen in dicts verwandelt werden mit lists
+wie mach ich ein pic? horse zB?
+12:08 PM 9/14/2023 12
+_____ fr 15.9.23 airport 200
+5:50 AM 9/15/2023 200
+ich hab ja auch all die extra syms!
+wenn ich Syms nehme fuer emojis?
+oder wirklich einfach activity,food,nature,objects,people,travel
+wie sep ich das was sich nie aendert von dem was sich aenderet?
+5:58 AM 9/15/2023 208
+6:08 AM 9/15/2023 218
+was alles gibt es in base:
+- emos
+- animals
+- users
+6:15 AM 9/15/2023 225
+schau ins dir!
+animal categories: sea,bird,cat,insect,earth
+animals/cat
+6:42 AM 9/15/2023 252
+6:51 AM 9/15/2023 261
+_____ sa 16.9.23 airport 400
+4:39 AM 9/16/2023 400
 
 
 
@@ -829,6 +904,126 @@ dann hol ich mir das emo raus!
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+di 19.9. library! returns,milch,schlagobers,eier,bananen,knoblauch
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Frontalhirnsyndrom oder auch vom Dysexekutiven Syndrom. Beide Bezeichnungen gelten in der Fachwelt als Hilfskonstruktionen, da sie das von Fall zu Fall sehr individuell ausgeprägte Phänomen nur unzureichend erfassen. Vielen Betroffenen gemein ist: Nach dem Unfall sind sie nicht mehr in der Lage, sich flexibel auf neue Situationen einzustellen. Das problemlösende Denken und eine vorausschauende Handlungsplanung sind gestört. Irrelevante Reize in der Umgebung können nicht mehr von relevanten unterschieden werden.
+
+Fehlende Impulskontrolle
+Sie stehen ständig unter Stress, sind schnell erschöpft und kaum noch belastbar. Am problematischsten für die Beteiligten ist jedoch die so genannte Impulskontrollstörung, das heißt, es kommt regelmäßig zu impulsiven Wutausbrüchen aus scheinbar nichtigen Anlässen. Manche zeigen auch eine gewisse Distanzlosigkeit. Sie duzen plötzlich wildfremde Menschen und missachten gesellschaftliche Konventionen von Höflichkeit. Bei Routinehandlungen dagegen gibt es in der Regel keine Probleme. Personen mit einer Schädigung des Frontalhirns sind hier meist unauffällig und können Alltagsangelegenheiten wie kochen, einkaufen oder Termine wahrnehmen ganz gut bewältigen.
+
+Gerade weil die Betroffenen im Alltag auf den ersten Blick „normal“ wirken, können die Menschen in ihrem Umfeld nicht nachvollziehen, dass ihr problematisches Verhalten wie „fremdgesteuert“ ist und der Patient selbst wenig Einfluss darauf hat. Bei vielen Betroffenen fehlt zudem die Krankheitseinsicht.
+
+
+
+ Sie fühlen sich nicht anders als vor dem Unfall, bekommen aber vom Umfeld immer wieder vorgeworfen, sie seien irgendwie „verkehrt“. Das führt zu Unverständnis und gegenseitigen Schuldvorwürfen.
+
+Drohende Vereinsamung
+Freunde und Bekannte ziehen sich zurück, Ehepartner trennen sich, weil sie mal einen anderen Menschen geheiratet haben und eine reife, partnerschaftliche Beziehung plötzlich nicht mehr möglich scheint. Manchmal ziehen sich die Betroffenen auch selbst aus ihrem sozialen Umfeld zurück. Die Frustrationen, denen sie täglich ausgesetzt sind, könnten laut Psychologen neben der geringen Belastbarkeit auch ein Grund dafür sein, dass Antrieb und Eigeninitiative mit der Zeit immer mehr zurück gehen.
+
+Strategien können helfen
+Das Erkennen und korrekte Einordnen der Symptomatik ist essentiell wichtig, um so früh wie möglich entgegenwirken zu können. Doch erst wenn eine grundlegende Krankheitseinsicht da ist, können Hilfestellungen greifen. In Therapiesitzungen lernen die Patienten, sich selbst zu beobachten. Ziel ist es, eine kritische Situation rechtzeitig zu erkennen und mit dem Gegenüber zu kommunizieren, dass man eine Pause braucht. Wenn nichts mehr hilft, muss die Situation verlassen werden, bevor es zum Wutausbruch kommt. Oft braucht es Jahre, bis die antrainierten Verhaltensalternativen eingespielt sind und wirklich greifen. Doch sie sind der einzige realistische Weg, um nicht immer wieder in Konfliktsituationen zu geraten. Denn im klassischen Sinne heilbar ist die durch ein Trauma ausgelöste Persönlichkeitsveränderung nicht.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+october 3rd 2h15
+october 17th 2h15
+sheri 425 899 5392 7-3pm mo-fr
+
+klo unten checken is ok
+todo:
+- plumber fuer (klo unten rinnt?), waschbecken gu bad, kueche unter waschbecken
+- heizung service fuer furnace service, Fan auto einstellung, filter
+- fenster voranschlag
+- garten voranschlag: rasen neu, beete drastisch cleanup, backyard cleanup
+- aussen streichen, including tuere / fensterlaeden
+- screen balkontuere, patio tuere
+- deck
+- pressure cleaning patio, garage auffahrt
+- sachen weg damit
+- moving service
+- kitchen appliances: dishwasher, stove, fridge (vielleicht washing machine new?)
+- touchups throughout house
+- carpet selected rooms
 
 
 
