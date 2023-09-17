@@ -896,8 +896,36 @@ animals/cat
 6:51 AM 9/15/2023 261
 _____ sa 16.9.23 airport 400
 4:39 AM 9/16/2023 400
-
-
+4:41 AM 9/16/2023 402
+jsyaml ist schon da
+4:42 AM 9/16/2023 403
+animals neu copy to base/assets/img
+wie geht das loading von yaml?
+4:50 AM 9/16/2023 411
+wie mach ich es jetzt in live-server? geht garnicht weil nicht auf dir info zugreifen kann!
+das heisst, ich muss diese info speichern in 1 weiteren yaml file!
+=> copy M to a file and upload!
+erstmal in php
+5:02 AM 9/16/2023 423
+convert json to yaml text at client!
+5:22 AM 9/16/2023 443
+=>upload to filezilla
+6:20 AM 9/16/2023 501
+wieso kann nicht mehr droppen?
+6:28 AM 9/16/2023 509v
+9:58 AM 9/16/2023 630
+10:09 AM 9/16/2023 640
+wenn er die pic poasted soll er den filename zurueckbekommen und mit dem object speichern!
+imgData,path,filename,extension
+alle objects die schon mal da waren soll er in Items haben
+aber was ist der key?
+M.animals.collection.ID
+er soll dem ding auch einen namen geben koennen: uniqueName or alias
+alias wenn nicht unique wird ueberschieben!
+wie kann ich am host die daten speciern?
+ich hab im moment nur die filenames mit categories
+cats sind:
+sea,earth,bird,cat,insect
 
 
 

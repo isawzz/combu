@@ -15,6 +15,34 @@ async function mFetch(url){
 	const data = tryJSONParse(astext);
 	return data;
 }
+async function mGetYaml(path='../base/assets/m.txt'){
+	let res = await fetch(path);
+	let text = await res.text();
+	let di = jsyaml.load(text);
+	//console.log('di',di);
+	return di;
+
+}
+async function mPostYaml(o,path='../base/assets/m.txt') {
+	const start = performance.now();
+	const response = await fetch('post_yaml.php', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({content:jsyaml.dump(o),filename:path})
+		// body: JSON.stringify({content:'hallo',filename:'m.yaml'})
+		// body: JSON.stringify({content:jsyaml.dump(o),filename:fname})
+	});
+	const end = performance.now();
+
+	const latency = end - start;
+	//showLatency(latency);
+
+	const astext = await response.text();
+	const data = tryJSONParse(astext);
+	return data;
+}
 async function loadFilenames(path) {
 	const response = await fetch('archive_names.php?path='+path);
 	//const data = await response.json();
@@ -24,14 +52,14 @@ async function loadFilenames(path) {
 }
 async function loadEmojiNames(cat) {	return await loadFilenames('../base/assets/img/emoji/'+(isdef(cat)?cat:''));}
 
-function showNavbar(titles, funcNames) {
+function showNavbar(pageTitle, titles, funcNames) {
 	if (nundef(funcNames)) {
 		//standard is that funcs are named: onclick${title}
 		funcNames = titles.map(x => `onclick${capitalize(x)}`);
 	}
 	let html = `
     <nav class="navbar navbar-expand navbar-light bg-light">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">${pageTitle}</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">`;
 	for (let i = 0; i < titles.length; i++) {
@@ -46,5 +74,8 @@ function showNavbar(titles, funcNames) {
 			</div>
 		</nav>
 		`;
-	document.body.innerHTML += html;
+	//let inner = document.body.innerHTML;
+	mInsertFirst(document.body,mCreateFrom(html));
+	//document.body.insertAdjacentElement(0,mCreateFrom(html)); //innerHTML += html + inner;
+
 }
