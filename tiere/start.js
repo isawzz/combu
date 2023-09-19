@@ -1,7 +1,9 @@
 onload = start;
 
 async function start() {
-	M = await mGetYaml('../base/assets/m.txt'); //test10_getPostM(); //test8_saveM(); //test6_perftest(); //test5_emolistAll(); //test4_emolist(); //test3_loadFilenamesList(); //test0_foodEmoji(); //	test1_allEmoji();
+	M = await mGetYaml('../base/assets/m.txt'); 
+	//test10_getPostM(); //test8_saveM(); //test6_perftest(); //test5_emolistAll(); //test4_emolist(); //test3_loadFilenamesList(); //test0_foodEmoji(); //	test1_allEmoji();
+	S.type = detectSessionType(); console.log('session',S)
 	showNavbar('Collections', ['home', 'new']);
 	onclickNew();
 }
@@ -11,47 +13,11 @@ function onclickNew() {
 }
 
 function mImageDropperForm(dParent) {
-	//	let d = mDiv(dParent, { display: 'flex' });
-
 	let html = `
 		<div id="dNewCollection" style="display:flex;align-items:center;position:relative">
 			<div style='width:400px;text-align:center;height:400px;'>
 				<img style='margin-top:50px;height:300px;' id="image">
-				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black'  ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
-			</div>
-			<div id="dfNew" style="display:block">
-				<form>
-					<label for="category">Category:</label><br>
-					<input type="text" id="category" name="category" placeholder="Enter category"><br><br>
-					<label for="name">Name:</label><br>
-					<input type="text" id="name" name="name" placeholder="Enter name">
-				</form>
-			</div>
-		</div>
-
-		`;
-	html = `
-		<div id="dNewCollection" style="display:flex;align-items:center;position:relative">
-			<div style='width:400px;text-align:center;height:400px;'>
-				<img style='margin-top:50px;height:300px;' id="image">
-				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black'  ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
-			</div>
-			<div id="dfNew" style="display:block;text-align:right">
-				<form>
-					<span>Category:</span>
-					<input type="text" id="category" name="category" placeholder="Enter category"><br>
-					<span>Name:</span>
-					<input type="text" id="name" name="name" placeholder="Enter name">
-				</form>
-			</div>
-		</div>
-
-		`;
-	html = `
-		<div id="dNewCollection" style="display:flex;align-items:center;position:relative">
-			<div style='width:400px;text-align:center;height:400px;'>
-				<img style='margin-top:50px;height:300px;' id="image">
-				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black'  ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
+				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black' ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
 			</div>
 			<div id="dfNew" style="display:block;">
 				<form>

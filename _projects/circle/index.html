@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Rectangles in a Circle</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.circle-container {
+			position: relative;
+			width: 300px;
+			height: 300px;
+		}
+
+		.rectangle {
+			width: 300px;
+			height: 100px;
+			background-color: #3498db;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform-origin: top left;
+			transform: translate(-50%, -50%);
+			transition: transform 0.5s ease-in-out;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="circle-container" id="circle">
+		<!-- Rectangles will be dynamically added here -->
+	</div>
+	<script>
+		function createRectanglesInCircle(n) {
+			const circleContainer = document.getElementById('circle');
+			const radius = 150; // Adjust the radius as needed
+			const centerX = circleContainer.offsetWidth / 2;
+			const centerY = circleContainer.offsetHeight / 2;
+
+			for (let i = 0; i < n; i++) {
+				const angle = (i / n) * 2 * Math.PI;
+				const x = centerX + radius * Math.cos(angle);
+				const y = centerY + radius * Math.sin(angle);
+
+				const rectangle = document.createElement('div');
+				rectangle.className = 'rectangle';
+				rectangle.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px) rotate(${(i / n) * 360}deg)`;
+				circleContainer.appendChild(rectangle);
+			}
+		}
+
+		// Example: Create 8 rectangles in a circle
+		createRectanglesInCircle(5);
+	</script>
+</body>
+
+</html>

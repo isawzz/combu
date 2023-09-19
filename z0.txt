@@ -926,11 +926,136 @@ wie kann ich am host die daten speciern?
 ich hab im moment nur die filenames mit categories
 cats sind:
 sea,earth,bird,cat,insect
+_____ so 17.9.23 airport 700
+=>chat with your neighbors!
+5:42 AM 9/17/2023 700
+5:55 AM 9/17/2023 713
+8:36 AM 9/17/2023 720 muss irgendwas andres machen froze
+12:13 PM 9/17/2023 740
+12:14 PM 9/17/2023 741
+a1pm
+_____ mo 18.9.23 airport 900
+6:33 AM 9/18/2023 900
+slow! was will ich machen? eigentlich redo the games stuff and make more interesting games
+das mit den rt games war schon ganz gut!
+kann ich eigentlich php calls machen von live server aus???
+versuch das mal!
+6:42 AM 9/18/2023 909
+es macht genau dann spass wenn ich es in meiner eigenen pace, meinem eigenen ausmass mache
+6:43 AM 9/18/2023 910
+- bei session type live soll er phpServer: localhost:8080 machen
+6:44 AM 9/18/2023 911
+- ich brauch eigentlich das coding / closure zeug
+6:48 AM 9/18/2023 912
+also es gibt ein aroot/coding mit einem bundleGenFromProject
+- schau was es in beethoven gibt! coding mit closureFromProject
+6:49 AM 9/18/2023 913
+- open dirs und schau welches file neuer ist!
+6:55 AM 9/18/2023 919
+- was ist pico0? wo ich string extract und so zeug mache
+7:13 AM 9/18/2023 937
+- das geht sogar! 
+==>es durfen keine var und const in start.js sein!!!
+7:19 AM 9/18/2023 943
+hat geklappt!!!
+7:19 AM 9/18/2023 944
+- was jetzt?
+7:31 AM 9/18/2023 956
+- ich muss bei coding eine reason finden warum er bestimmt worte included!
+7:38 AM 9/18/2023 963
+- der critical code ist in _minimizeCode
+7:54 AM 9/18/2023 979
+- how can I rewrite the code so that it collapses correctly???
+8:08 AM 9/18/2023 993
+- CRLF statt LF und files.eol setting to cr lf solves the collapse problem!
+10:38 AM 9/18/2023 100
+_____ di 19.9.23 airport 200
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Welcome on BGA Studio!
+
+To start, we recommend you to check the following documentation:
+en.doc.boardgamearena.com/Studio#Great.2C_I.27m_in.21_..._How_should_I_start.3F
+
+Please also take a look at the 'Welcome, advice and licenses' post in the developers forum:
+boardgamearena.com/forum/viewtopic.php?f=12&t=15232
+
+Below you will find all you need to access the online development platform.
+
+SFTP server: 1.studio.boardgamearena.com (standard port 22)
+(Usage: accessing your files)
+SFTP user: babihil
+SFTP password: be539c53bf7b747d56f3237aa95d5904
+
+Database (MySql) PhpMyAdmin access: studio.boardgamearena.com/db/
+(Usage: accessing your games in progress databases)
+DB user: babihil
+DB password: f734a96d0316c4d8404c38aa05d7b712
+
+BGA Studio: studio.boardgamearena.com/
+(Usage: launch&test your games)
+Your 10 BGA Studio accounts created for testing:
+(these are for BGA studio only, your account on BGA remains the same)
+Username: babihil0 (=> please use this one to login on BGA Studio)
+Username: babihil1
+Username: babihil2
+Username: babihil3
+Username: babihil4
+Username: babihil5
+Username: babihil6
+Username: babihil7
+Username: babihil8
+Username: babihil9
+Password (for all accounts above): abf9 (Change it here)
+
+
+
+
+
+This email has been sent by BGA Studio
+studio.boardgamearena.com
 
 
 

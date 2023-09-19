@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Splayed Hand of Cards</title>
+	<style>
+		.hand {
+			display: grid;
+			grid-template-columns: repeat(14, 20px) 70px;
+			/* 14 small columns and 1 large column */
+			gap: 5px;
+			max-width: 700px;
+			/* Adjust the maximum width as needed */
+		}
+
+		.card {
+			width: 70px;
+			height: 110px;
+			border: 1px solid #000;
+			text-align: center;
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 110px;
+		}
+
+		.red {
+			background-color: red;
+		}
+
+		.black {
+			background-color: black;
+			color: white;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Splayed Hand of Cards</h1>
+	<div id="handContainer" class="hand"></div>
+
+	<script>
+		function createCard(rank, suit) {
+			const cardDiv = document.createElement('div');
+			cardDiv.classList.add('card', suit === 'H' || suit === 'D' ? 'red' : 'black');
+			cardDiv.textContent = `${rank}${suit}`;
+			return cardDiv;
+		}
+
+		function displaySplayedHand(hand) {
+			const handContainer = document.getElementById('handContainer');
+			handContainer.innerHTML = '';
+
+			for (const card of hand) {
+				const cardDiv = createCard(card.rank, card.suit);
+				handContainer.appendChild(cardDiv);
+			}
+		}
+
+		// Example usage:
+		const sampleHand = [
+			{ rank: 'A', suit: 'H' },
+			{ rank: '2', suit: 'S' },
+			{ rank: 'K', suit: 'D' },
+			{ rank: '7', suit: 'C' },
+		];
+
+		displaySplayedHand(sampleHand);
+	</script>
+</body>
+
+</html>

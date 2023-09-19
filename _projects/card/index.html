@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Display</title>
+    <style>
+        .card {
+            width: 70px;
+            height: 110px;
+            border: 1px solid #000;
+            display: inline-block;
+            margin: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 110px;
+        }
+        .red {
+            background-color: red;
+        }
+        .black {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Card Display</h1>
+    <div id="cardContainer"></div>
+
+    <script>
+        function createCard(rank, suit) {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card', suit === 'H' || suit === 'D' ? 'red' : 'black');
+            cardDiv.textContent = `${rank}${suit}`;
+            return cardDiv;
+        }
+
+        // Example usage:
+        const cardContainer = document.getElementById('cardContainer');
+        const card = createCard('A', 'H'); // Create an Ace of Hearts
+        cardContainer.appendChild(card);
+    </script>
+</body>
+</html>

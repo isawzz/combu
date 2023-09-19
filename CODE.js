@@ -152,5 +152,62 @@ async function uploadNewImage(ev,url) {
 		console.error('Error uploading image.');
 	}
 }
+function mImageDropperForm(dParent) {
+	//	let d = mDiv(dParent, { display: 'flex' });
+
+	let html = `
+		<div id="dNewCollection" style="display:flex;align-items:center;position:relative">
+			<div style='width:400px;text-align:center;height:400px;'>
+				<img style='margin-top:50px;height:300px;' id="image">
+				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black'  ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
+			</div>
+			<div id="dfNew" style="display:block">
+				<form>
+					<label for="category">Category:</label><br>
+					<input type="text" id="category" name="category" placeholder="Enter category"><br><br>
+					<label for="name">Name:</label><br>
+					<input type="text" id="name" name="name" placeholder="Enter name">
+				</form>
+			</div>
+		</div>
+
+		`;
+	html = `
+		<div id="dNewCollection" style="display:flex;align-items:center;position:relative">
+			<div style='width:400px;text-align:center;height:400px;'>
+				<img style='margin-top:50px;height:300px;' id="image">
+				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black'  ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
+			</div>
+			<div id="dfNew" style="display:block;text-align:right">
+				<form>
+					<span>Category:</span>
+					<input type="text" id="category" name="category" placeholder="Enter category"><br>
+					<span>Name:</span>
+					<input type="text" id="name" name="name" placeholder="Enter name">
+				</form>
+			</div>
+		</div>
+
+		`;
+	html = `
+		<div id="dNewCollection" style="display:flex;align-items:center;position:relative">
+			<div style='width:400px;text-align:center;height:400px;'>
+				<img style='margin-top:50px;height:300px;' id="image">
+				<div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black' ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
+			</div>
+			<div id="dfNew" style="display:block;">
+				<form>
+					<span>Category:</span><br>
+					<input type="text" id="category" name="category" placeholder="Enter category"><br><br>
+					<span>Name:</span><br>
+					<input type="text" id="name" name="name" placeholder="Enter name">
+				</form>
+			</div>
+		</div>
+
+		`;
+	dParent = toElem(dParent);
+	dParent.innerHTML = html;
+}
 
 //#endregion

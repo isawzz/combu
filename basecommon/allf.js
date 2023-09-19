@@ -13939,8 +13939,8 @@ function closestParent(elem, selector) {
   return null;
 }
 async function closureFromProject(project) {
-  let globlist = await codeParseFile('../allg.js');
-  let funclist = await codeParseFile('../allf.js');
+  let globlist = await codeParseFile('../basecommon/allg.js');
+  let funclist = await codeParseFile('../basecommon/allf.js');
   let list = globlist.concat(funclist);
   let bykey = list2dict(list, 'key');
   let bytype = {};
@@ -13995,7 +13995,7 @@ async function closureFromProject(project) {
   for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
   for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
   cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
-  cssfiles.unshift('../allcss.css');
+  cssfiles.unshift('../basecommon/myclasses.css');
   let tcss = '';
   for (const path of cssfiles) { tcss += await route_path_text(path) + '\r\n'; }
   let t = replaceAllSpecialChars(tcss, '\t', '  ');
@@ -14102,8 +14102,8 @@ function coButtonSidebarDiv_00(dParent, bCaption = '☰', bStyles = { fz: 30 }, 
   return { button: b, sidebar: sb, div: dContent };
 }
 async function codebaseExtend(project) {
-  let globlist = await codeParseFile('../allg.js');
-  let funclist = await codeParseFile('../allf.js');
+  let globlist = await codeParseFile('../basecommon/allg.js');
+  let funclist = await codeParseFile('../basecommon/allf.js');
   let list = globlist.concat(funclist);
   let bykey = list2dict(list, 'key');
   let bytype = {};
@@ -14151,8 +14151,8 @@ async function codebaseExtend(project) {
   return [globtext, functext, functextold]
 }
 async function codebaseExtendFromProject(project) {
-  let globlist = await codeParseFile('../allg.js');
-  let funclist = await codeParseFile('../allf.js');
+  let globlist = await codeParseFile('../basecommon/allg.js');
+  let funclist = await codeParseFile('../basecommon/allf.js');
   let list = globlist.concat(funclist);
   let bykey = list2dict(list, 'key');
   let bytype = {};
@@ -17907,7 +17907,7 @@ async function cssExtendFromProject(project) {
   let html = await route_path_text(htmlFile);
   cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
   console.log('cssfiles', cssfiles);
-  cssfiles.unshift('../allcss.css');
+  cssfiles.unshift('../basecommon/myclasses.css');
   let csstext = await cssFromFiles(cssfiles);
   downloadAsText(csstext, 'allcss', 'css');
   return csstext;
@@ -34268,7 +34268,7 @@ function interrupt() {
 async function intersectAnimeAndAllfuncs() {
   let kws = await extractKeywords('../animex/anime.js', true);
   console.log('kws', kws);
-  let kws1 = await extractKeywords('../allf.js');
+  let kws1 = await extractKeywords('../basecommon/allf.js');
   let inter = intersection(kws, kws1);
   console.log('keywords', inter);
   text = inter.join()
@@ -41754,7 +41754,7 @@ function mdo(o, p, d) {
 function mDom(dParent, styles = {}, opts = {}) {
   let tag = valf(opts.tag, 'div');
   let d = document.createElement(tag);
-  mAppend(dParent, d);
+  if (isdef(dParent)) mAppend(dParent, d);
   if (tag == 'textarea') styles.wrap = 'hard';
   const aliases = {
     classes: 'className',
