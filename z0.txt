@@ -970,6 +970,10 @@ hat geklappt!!!
 - CRLF statt LF und files.eol setting to cr lf solves the collapse problem!
 10:38 AM 9/18/2023 100
 _____ di 19.9.23 airport 200
+6:01 AM 9/19/2023 200
+6:13 AM 9/19/2023 212
+test tiere
+6:15 AM 9/19/2023 214
 
 
 
