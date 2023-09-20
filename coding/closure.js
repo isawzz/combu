@@ -93,7 +93,10 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
       let ch = text[idx - 1];
       if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
       if (ch == "'" || '"`'.includes(ch)) continue;
-      if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) addIf(tbd, w);
+      if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
+        console.log('first',w,'from',sym)
+        addIf(tbd, w);
+      }
     }
     assertion(sym == tbd[0], 'W T F')
     tbd.shift();
@@ -139,7 +142,8 @@ function capitalize(s) {
   if (typeof s !== 'string') return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
-async function closureFromProject(project) {
+async function closureFromProject(project, ignoreList=[], addList=[]) {
+  console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
   let globlist = await codeParseFile('../basecommon/allg.js');
   let funclist = await codeParseFile('../basecommon/allf.js');
   let list = globlist.concat(funclist); 
@@ -179,7 +183,10 @@ async function closureFromProject(project) {
   let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
   let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed);
   if (project == 'nature') seed = seed.concat(['branch_draw', 'leaf_draw', 'lsys_init', 'tree_init', 'lsys_add', 'tree_add', 'lsys_draw', 'tree_draw']);
-  let byKeyMinimized = _minimizeCode(bykey, seed, valf(knownNogos[project], []));
+  seed = seed.concat(addList);
+  let nogos = valf(knownNogos[project], [])
+  nogos = nogos.concat(ignoreList);
+  let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
   for (const k in byKeyMinimized) {
     let code = byKeyMinimized[k].code;
     let lines = code.split('\n');
@@ -336,14 +343,14 @@ function colorFrom(cAny, a, allowHsl = false) {
       if (a == undefined) return c;
       c = c.substring(0, 7);
       return c + (a == 1 ? '' : alphaToHex(a));
-    } else if (startsWith(cAny, 'rand')) {
+    } else if (cAny.startsWith('rand')) {
       let spec = capitalize(cAny.substring(4));
       if (isdef(window['color' + spec])) {
         c = window['color' + spec]();
       } else c = rColor();
       if (a == undefined) return c;
       return c + (a == 1 ? '' : alphaToHex(a));
-    } else if (startsWith(cAny, 'linear')) {
+    } else if (cAny.startsWith('linear')) {
       return cAny;
     } else if (cAny[0] == 'r' && cAny[1] == 'g') {
       if (a == undefined) return cAny;
@@ -388,7 +395,7 @@ function colorFrom(cAny, a, allowHsl = false) {
       ensureColorDict();
       let c = ColorDi[cAny];
       if (nundef(c)) {
-        if (startsWith(cAny, 'rand')) {
+        if (cAny.startsWith('rand')) {
           let spec = cAny.substring(4);
           if (isdef(window['color' + spec])) {
             c = window['color' + spec](res);
@@ -535,7 +542,6 @@ function detectSessionType() {
         : loc.includes(':60') ? 'flask' : 'live';
   return DA.sessionType;
 }
-function endsWith(s, sSub) { let i = s.indexOf(sSub); return i >= 0 && i == s.length - sSub.length; }
 function ensureColorDict() {
   if (isdef(ColorDi)) return;
   ColorDi = {};
@@ -1393,7 +1399,7 @@ function mStyle(elem, styles, unit = 'px') {
     else if (key == 'color') elem.style.color = fg;
     else if (key == 'opacity') elem.style.opacity = val;
     else if (key == 'wrap') { if (val == 'hard') elem.setAttribute('wrap', 'hard'); else elem.style.flexWrap = 'wrap'; }
-    else if (startsWith(k, 'dir')) {
+    else if (k.startsWith('dir')) {
       isCol = val[0] == 'c';
       elem.style.setProperty('flex-direction', 'column');
     } else if (key == 'flex') {
@@ -1545,11 +1551,10 @@ function sortCaseInsensitive(list) {
 async function start() {
   S.type = detectSessionType();
   initCodingUI();
-  let [text, css] = await closureFromProject('coding');
+  let glitches = ['startsWith', 'endsWith'];
+  let text = '<please call closureFromProject>', css='';
+  [text, css] = await closureFromProject('coding', glitches); 
   AU.ta.value = text; 
-}
-function startsWith(s, sSub) {
-  return s.substring(0, sSub.length) == sSub;
 }
 function stringAfter(sFull, sSub) {
   let idx = sFull.indexOf(sSub);

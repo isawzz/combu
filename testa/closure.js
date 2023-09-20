@@ -1,5 +1,4 @@
 const BLUE = '#4363d8';
-const BRAUN = '#331606';
 const BROWN = '#96613d';
 const FIREBRICK = '#800000';
 const GREEN = '#3cb44b';
@@ -59,76 +58,24 @@ const STYLE_PARAMS = {
 const TEAL = '#469990';
 const YELLOW = '#ffe119';
 const NEONYELLOW = '#efff04';
-const YELLOW2 = '#fff620';
-const YELLOW3 = '#ffed01';
-const ColorDict = {
-  black: { c: 'black', E: 'black', D: 'schwarz' },
-  blue: { c: 'blue', E: 'blue', D: 'blau' },
-  BLUE: { c: '#4363d8', E: 'blue', D: 'blau' },
-  BLUEGREEN: { c: BLUEGREEN, E: 'bluegreen', D: 'blaugrün' },
-  blue1: { c: BLUE, E: 'blue', D: 'blau' },
-  BRAUN: { c: BRAUN, E: 'brown', D: 'braun' },
-  BROWN: { c: BROWN, E: 'brown', D: 'braun' },
-  brown: { c: BRAUN, E: 'brown', D: 'braun' },
-  deepyellow: { c: YELLOW3, E: 'yellow', D: 'gelb' },
-  FIREBRICK: { c: '#800000', E: 'darkred', D: 'rotbraun' },
-  gold: { c: 'gold', E: 'gold', D: 'golden' },
-  green: { c: 'green', E: 'green', D: 'grün' },
-  GREEN: { c: '#3cb44b', E: 'green', D: 'grün' },
-  green1: { c: GREEN, E: 'green', D: 'grün' },
-  grey: { c: 'grey', E: 'grey', D: 'grau' },
-  lightblue: { c: LIGHTBLUE, E: 'lightblue', D: 'hellblau' },
-  LIGHTBLUE: { c: '#42d4f4', E: 'lightblue', D: 'hellblau' },
-  lightgreen: { c: LIGHTGREEN, E: 'lightgreen', D: 'hellgrün' },
-  LIGHTGREEN: { c: '#afff45', E: 'lightgreen', D: 'hellgrün' },
-  lightyellow: { c: YELLOW2, E: 'lightyellow', D: 'gelb' },
-  olive: { c: OLIVE, E: 'olive', D: 'oliv' },
-  OLIVE: { c: '#808000', E: 'olive', D: 'oliv' },
-  orange: { c: ORANGE, E: 'orange', D: 'orange' },
-  ORANGE: { c: '#f58231', E: 'orange', D: 'orange' },
-  pink: { c: 'deeppink', E: 'pink', D: 'rosa' },
-  purple: { c: PURPLE, E: 'purple', D: 'lila' },
-  PURPLE: { c: '#911eb4', E: 'purple', D: 'lila' },
-  red: { c: 'red', E: 'red', D: 'rot' },
-  RED: { c: '#e6194B', E: 'red', D: 'rot' },
-  red1: { c: RED, E: 'red', D: 'rot' },
-  skyblue: { c: 'deepskyblue', E: 'skyblue', D: 'himmelblau' },
-  teal: { c: TEAL, E: 'teal', D: 'blaugrün' },
-  TEAL: { c: '#469990', E: 'teal', D: 'blaugrün' },
-  violet: { c: 'indigo', E: 'violet', D: 'violett' },
-  white: { c: 'white', E: 'white', D: 'weiss' },
-  yellow: { c: 'yellow', E: 'yellow', D: 'gelb' },
-  YELLOW: { c: '#ffe119', E: 'yellow', D: 'gelb' },
-  YELLOW2: { c: YELLOW2, E: 'yellow', D: 'gelb' },
-  YELLOW3: { c: YELLOW3, E: 'yellow', D: 'gelb' },
-};
-var c52;
+const img = document.createElement('img')
 var ColorDi;
 var dParent;
-var M = {};
 var P;
-var S = {};
-class Player {
-  constructor(id, color) {
-    this.id = id;
-    this.color = getColorDictColor(color);
+const MyNames = ['amanda', 'angela', 'erin', 'holly', 'jan', 'karen', 'kelly', 'pam', 'phyllis', 'andy', 'creed', 'darryl', 'david', 'dwight', 'felix', 'gul', 'jim', 'kevin', 'luis', 'michael', 'nil', 'oscar', 'ryan', 'stanley', 'toby', 'wolfgang'];
+function addImageWithLabel(image, dParent, imgStyles, labelStyles, imgSrc, labelText) {
+  let mp0Style = { margin: 0, padding: 0, display: 'block' };
+  let d = mDiv(dParent, mp0Style);
+  let imgStyle = addKeys(mp0Style, { h: 250 });
+  let img = mDom(d, imgStyle, { tag: 'img', src: image.path });
+  img.onload = () => {
+    let labelStyle = addKeys(mp0Style, { w: img.offsetWidth, box: true });
+    let label = mDom(d, {}, { tag: 'input', type: 'text', value: rName() });
+    mStyle(label, labelStyle);
+    label.onclick = ev => ev.target.select();
+    label.onkeydown = ev => { if (ev.keyCode === 13) { uploadSmallImage(ev) } }
   }
 }
-const suits = ['S', 'H', 'C', 'D'];
-const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
-const handSize = {
-  "5": 20,
-  "6": 17,
-  "7": 14,
-  "8": 13,
-  "9": 11,
-  "10": 10,
-  "11": 9,
-  "12": 8,
-  "13": 8,
-  "14": 7,
-  "15": 6
-};
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
   let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
@@ -333,39 +280,6 @@ function colorsFromBFA(bg, fg, alpha) {
 function colorTrans(cAny, alpha = 0.5) {
   return colorFrom(cAny, alpha);
 }
-function createCard(dParent,key){
-  let card = 'card_'+key;
-  return mDom(dParent, { h: 110,w:70 }, { html: M.c52[card] });
-}
-function dealCards(numPlayers) {
-  let hsz = handSize[numPlayers] ?? 13;
-  const totalCards = hsz * numPlayers;
-  const deck = [];
-  let n = 0;
-  while (n < totalCards) {
-    for (const suit of suits) {
-      for (const rank of ranks) {
-        deck.push(`${rank}${suit}`); n++;
-      }
-    }
-  }
-  shuffleArray(deck);
-  const playerHands = [];
-  for (let i = 0; i < numPlayers; i++) {
-    const hand = [];
-    for (let j = 0; j < hsz; j++) {
-      hand.push(deck.pop());
-    }
-    playerHands.push(hand);
-  }
-  return playerHands;
-}
-function displaySplayedHand(dParent, hand) {
-  const handContainer = mDom(dParent, { display: 'grid', gap: 5, wmax: 700, 'grid-template-columns': 'repeat(14, 20px) 70px' });
-  for (const card of hand) {
-    const cardDiv = createCard(handContainer,card); 
-  }
-}
 function ensureColorDict() {
   if (isdef(ColorDi)) return;
   ColorDi = {};
@@ -421,6 +335,10 @@ function ensureColorDict() {
     ColorDi[k] = cnew;
   }
 }
+function error(msg) {
+  let fname = getFunctionsNameThatCalledThisFunction();
+  console.log(fname, 'ERROR!!!!! ', msg);
+}
 function firstNumber(s) {
   if (s) {
     let m = s.match(/-?\d+/);
@@ -443,7 +361,6 @@ function fisherYates(arr) {
   }
   return arr;
 }
-function getColorDictColor(c) { return isdef(ColorDict[c]) ? ColorDict[c].c : c; }
 function getColorHexes(x) {
   return [
     'f0f8ff',
@@ -748,12 +665,12 @@ function getColorNames() {
     'YellowGreen'
   ];
 }
-function getRankValue(card) {
-  const rankMapping = {
-      '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
-      'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14
-  };
-  return rankMapping[card[0]];
+function getFunctionsNameThatCalledThisFunction() {
+  let c1 = getFunctionsNameThatCalledThisFunction.caller;
+  if (nundef(c1)) return 'no caller!';
+  let c2 = c1.caller;
+  if (nundef(c2)) return 'no caller!';
+  return c2.name;
 }
 function getRect(elem, relto) {
   if (isString(elem)) elem = document.getElementById(elem);
@@ -775,12 +692,6 @@ function getRect(elem, relto) {
   let r = { x: res.left, y: res.top, w: res.width, h: res.height };
   addKeys({ l: r.x, t: r.y, r: r.x + r.w, b: r.t + r.h }, r);
   return r;
-}
-function getSuitValue(card) {
-  const suitMapping = {
-      'S':0, 'H':1, 'C':2, 'D':3
-  };
-  return suitMapping[card[1]];
 }
 function HSLAToRGBA(hsla, isPct) {
   let ex = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)(((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2},\s?)|((\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}\s\/\s))((0?\.\d+)|[01]|(([1-9]?\d(\.\d+)?)|100|(\.\d+))%)\)$/i;
@@ -929,6 +840,7 @@ function hue(h) {
   return [Math.floor(r * 255), Math.floor(g * 255), Math.floor(b * 255)];
 }
 function isdef(x) { return x !== null && x !== undefined; }
+function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
 function isEmpty(arr) {
   return arr === undefined || !arr
     || (isString(arr) && (arr == 'undefined' || arr == ''))
@@ -940,6 +852,17 @@ function isNumber(x) { return x !== ' ' && x !== true && x !== false && isdef(x)
 function isString(param) { return typeof param == 'string'; }
 function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : null;
+}
+function loadImages() {
+  const imageContainer = document.getElementById('image-container');
+  mFlexWrap(imageContainer);
+  mStyle(imageContainer, { gap: 10, margin: 0, padding: 0 })
+  fetch('load_images.php')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(image => addImageWithLabel(image, imageContainer));
+    })
+    .catch(error => console.error(error));
 }
 function lookup(dict, keys) {
   let d = dict;
@@ -975,6 +898,18 @@ function mClass(d) {
     }
   } else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
 }
+function mCreate(tag, styles, id) { let d = document.createElement(tag); if (isdef(id)) d.id = id; if (isdef(styles)) mStyle(d, styles); return d; }
+function mDiv(dParent, styles, id, inner, classes, sizing) {
+  dParent = toElem(dParent);
+  let d = mCreate('div');
+  if (dParent) mAppend(dParent, d);
+  if (isdef(styles)) mStyle(d, styles);
+  if (isdef(classes)) mClass(d, classes);
+  if (isdef(id)) d.id = id;
+  if (isdef(inner)) d.innerHTML = inner;
+  if (isdef(sizing)) { setRect(d, sizing); }
+  return d;
+}
 function mDom(dParent, styles = {}, opts = {}) {
   let tag = valf(opts.tag, 'div');
   let d = document.createElement(tag);
@@ -989,12 +924,12 @@ function mDom(dParent, styles = {}, opts = {}) {
   mStyle(d, styles);
   return d;
 }
-async function mGetYaml(path='../base/assets/m.txt'){
-  let res = await fetch(path);
-  let text = await res.text();
-  let di = jsyaml.load(text);
-  return di;
+function mFlex(d, or = 'h') {
+  d = toElem(d);
+  d.style.display = 'flex';
+  d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
 }
+function mFlexWrap(d) { mFlex(d, 'w'); }
 function mStyle(elem, styles, unit = 'px') {
   elem = toElem(elem);
   if (isdef(styles.whrest)) { delete styles.whrest; styles.w = styles.h = 'rest'; } else if (isdef(styles.wh100)) { styles.w = styles.h = '100%'; delete styles.wh100; }
@@ -1190,62 +1125,70 @@ function removeInPlace(arr, el) {
 }
 function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
+function rName(n = 1) { let arr = MyNames; return rChoose(arr, n); }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function showPlayerHands(playerHands) {
-  const playersContainer = document.getElementById('players');
-  playersContainer.innerHTML = '';
-  let numPlayers = playerHands.length;
-  for (let i = 0; i < numPlayers; i++) {
-    const playerDiv = document.createElement('div');
-    playerDiv.innerHTML = `
-                    <h2>Player ${i + 1}</h2>
-                    <div id="player${i + 1}Hand"></div>
-                `;
-    playersContainer.appendChild(playerDiv);
+function setRect(elem, options) {
+  let r = getRect(elem);
+  elem.rect = r;
+  elem.setAttribute('rect', `${r.w} ${r.h} ${r.t} ${r.l} ${r.b} ${r.r}`);
+  if (isDict(options)) {
+    if (options.hgrow) mStyle(elem, { hmin: r.h });
+    else if (options.hfix) mStyle(elem, { h: r.h });
+    else if (options.hshrink) mStyle(elem, { hmax: r.h });
+    if (options.wgrow) mStyle(elem, { wmin: r.w });
+    else if (options.wfix) mStyle(elem, { w: r.w });
+    else if (options.wshrink) mStyle(elem, { wmax: r.w });
   }
-  for (let i = 0; i < numPlayers; i++) {
-    const playerHandElement = document.getElementById(`player${i + 1}Hand`);
-    displaySplayedHand(playerHandElement, sortCards(playerHands[i]))
-  }
+  return r;
 }
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-function sortCards(cards) {
-  return cards.sort((a, b) => {
-      const cardA = getSuitValue(a)*1000 + getRankValue(a);
-      const cardB = getSuitValue(b)*1000 + getRankValue(b);
-      return cardA - cardB;
-  });
-}
-async function start() {
-  M = await mGetYaml('../base/assets/m.txt'); console.log('M', M);
-  document.getElementById('startGameButton').addEventListener('click', () => {
-    const numPlayers = parseInt(document.getElementById('numPlayers').value, 10);
-    if (numPlayers >= 2 && numPlayers <= 15) {
-      const playerHands = dealCards(numPlayers);
-      showPlayerHands(playerHands);
-    } else {
-      alert('Number of players must be between 2 and 15.');
-    }
-  });
-  document.getElementById('startGameButton').click();
-}
+function start() { test1_loadAllAnimals(); }
 function stringBeforeLast(sFull, sSub) {
   let parts = sFull.split(sSub);
   return sFull.substring(0, sFull.length - arrLast(parts).length - 1);
+}
+function test1_loadAllAnimals() {
+  loadImages();
 }
 function toElem(d) { return isString(d) ? mBy(d) : d; }
 function toWords(s, allow_ = false) {
   let arr = allow_ ? s.split(/[\W]+/) : s.split(/[\W|_]+/);
   return arr.filter(x => !isEmpty(x));
 }
+async function uploadSmallImage(ev) {
+  let elem = mBy('img1');
+  let filename = 'hallo3.png'
+  if (isdef(ev)) {
+    let label = ev.target;
+    elem = label.parentNode.firstChild;
+    filename = label.value + '.png';
+    console.log('YES!!!!')
+  }
+  console.log('uploading!!!!',filename)
+  const canvas = document.createElement('canvas');
+  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
+  console.log('w', w, 'h', h);
+  canvas.width = elem.width;
+  canvas.height = elem.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(elem, 0, 0, w, h);
+  const imageData = canvas.toDataURL('image/png');
+  const response = await fetch('upload.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
+  });
+  if (response.ok) {
+    console.log('Image uploaded successfully!');
+  } else {
+    console.error('Error uploading image.');
+  }
+}
 function valf() {
   for (const arg of arguments) if (isdef(arg)) return arg;
   return null;
 }
+

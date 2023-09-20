@@ -1,4 +1,42 @@
 
+function _minimizeCode(di, symlist = ['start'], nogo = []) {
+	let done = {};
+	let tbd = symlist;
+	let MAX = 1000000, i = 0;
+	let visited = {
+		autocomplete: true, Card: true, change: true, config: true, grid: true, hallo: true,
+		jQuery: true, init: true,
+		Number: true, sat: true, step: true, PI: true
+	};
+	while (!isEmpty(tbd)) {
+		if (++i > MAX) break;
+		let sym = tbd[0];
+		if (isdef(visited[sym])) { tbd.shift(); continue; }
+		visited[sym] = true;
+		let o = di[sym];
+		if (nundef(o)) { tbd.shift(); continue; }
+		let text = o.code;
+		let words = toWords(text, true);
+		for (const w of words) {
+			if (nogo.some(x => w.startsWith(x))) continue;
+
+			//remove words within quotes that are functions
+			let idx = text.indexOf(w);
+			let ch = text[idx - 1];
+			if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
+			if (ch == "'" || '"`'.includes(ch)) continue;
+
+			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
+				console.log('first',w,'from',sym)
+				addIf(tbd, w);
+			}
+		}
+		assertion(sym == tbd[0], 'W T F')
+		tbd.shift();
+		done[sym] = o;
+	}
+	return done;
+}
 async function closureFromProject(project, ignoreList=[], addList=[]) {
 
 	console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
@@ -226,69 +264,6 @@ async function codebaseExtendFromProject(project) {
 	// downloadAsText(functextold, 'allfuncs_old', 'js');
 	return [globtext, functext, functextold];
 }
-async function cssExtendFromProject(project) {
-	//cssbase ist in '../basecommon/myclasses.css'
-	// let list = ['../basecommon/myclasses', `../coding/final`]; // ['reset','base','cards','features','mybutton','shapes'];//'base','cards','features','mybutton','shapes']; //,'cards','chess' //wurde bereits geloescht!!!
-	// let csstext = await cssbaseNew(list); //,'../base/css');
-	//eigentlich sollten transitions auch darein gehen! oder?
-	//erstmal mach die files
-	let htmlFile = `../${project}/index.html`;
-	let html = await route_path_text(htmlFile);
-	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
-	console.log('cssfiles', cssfiles);
-	cssfiles.unshift('../basecommon/myclasses.css');
-
-	let csstext = await cssFromFiles(cssfiles);
-	downloadAsText(csstext, 'allcss', 'css');
-	return csstext;
-}
-async function cssSelectFromFile(cssfile, types) {
-	//nochmal die types aufschreiben!
-
-	let csstext = await cssFromFiles([cssfile], '', types);
-	downloadAsText(csstext, 'selectioncss', 'css');
-	return csstext;
-
-}
-
-function _minimizeCode(di, symlist = ['start'], nogo = []) {
-	let done = {};
-	let tbd = symlist;
-	let MAX = 1000000, i = 0;
-	let visited = {
-		autocomplete: true, Card: true, change: true, config: true, grid: true, hallo: true,
-		jQuery: true, init: true,
-		Number: true, sat: true, step: true, PI: true
-	};
-	while (!isEmpty(tbd)) {
-		if (++i > MAX) break;
-		let sym = tbd[0];
-		if (isdef(visited[sym])) { tbd.shift(); continue; }
-		visited[sym] = true;
-		let o = di[sym];
-		if (nundef(o)) { tbd.shift(); continue; }
-		let text = o.code;
-		let words = toWords(text, true);
-		for (const w of words) {
-			if (nogo.some(x => w.startsWith(x))) continue;
-
-			//remove words within quotes that are functions
-			let idx = text.indexOf(w);
-			let ch = text[idx - 1];
-			if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
-			if (ch == "'" || '"`'.includes(ch)) continue;
-
-			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
-				console.log('first',w,'from',sym)
-				addIf(tbd, w);
-			}
-		}
-		assertion(sym == tbd[0], 'W T F')
-		tbd.shift();
-		done[sym] = o;
-	}
-	return done;
-}
 async function codebaseFromFiles(files, bykey, bytype, list) {
 	let olist = [];
 	for (const path of files) {
@@ -381,6 +356,30 @@ function codeParseBlock(lines, i) {
 	code = code.trim();
 
 	return [{ key: key, type: type, code: code }, i];
+}
+async function cssExtendFromProject(project) {
+	//cssbase ist in '../basecommon/myclasses.css'
+	// let list = ['../basecommon/myclasses', `../coding/final`]; // ['reset','base','cards','features','mybutton','shapes'];//'base','cards','features','mybutton','shapes']; //,'cards','chess' //wurde bereits geloescht!!!
+	// let csstext = await cssbaseNew(list); //,'../base/css');
+	//eigentlich sollten transitions auch darein gehen! oder?
+	//erstmal mach die files
+	let htmlFile = `../${project}/index.html`;
+	let html = await route_path_text(htmlFile);
+	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
+	console.log('cssfiles', cssfiles);
+	cssfiles.unshift('../basecommon/myclasses.css');
+
+	let csstext = await cssFromFiles(cssfiles);
+	downloadAsText(csstext, 'allcss', 'css');
+	return csstext;
+}
+async function cssSelectFromFile(cssfile, types) {
+	//nochmal die types aufschreiben!
+
+	let csstext = await cssFromFiles([cssfile], '', types);
+	downloadAsText(csstext, 'selectioncss', 'css');
+	return csstext;
+
 }
 async function cssFromFiles(files, dir = '', types = ['root', 'tag', 'class', 'id', 'keyframes']) {
 
@@ -501,13 +500,6 @@ function cssKeywordType(line) {
 	else return null;
 	//return toLetters('*:.@#').some(x => line[0] == x) || isLetter(line[0]); 
 }
-function removeTrailingComments(line) {
-	let icomm = line.indexOf('//');
-	let ch = line[icomm - 1];
-	if (icomm <= 0 || ch == "'" || ':"`'.includes(ch)) return line;
-	if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
-	return line.substring(0, icomm);
-}
 function ithWord(s, n, allow_) {
 	let ws = toWords(s, allow_);
 	// console.log('?',s,n,allow_,ws);
@@ -548,6 +540,13 @@ function mTextArea100(dParent, styles = {}) {
 	mStyle(t, styles);
 	mAppend(dParent, t);
 	return t;
+}
+function removeTrailingComments(line) {
+	let icomm = line.indexOf('//');
+	let ch = line[icomm - 1];
+	if (icomm <= 0 || ch == "'" || ':"`'.includes(ch)) return line;
+	if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
+	return line.substring(0, icomm);
 }
 
 

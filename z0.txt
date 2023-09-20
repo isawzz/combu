@@ -974,14 +974,62 @@ _____ di 19.9.23 airport 200
 6:13 AM 9/19/2023 212
 test tiere
 6:15 AM 9/19/2023 214
-
-
-
-
-
-
-
-
+wie soll ich php calls handlen? (fuer alle)
+wie soll ich uploads handlen?
+wo soll ich mit der neuen library starten?
+ich koennte anfangen die closures zusammenzusetzen in ma
+nur von den projects die ich wirklich gut finde
+6:25 AM 9/19/2023 224
+womit soll ich anfangen?
+6:27 AM 9/19/2023 226
+wenn ein project fertig ist, put all additional stuff in start.js
+macht das sinn?
+6:31 AM 9/19/2023 230
+was wenn ich da extra zeug hincopiert habe? soll ich es wieder loeschen? ja
+6:33 AM 9/19/2023 232
+was ich will: 
+1- ich will ein ganz neues allg.js und allf.js die radical ausgemistet sind und updated mit modernem code
+2- ich will dass jedes fertige project gleich structured ist:
+closure.js
+final.css
+index.html
+start.js (das alle neuen functions in alpha order enthaelt
+bau.js (das am ended leer ist)
+[globals.js] optional falls neue globals in dem project gebraucht werden
+[styles.css] optional falls neue styles in dem project gebraucht werden
+[test.js] da drin sind alle tests von dem project und bleiben auch da drin!!!
+(es ist sinnlos tests im allf.js zu haben!!!!)
+3- ich will dass alle php helpers in basecommon/php sind
+oder noch besser: es soll ein einziges apihelpers und ein einzges api.php geben????? noch nicht sicher!
+4- ich will dass die tests von einem project so maintained werden dass sie problemlos laufen! (update code when break)
+6:37 AM 9/19/2023 236
+also, wie geh ich vor um das zu machen?
+ich brauch ein codebaseAdd(orig,new) das alle funcs aus new zu den funcs aus orig added (auch var const class)
+6:43 AM 9/19/2023 242
+OneNote!
+6:45 AM 9/19/2023 244
+wi emach ich das jetzt alles?
+6:48 AM 9/19/2023 247
+start witn coding coding
+6:56 AM 9/19/2023 253
+startsWith und endsWith einbauen!!!
+7:08 AM 9/19/2023 265
+soll ich jetzt wirklich auch all die ai generated ones umbauen??? NEIN!!!
+7:14 AM 9/19/2023 271
+also: ich hab bis jetzt coding, spiel, tiere
+=> da kann ich schon was draus machen!!!
+ich muss schauen ob irgendwo in coding eine funktionalitaet ist die einfach aus einem file all das zeug added zu einem andren file
+7:26 AM 9/19/2023 283
+soll ich das dangerous rename machen????
+allf.js => allfhuge.js
+7:29 AM 9/19/2023 286
+versuch jetzt superspiel
+7:43 AM 9/19/2023 300
+==> start soll NICHT in closure kommen!!!!! =>add to glitches
+an di sollte ich schicken Vaugh
+_____ mi 20.9.23 airport 400
+6:21 PM 9/19/2023 400
+action bis gu: klavier, essen machen 1pm
 
 
 
