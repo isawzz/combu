@@ -118,6 +118,7 @@ const handSize = {
   "15": 6
 };
 const img = document.createElement('img')
+const MyNames = ['amanda', 'angela', 'erin', 'holly', 'jan', 'karen', 'kelly', 'pam', 'phyllis', 'andy', 'creed', 'darryl', 'david', 'dwight', 'felix', 'gul', 'jim', 'kevin', 'luis', 'michael', 'nil', 'oscar', 'ryan', 'stanley', 'toby', 'wolfgang'];
 var AU = {};
 var ColorDi;
 var DA = {};
@@ -137,4 +138,3 @@ class Player {
     this.color = getColorDictColor(color);
   }
 }
-

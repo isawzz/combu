@@ -542,6 +542,16 @@ function detectSessionType() {
         : loc.includes(':60') ? 'flask' : 'live';
   return DA.sessionType;
 }
+function download(jsonObject, fname) {
+  json_str = JSON.stringify(jsonObject);
+  saveFile(fname + '.json', 'data:application/json', new Blob([json_str], { type: '' }));
+}
+function downloadAsText(s, filename, ext = 'txt') {
+  saveFileAtClient(
+    filename + "." + ext,
+    "data:application/text",
+    new Blob([s], { type: "" }));
+}
 function ensureColorDict() {
   if (isdef(ColorDi)) return;
   ColorDi = {};
@@ -1530,6 +1540,33 @@ async function route_path_text(url) {
   let text = await data.text();
   return text;
 }
+function saveFile(name, type, data) {
+  if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
+  var a = $("<a style='display: none;'/>");
+  var url = window.URL.createObjectURL(new Blob([data], { type: type }));
+  a.attr('href', url);
+  a.attr('download', name);
+  $('body').append(a);
+  a[0].click();
+  setTimeout(function () {
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }, 500);
+}
+function saveFileAtClient(name, type, data) {
+  if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
+  let a = document.createElement('a');
+  a.style.display = 'none';
+  let url = window.URL.createObjectURL(new Blob([data], { type: type }));
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  simulateClick(a);
+  setTimeout(function () {
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }, 500);
+}
 function setRect(elem, options) {
   let r = getRect(elem);
   elem.rect = r;
@@ -1544,6 +1581,10 @@ function setRect(elem, options) {
   }
   return r;
 }
+function simulateClick(elem) {
+  var evt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+  var canceled = !elem.dispatchEvent(evt);
+}
 function sortCaseInsensitive(list) {
   list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
   return list;
@@ -1553,7 +1594,7 @@ async function start() {
   initCodingUI();
   let glitches = ['startsWith', 'endsWith'];
   let text = '<please call closureFromProject>', css='';
-  [text, css] = await closureFromProject('coding', glitches); 
+  [text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
   AU.ta.value = text; 
 }
 function stringAfter(sFull, sSub) {

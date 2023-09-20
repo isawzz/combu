@@ -19,11 +19,11 @@ async function start() {
 	let glitches = ['startsWith', 'endsWith'];
 	let text = '<please call closureFromProject>', css='';
 	// [text, css] = await closureFromProject('tiere', glitches.concat(['expand', 'drop']), ['allowDrop','dropImage']);
-	[text, css] = await closureFromProject('coding', glitches); 
+	// [text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
 	// [text, css] = await closureFromProject('spiel', glitches); 
 	// [text, css] = await closureFromProject('testa', glitches); 
 
-	// [text, globs] = await combineClosures(['coding','spiel','testa','tiere']); 
+	//text = await combineClosures(['coding','spiel','testa','tiere']); 
 
 	AU.ta.value = text; 
 
@@ -32,8 +32,8 @@ async function start() {
 async function combineClosures(projectList){
 	let files = projectList.map(x=>`../${x}/closure.js`);
 	let [globtext, functext, functextold] = await codebaseFromFiles(files);
-	downloadAsText(globtext,'globs');
-	return [globtext, functext];
+	downloadAsText(globtext,'globs','js');
+	return functext;
 }
 function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};

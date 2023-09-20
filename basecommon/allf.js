@@ -34,6 +34,19 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
   return done;
 }
 function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
+function addImageWithLabel(image, dParent, imgStyles, labelStyles, imgSrc, labelText) {
+  let mp0Style = { margin: 0, padding: 0, display: 'block' };
+  let d = mDiv(dParent, mp0Style);
+  let imgStyle = addKeys(mp0Style, { h: 250 });
+  let img = mDom(d, imgStyle, { tag: 'img', src: image.path });
+  img.onload = () => {
+    let labelStyle = addKeys(mp0Style, { w: img.offsetWidth, box: true });
+    let label = mDom(d, {}, { tag: 'input', type: 'text', value: rName() });
+    mStyle(label, labelStyle);
+    label.onclick = ev => ev.target.select();
+    label.onkeydown = ev => { if (ev.keyCode === 13) { uploadSmallImage(ev) } }
+  }
+}
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
   let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
@@ -504,6 +517,16 @@ function displaySplayedHand(dParent, hand) {
   for (const card of hand) {
     const cardDiv = createCard(handContainer,card); 
   }
+}
+function download(jsonObject, fname) {
+  json_str = JSON.stringify(jsonObject);
+  saveFile(fname + '.json', 'data:application/json', new Blob([json_str], { type: '' }));
+}
+function downloadAsText(s, filename, ext = 'txt') {
+  saveFileAtClient(
+    filename + "." + ext,
+    "data:application/text",
+    new Blob([s], { type: "" }));
 }
 function dropImage(event) {
   console.log('HALLO JA BIN DA')
@@ -1162,6 +1185,17 @@ function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
   }
   return di;
 }
+function loadImages() {
+  const imageContainer = document.getElementById('image-container');
+  mFlexWrap(imageContainer);
+  mStyle(imageContainer, { gap: 10, margin: 0, padding: 0 })
+  fetch('load_images.php')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(image => addImageWithLabel(image, imageContainer));
+    })
+    .catch(error => console.error(error));
+}
 function lookup(dict, keys) {
   let d = dict;
   let ilast = keys.length - 1;
@@ -1288,6 +1322,12 @@ function mDom(dParent, styles = {}, opts = {}) {
   mStyle(d, styles);
   return d;
 }
+function mFlex(d, or = 'h') {
+  d = toElem(d);
+  d.style.display = 'flex';
+  d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
+}
+function mFlexWrap(d) { mFlex(d, 'w'); }
 async function mGetYaml(path = '../base/assets/m.txt') {
   let res = await fetch(path);
   let text = await res.text();
@@ -1569,6 +1609,7 @@ function rLetters(n, except = []) {
   for (const l of except) all = all.replace(l, '');
   return rChoose(toLetters(all), n);
 }
+function rName(n = 1) { let arr = MyNames; return rChoose(arr, n); }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -1584,6 +1625,33 @@ function rUID(prefix = null, n = null) {
   let res = `${prefix}${timestamp}${random}`;
   if (n > 0) res = res.substr(0, n);
   return res;
+}
+function saveFile(name, type, data) {
+  if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
+  var a = $("<a style='display: none;'/>");
+  var url = window.URL.createObjectURL(new Blob([data], { type: type }));
+  a.attr('href', url);
+  a.attr('download', name);
+  $('body').append(a);
+  a[0].click();
+  setTimeout(function () {
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }, 500);
+}
+function saveFileAtClient(name, type, data) {
+  if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
+  let a = document.createElement('a');
+  a.style.display = 'none';
+  let url = window.URL.createObjectURL(new Blob([data], { type: type }));
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  simulateClick(a);
+  setTimeout(function () {
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  }, 500);
 }
 function setRect(elem, options) {
   let r = getRect(elem);
@@ -1645,6 +1713,10 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
+function simulateClick(elem) {
+  var evt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+  var canceled = !elem.dispatchEvent(evt);
+}
 function sortCards(cards) {
   return cards.sort((a, b) => {
       const cardA = getSuitValue(a)*1000 + getRankValue(a);
@@ -1686,6 +1758,9 @@ function stringCount(s, sSub, caseInsensitive = true) {
   let count = (s.match(m)).length;
   return count;
 }
+function test1_loadAllAnimals() {
+  loadImages();
+}
 function toElem(d) { return isString(d) ? mBy(d) : d; }
 function toLetters(s) { return [...s]; }
 function toWords(s, allow_ = false) {
@@ -1724,9 +1799,38 @@ async function uploadNewImage(ev, url) {
     console.error('Error uploading image.');
   }
 }
+async function uploadSmallImage(ev) {
+  let elem = mBy('img1');
+  let filename = 'hallo3.png'
+  if (isdef(ev)) {
+    let label = ev.target;
+    elem = label.parentNode.firstChild;
+    filename = label.value + '.png';
+    console.log('YES!!!!')
+  }
+  console.log('uploading!!!!',filename)
+  const canvas = document.createElement('canvas');
+  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
+  console.log('w', w, 'h', h);
+  canvas.width = elem.width;
+  canvas.height = elem.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(elem, 0, 0, w, h);
+  const imageData = canvas.toDataURL('image/png');
+  const response = await fetch('upload.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
+  });
+  if (response.ok) {
+    console.log('Image uploaded successfully!');
+  } else {
+    console.error('Error uploading image.');
+  }
+}
 function valf() {
   for (const arg of arguments) if (isdef(arg)) return arg;
   return null;
 }
-
-
