@@ -50,6 +50,15 @@ async function getUserList(){
 	}; // You can customize this array
 	return users;
 }
+async function getUserList(){
+	let users = {
+		felix: { name: 'felix', color: 'blue'},
+		amanda: { name: 'amanda', color: 'green'},
+		gul: { name: 'gul', color: 'deepskyblue'},
+		mitra: { name: 'mitra', color: 'hotpink'},
+	}; 
+	return users;
+}
 function getCanvasCenter() {
 	return { x: canvas.width / 2, y: canvas.height / 2 };
 }
@@ -71,6 +80,8 @@ function movePointCloser(xy, xyGoal, percent=10) {
 }
 async function populateUsers() {
 	Users = await getUserList();
+	//get_values(Users).map(x=>x.startPos={x:0,y:0});
+	for(const k in Users) Users[k].startPos = { x: 8, y: 8 };
 	createUserMenu(Users);
 	return Users;
 }

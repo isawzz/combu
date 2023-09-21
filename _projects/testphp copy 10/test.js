@@ -1,22 +1,5 @@
-function test4_twemoji() {
-	mBy('dUsernames').innerHTML = twemoji.parse('😄');
-}
-async function test3() { return await sendGetReset(); }
-
-async function test2() {
-	Canvas = document.getElementById('gameCanvas'); Ctx = Canvas.getContext('2d');
-	Session = await getSession();
-	ClientId = getClientId();
-
-	//wenn jetzt die id in der user list ist, dann log in
-	if (isdef(Session.users) && Session.users.includes(ClientId)) {
-		setClient(ClientId);
-	} else console.log('no users available!')
-
-	return { Session, ClientId };
-}
 async function test1() {
-	Canvas = document.getElementById('gameCanvas'); Ctx = Canvas.getContext('2d');
+	canvas = document.getElementById('gameCanvas'); ctx = canvas.getContext('2d');
 	//canvas.onclick = setGoalPosition;
 
 	Users = await populateUsers();
@@ -34,8 +17,8 @@ async function test1() {
 
 }
 function test0() {
-	Canvas = document.getElementById('gameCanvas'); Ctx = Canvas.getContext('2d');
-	Canvas.onclick = sendMousePosition;
+	canvas = document.getElementById('gameCanvas'); ctx = canvas.getContext('2d');
+	canvas.onclick = sendMousePosition;
 
 	populateUsers();
 

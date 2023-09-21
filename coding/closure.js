@@ -155,7 +155,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   html = removeCommentLines(html, '<!--', '-->');
   let dirhtml = `../${project}`;
   let files = extractFilesFromHtml(html, htmlFile);
-  files = files.filter(x => !x.includes('../all'));
+  files = files.filter(x => !x.includes('../all') && !x.includes('/test'));
   let olist = [];
   for (const path of files) {
     let opath = await codeParseFile(path);
@@ -187,6 +187,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   let nogos = valf(knownNogos[project], [])
   nogos = nogos.concat(ignoreList);
   let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
+  ['start','rest'].map(x=>delete byKeyMinimized[x]);
   for (const k in byKeyMinimized) {
     let code = byKeyMinimized[k].code;
     let lines = code.split('\n');
@@ -201,7 +202,9 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   funckeys = sortCaseInsensitive(funckeys);
   let closuretext = '';
   for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-  for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
+  for (const k of funckeys) { 
+    closuretext += byKeyMinimized[k].code + '\n'; 
+  }
   cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
   cssfiles.unshift('../basecommon/myclasses.css');
   let tcss = '';
@@ -1145,7 +1148,9 @@ function initCodingUI() {
   [dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
   let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
   mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
-  AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
+  mFlex(dta);
+  AU.ta = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
+  AU.css = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
@@ -1287,6 +1292,11 @@ function mDiv(dParent, styles, id, inner, classes, sizing) {
   if (isdef(inner)) d.innerHTML = inner;
   if (isdef(sizing)) { setRect(d, sizing); }
   return d;
+}
+function mFlex(d, or = 'h') {
+  d = toElem(d);
+  d.style.display = 'flex';
+  d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
 }
 function mRows100(dParent, spec, gap = 4) {
   let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
@@ -1530,7 +1540,6 @@ function removeTrailingComments(line) {
   return line.substring(0, icomm);
 }
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
-function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1588,14 +1597,6 @@ function simulateClick(elem) {
 function sortCaseInsensitive(list) {
   list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
   return list;
-}
-async function start() {
-  S.type = detectSessionType();
-  initCodingUI();
-  let glitches = ['startsWith', 'endsWith'];
-  let text = '<please call closureFromProject>', css='';
-  [text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
-  AU.ta.value = text; 
 }
 function stringAfter(sFull, sSub) {
   let idx = sFull.indexOf(sSub);

@@ -1031,6 +1031,67 @@ _____ mi 20.9.23 airport 400
 6:21 PM 9/19/2023 400
 action bis gu: klavier, essen machen 1pm
 7:01 PM 9/19/2023 440
+5:13 AM 9/20/2023 441
+5:27 AM 9/20/2023 455
+shorter!
+5:27 AM 9/20/2023 456
+nochmal testphp mit den huge files!
+5:29 AM 9/20/2023 458
+how to combine normalized css?
+5:30 AM 9/20/2023 459
+open start
+5:32 AM 9/20/2023 461
+- ich moecht 2 textareas nebeneinander haben!
+5:45 AM 9/20/2023 468
+- hol testphp project mit showClientLoggedIn
+6:06 AM 9/20/2023 489
+- bin wieder bei dem canvas spiel gelandet ist aber ok!
+6:10 AM 9/20/2023 493
+- vernuenftiges ui! erstmal die login feature
+6:11 AM 9/20/2023 494
+- index neu
+6:13 AM 9/20/2023 495
+- tag: 'canvas'
+6:18 AM 9/20/2023 500
+- wie soll user menu am anfang ausschauen????
+6:19 AM 9/20/2023 501
+- dTest
+6:21 AM 9/20/2023 503
+- reset php host from live-server!
+6:27 AM 9/20/2023 509
+- suche htaccess: JA damit geht es!!!!!!!!!!!!
+6:30 AM 9/20/2023 512
+6:41 AM 9/20/2023 523
+6:49 AM 9/20/2023 531
+space
+6:50 AM 9/20/2023 532
+mag keine testx files in closures!!!
+=> test und start bleiben immer im project selbst
+7:12 AM 9/20/2023 554
+- ich muss das sendPhpCommand aus testphp verwenden dann geht es!
+7:13 AM 9/20/2023 555
+- aber vorsicht!!! das ist nicht command sondern hat auch ein dir / subdir!!!
+7:33 AM 9/20/2023 575
+7:56 AM 9/20/2023 576
+was will ich eigentlich?
+7:57 AM 9/20/2023 577
+- open testphp/start.js
+7:59 AM 9/20/2023 579
+- example of get url with parameters
+8:18 AM 9/20/2023 598
+- jetzt brauch ich upload_image command! (das ist ein POST)
+8:39 AM 9/20/2023 599
+activ 1pm
+2:37 PM 9/20/2023 680
+activ 1pm
+3:32 PM 9/20/2023 700
+_____ do 21.9.23 airport 700
+5:38 AM 9/21/2023 700 
+woran hab ich grad gearbeitet? stay in the moment
+upload_php
+5:41 AM 9/21/2023 703
+5:44 AM 9/21/2023 706
+probier das upload_image aus
 
 
 
@@ -1039,6 +1100,10 @@ action bis gu: klavier, essen machen 1pm
 
 
 
+
+
+tree removal free estimate:
+(425) 952-6262 to reserve your free at-home, no-obligation assessment and estimate!
 
 
 

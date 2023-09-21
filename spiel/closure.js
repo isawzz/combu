@@ -1,5 +1,4 @@
 const BLUE = '#4363d8';
-const BRAUN = '#331606';
 const BROWN = '#96613d';
 const FIREBRICK = '#800000';
 const GREEN = '#3cb44b';
@@ -59,6 +58,7 @@ const STYLE_PARAMS = {
 const TEAL = '#469990';
 const YELLOW = '#ffe119';
 const NEONYELLOW = '#efff04';
+const BRAUN = '#331606';
 const YELLOW2 = '#fff620';
 const YELLOW3 = '#ffed01';
 const ColorDict = {
@@ -102,18 +102,6 @@ const ColorDict = {
   YELLOW2: { c: YELLOW2, E: 'yellow', D: 'gelb' },
   YELLOW3: { c: YELLOW3, E: 'yellow', D: 'gelb' },
 };
-var c52;
-var ColorDi;
-var dParent;
-var M = {};
-var P;
-var S = {};
-class Player {
-  constructor(id, color) {
-    this.id = id;
-    this.color = getColorDictColor(color);
-  }
-}
 const suits = ['S', 'H', 'C', 'D'];
 const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 const handSize = {
@@ -129,6 +117,18 @@ const handSize = {
   "14": 7,
   "15": 6
 };
+var ColorDi;
+var dParent;
+var P;
+var S = {};
+var c52;
+var M = {};
+class Player {
+  constructor(id, color) {
+    this.id = id;
+    this.color = getColorDictColor(color);
+  }
+}
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
   let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
@@ -1188,7 +1188,6 @@ function rColor(cbrightness, c2, alpha = null) {
 function removeInPlace(arr, el) {
   arrRemovip(arr, el);
 }
-function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -1222,19 +1221,6 @@ function sortCards(cards) {
       const cardB = getSuitValue(b)*1000 + getRankValue(b);
       return cardA - cardB;
   });
-}
-async function start() {
-  M = await mGetYaml('../base/assets/m.txt'); console.log('M', M);
-  document.getElementById('startGameButton').addEventListener('click', () => {
-    const numPlayers = parseInt(document.getElementById('numPlayers').value, 10);
-    if (numPlayers >= 2 && numPlayers <= 15) {
-      const playerHands = dealCards(numPlayers);
-      showPlayerHands(playerHands);
-    } else {
-      alert('Number of players must be between 2 and 15.');
-    }
-  });
-  document.getElementById('startGameButton').click();
 }
 function stringBeforeLast(sFull, sSub) {
   let parts = sFull.split(sSub);

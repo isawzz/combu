@@ -18,14 +18,18 @@ async function start() {
 
 	let glitches = ['startsWith', 'endsWith'];
 	let text = '<please call closureFromProject>', css='';
-	// [text, css] = await closureFromProject('tiere', glitches.concat(['expand', 'drop']), ['allowDrop','dropImage']);
 	// [text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
 	// [text, css] = await closureFromProject('spiel', glitches); 
 	// [text, css] = await closureFromProject('testa', glitches); 
+	// [text, css] = await closureFromProject('testphp', glitches); 
+	// [text, css] = await closureFromProject('tiere', glitches.concat(['expand', 'drop']), ['allowDrop','dropImage']);
 
 	//text = await combineClosures(['coding','spiel','testa','tiere']); 
+	// cssFromFiles(files, dir = '', types = ['root', 'tag', 'class', 'id', 'keyframes'])
+	//downloadAsText(css,'final','css');
 
 	AU.ta.value = text; 
+	AU.css.value = css; 
 
 }
 
@@ -90,7 +94,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 	html = removeCommentLines(html, '<!--', '-->');
 	let dirhtml = `../${project}`;
 	let files = extractFilesFromHtml(html, htmlFile);
-	files = files.filter(x => !x.includes('../all'));
+	files = files.filter(x => !x.includes('../all') && !x.includes('/test'));
 	// console.log('files', files)
 
 	let olist = [];
@@ -137,6 +141,8 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 	nogos = nogos.concat(ignoreList);
 
 	let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
+	['start','rest'].map(x=>delete byKeyMinimized[x]);
+
 
 	for (const k in byKeyMinimized) {
 		let code = byKeyMinimized[k].code;
@@ -159,7 +165,9 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 	//generate
 	let closuretext = '';
 	for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-	for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
+	for (const k of funckeys) { 
+		closuretext += byKeyMinimized[k].code + '\n'; 
+	}
 
 	//css closure as well!
 	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
@@ -561,7 +569,9 @@ function initCodingUI() {
 	[dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
 	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
 	mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
-	AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
+	mFlex(dta);
+	AU.ta = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
+	AU.css = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
 
 }
 async function intersectAnimeAndAllfuncs(){

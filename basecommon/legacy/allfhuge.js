@@ -15297,14 +15297,14 @@ function component(width, height, color, x, y, type) {
   this.gravity = 0;
   this.gravitySpeed = 0;
   this.draw = function () {
-    ctx = myGameArea.context;
+    Ctx = myGameArea.context;
     if (this.type == 'text') {
-      ctx.font = this.width + ' ' + this.height;
-      ctx.fillStyle = color;
-      ctx.fillText(this.text, this.x, this.y);
+      Ctx.font = this.width + ' ' + this.height;
+      Ctx.fillStyle = color;
+      Ctx.fillText(this.text, this.x, this.y);
     } else {
-      ctx.fillStyle = color;
-      ctx.fillRect(this.x, this.y, this.width, this.height);
+      Ctx.fillStyle = color;
+      Ctx.fillRect(this.x, this.y, this.width, this.height);
     }
   };
   this.newPos = function () {
@@ -19852,7 +19852,7 @@ function draw_ticks_gaussian(canvas, f, mean, dev, color) {
 function drawBee(c) { return drawSym('bee', c); }
 function drawBox() {
   c.lineWidth = 1;
-  c.strokeRect(0.5, 0.5, canvas.width - 1, canvas.height - 1);
+  c.strokeRect(0.5, 0.5, Canvas.width - 1, Canvas.height - 1);
 }
 function drawcard(key, dParent, sz) {
   let d1;
@@ -21094,7 +21094,7 @@ function executeFrame() {
   if (animate)
     requestAnimFrame(executeFrame);
   incrementSimulation();
-  c.clearRect(0, 0, canvas.width, canvas.height);
+  c.clearRect(0, 0, Canvas.width, Canvas.height);
   drawBox();
   drawCircle();
   if (mouse.down)
@@ -32278,16 +32278,16 @@ function incrementSimulation() {
   circle.vy *= dampening;
   circle.x += circle.vx;
   circle.y += circle.vy;
-  if (circle.y + radius > canvas.height) {
-    circle.y = canvas.height - radius;
+  if (circle.y + radius > Canvas.height) {
+    circle.y = Canvas.height - radius;
     circle.vy = - Math.abs(circle.vy);
   }
   else if (circle.y - radius < 0) {
     circle.y = radius;
     circle.vy = Math.abs(circle.vy);
   }
-  if (circle.x + radius > canvas.width) {
-    circle.x = canvas.width - radius;
+  if (circle.x + radius > Canvas.width) {
+    circle.x = Canvas.width - radius;
     circle.vx = - Math.abs(circle.vx);
   }
   else if (circle.x - radius < 0) {
@@ -44767,23 +44767,23 @@ function MUELL() {
   let f = x => gaussian_amp(x, mean, stdev);
   let y = f(0);
   console.log('y', y);
-  let amp = .9 * (-canvas.miny) / (40 * y);
+  let amp = .9 * (-Canvas.miny) / (40 * y);
   f = x => gaussian_amp(x, mean, stdev, amp);
-  canvas.draw_axes();
-  canvas.plot(f, 'orange', 1);
-  let x = 40 * search_end_point(f, 0, canvas.maxx, .1, .01);
-  console.log('point x', x, canvas.minx, canvas.maxx);
+  Canvas.draw_axes();
+  Canvas.plot(f, 'orange', 1);
+  let x = 40 * search_end_point(f, 0, Canvas.maxx, .1, .01);
+  console.log('point x', x, Canvas.minx, Canvas.maxx);
   y = -40 * f(x / 40)
-  console.log('point y', x, 0, canvas.maxy);
-  console.log('scale', canvas.scale)
+  console.log('point y', x, 0, Canvas.maxy);
+  console.log('scale', Canvas.scale)
   let xreal = x / 40;
   let yreal = f(xreal) / (40);
   x = 0;
-  for (let i = canvas.minx; i < canvas.maxx; i += canvas.scale) {
+  for (let i = Canvas.minx; i < Canvas.maxx; i += Canvas.scale) {
     let x1 = Math.round(convert_to_range(x, -4, 4, 50, 150));
     let x2 = Math.round(convert_to_range(-x, -4, 4, 50, 150));
-    canvas.pp(x * 40, 0, 3, `${x1}`);
-    canvas.pp(-x * 40, 0, 3, `${x2}`); x += 2;
+    Canvas.pp(x * 40, 0, 3, `${x1}`);
+    Canvas.pp(-x * 40, 0, 3, `${x2}`); x += 2;
   }
 }
 function muiCard(key, dParent, styles, classes) { }
@@ -54426,7 +54426,7 @@ function removeTrailingComments(line) {
   return line.substring(0, icomm);
 }
 function render() {
-  canvas.width = canvas.width
+  Canvas.width = Canvas.width
   cx.save()
   cx.scale(devicePixelRatio, devicePixelRatio)
   crowd.forEach((peep) => {
@@ -54857,10 +54857,10 @@ function resetUIS() {
   id2uids = {};
 }
 function resize() {
-  stage.width = canvas.clientWidth
-  stage.height = canvas.clientHeight
-  canvas.width = stage.width * devicePixelRatio
-  canvas.height = stage.height * devicePixelRatio
+  stage.width = Canvas.clientWidth
+  stage.height = Canvas.clientHeight
+  Canvas.width = stage.width * devicePixelRatio
+  Canvas.height = stage.height * devicePixelRatio
   crowd.forEach((peep) => {
     peep.walk.kill()
   })
@@ -55841,7 +55841,7 @@ function run09() {
   let u = `<use x="100" y="100" xlink:href="assets/svg/animals.svg#bird" />`;
   console.log(svg);
   return;
-  let g = agShape(canvas, 'rect', 250, 250, 'gold');
+  let g = agShape(Canvas, 'rect', 250, 250, 'gold');
 }
 function runAllTests() {
   iTEST = 0;
@@ -61923,21 +61923,21 @@ function Sprite(scene, imageFile, width, height) {
   this.changeXby = function (tdx) { this.x += tdx };
   this.changeYby = function (tdy) { this.y += tdy };
   this.draw = function () {
-    ctx = this.context;
-    ctx.save();
-    if (this.camera) { ctx.translate(this.x - this.camera.cameraOffsetX, this.y - this.camera.cameraOffsetY); }
-    else { ctx.translate(this.x, this.y); }
-    ctx.rotate(this.imgAngle);
+    Ctx = this.context;
+    Ctx.save();
+    if (this.camera) { Ctx.translate(this.x - this.camera.cameraOffsetX, this.y - this.camera.cameraOffsetY); }
+    else { Ctx.translate(this.x, this.y); }
+    Ctx.rotate(this.imgAngle);
     if (this.animation != false) {
-      this.animation.drawFrame(ctx);
+      this.animation.drawFrame(Ctx);
     }
     else {
-      ctx.drawImage(this.image,
+      Ctx.drawImage(this.image,
         0 - (this.width / 2),
         0 - (this.height / 2),
         this.width, this.height);
     }
-    ctx.restore();
+    Ctx.restore();
   }
   this.update = function () {
     this.x += this.dx;
@@ -68235,20 +68235,20 @@ function TileMap(scene) {
   }
   this.drawMap = function () {
     this.camera.update();
-    ctx = this.camera.context;
+    Ctx = this.camera.context;
     for (i = 0; i < this.mapData.length; i++) {
       for (j = 0; j < this.mapData[i].length; j++) {
         drawX = this.tiles[i][j].x - this.camera.cameraOffsetX;
         drawY = this.tiles[i][j].y - this.camera.cameraOffsetY;
         if (0 < drawX < this.camera.cWidth && 0 < drawY < this.camera.cHeight) {
-          ctx.save();
+          Ctx.save();
           sheetX = this.symbolImageMap[this.mapData[i][j]][0];
           sheetY = this.symbolImageMap[this.mapData[i][j]][1];
-          ctx.translate(drawX, drawY);
-          if (this.tiles[i][j].animationPlaying) { this.drawTileAnimation(this.tiles[i][j], ctx); }
+          Ctx.translate(drawX, drawY);
+          if (this.tiles[i][j].animationPlaying) { this.drawTileAnimation(this.tiles[i][j], Ctx); }
           else {
-            ctx.drawImage(this.tileSheet, sheetX, sheetY, this.tileWidth, this.tileHeight, 0, 0, this.tileWidth, this.tileHeight);
-            ctx.restore();
+            Ctx.drawImage(this.tileSheet, sheetX, sheetY, this.tileWidth, this.tileHeight, 0, 0, this.tileWidth, this.tileHeight);
+            Ctx.restore();
           }
         }
       }
