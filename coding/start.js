@@ -1,7 +1,8 @@
 
 async function start() {
-	S.type = detectSessionType();
-	initCodingUI();
+	S.type = detectSessionType();	initCodingUI();
+	let glitches = ['startsWith', 'endsWith'];
+	let text = '<please call closureFromProject>', css='';
 
 	//#region tests
 
@@ -14,23 +15,21 @@ async function start() {
 	// let csstext = await cssSelectFrom('../base/alibs/w3.css',['root','class','keyframes']);
 	//downloadAsText(text, 'closure', 'js');
 	//downloadAsText(css, 'final', 'css');
-	//#endregion
 
-	let glitches = ['startsWith', 'endsWith'];
-	let text = '<please call closureFromProject>', css='';
-	// [text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
 	// [text, css] = await closureFromProject('spiel', glitches); 
 	// [text, css] = await closureFromProject('testa', glitches); 
 	// [text, css] = await closureFromProject('testphp', glitches); 
 	// [text, css] = await closureFromProject('tiere', glitches.concat(['expand', 'drop']), ['allowDrop','dropImage']);
 
-	//text = await combineClosures(['coding','spiel','testa','tiere']); 
 	// cssFromFiles(files, dir = '', types = ['root', 'tag', 'class', 'id', 'keyframes'])
 	//downloadAsText(css,'final','css');
 
+	//#endregion
+
+	[text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
+	// text = await combineClosures(['coding','spiel','testa','tiere']); 
 	AU.ta.value = text; 
 	AU.css.value = css; 
-
 }
 
 async function combineClosures(projectList){
@@ -63,11 +62,11 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 			//remove words within quotes that are functions
 			let idx = text.indexOf(w);
 			let ch = text[idx - 1];
-			if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
+			//if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
 			if (ch == "'" || '"`'.includes(ch)) continue;
 
 			if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
-				console.log('first',w,'from',sym)
+				//console.log('first',w,'from',sym)
 				addIf(tbd, w);
 			}
 		}
@@ -79,11 +78,11 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 }
 async function closureFromProject(project, ignoreList=[], addList=[]) {
 
-	console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
+	//console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
 
 	//get the dicts
-	let globlist = await codeParseFile('../basecommon/allg.js');
-	let funclist = await codeParseFile('../basecommon/allf.js');
+	let globlist = await codeParseFile('../basejs/allghuge.js');
+	let funclist = await codeParseFile('../basejs/allfhuge.js');
 	let list = globlist.concat(funclist); //keylist in order of loading!
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -116,7 +115,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 		if (isdef(oold) && onew.code == oold.code) {
 			//console.log('override w/ SAME code', k);//brauch garnix machen!
 		} else if (isdef(oold)) {
-			console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
+			//console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
 			oold.oldcode = oold.code;
 			oold.code = onew.code;
 			dupltext += oold.oldcode + '\n' + oold.code + '\n';
@@ -172,7 +171,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 	//css closure as well!
 	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
 	//console.log('cssfiles', cssfiles);
-	cssfiles.unshift('../basecommon/myclasses.css');
+	cssfiles.unshift('../basejs/myclasses.css');
 
 	//generate css dict
 
@@ -198,9 +197,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 			let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
 			key = key.trim();
 			// testresult += key + '\n';
-			if (isdef(di[key]) && type != di[key].type) {
-				console.log('duplicate key', key, type, di[key].type);
-			}
+			// if (isdef(di[key]) && type != di[key].type) { console.log('duplicate key', key, type, di[key].type);}
 			di[key] = { type: type, key: key }
 			newline = key + stringAfter(newline, key);
 			if (key == '*') console.log('***', stringAfter(newline, key));
@@ -287,8 +284,8 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 }
 async function codebaseExtendFromProject(project) {
 	// read in codebase
-	let globlist = await codeParseFile('../basecommon/allg.js');
-	let funclist = await codeParseFile('../basecommon/allf.js');
+	let globlist = await codeParseFile('../basejs/allg.js');
+	let funclist = await codeParseFile('../basejs/allf.js');
 	let list = globlist.concat(funclist); //keylist in order of loading!
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -402,8 +399,8 @@ function codeParseBlock(lines, i) {
 	return [{ key: key, type: type, code: code }, i];
 }
 async function cssExtendFromProject(project) {
-	//cssbase ist in '../basecommon/myclasses.css'
-	// let list = ['../basecommon/myclasses', `../coding/final`]; // ['reset','base','cards','features','mybutton','shapes'];//'base','cards','features','mybutton','shapes']; //,'cards','chess' //wurde bereits geloescht!!!
+	//cssbase ist in '../basejs/myclasses.css'
+	// let list = ['../basejs/myclasses', `../coding/final`]; // ['reset','base','cards','features','mybutton','shapes'];//'base','cards','features','mybutton','shapes']; //,'cards','chess' //wurde bereits geloescht!!!
 	// let csstext = await cssbaseNew(list); //,'../base/css');
 	//eigentlich sollten transitions auch darein gehen! oder?
 	//erstmal mach die files
@@ -411,7 +408,7 @@ async function cssExtendFromProject(project) {
 	let html = await route_path_text(htmlFile);
 	cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
 	console.log('cssfiles', cssfiles);
-	cssfiles.unshift('../basecommon/myclasses.css');
+	cssfiles.unshift('../basejs/myclasses.css');
 
 	let csstext = await cssFromFiles(cssfiles);
 	downloadAsText(csstext, 'allcss', 'css');
@@ -577,7 +574,7 @@ function initCodingUI() {
 async function intersectAnimeAndAllfuncs(){
 	let kws = await extractKeywords('../animex/anime.js',true);
 	console.log('kws',kws); //return;
-	let kws1 = await extractKeywords('../basecommon/allf.js');
+	let kws1 = await extractKeywords('../basejs/allf.js');
 	let inter = intersection(kws, kws1);
 	console.log('keywords', inter);
 	text=inter.join()

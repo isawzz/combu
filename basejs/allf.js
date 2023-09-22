@@ -1,74 +1,3 @@
-const BLUE = '#4363d8';
-const BROWN = '#96613d';
-const FIREBRICK = '#800000';
-const GREEN = '#3cb44b';
-const BLUEGREEN = '#004054';
-const LIGHTBLUE = '#42d4f4';
-const LIGHTGREEN = '#afff45';
-const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
-const OLIVE = '#808000';
-const ORANGE = '#f58231';
-const NEONORANGE = '#ff6700';
-const PURPLE = '#911eb4';
-const RED = '#e6194B';
-const STYLE_PARAMS = {
-  align: 'text-align',
-  valign: 'align-items',
-  acontent: 'align-content',
-  aitems: 'align-items',
-  aspectRatio: 'aspect-ratio',
-  bg: 'background-color',
-  dir: 'flex-direction',
-  fg: 'color',
-  hgap: 'column-gap',
-  vgap: 'row-gap',
-  jcontent: 'justify-content',
-  jitems: 'justify-items',
-  justify: 'justify-content',
-  matop: 'margin-top',
-  maleft: 'margin-left',
-  mabottom: 'margin-bottom',
-  maright: 'margin-right',
-  origin: 'transform-origin',
-  overx: 'overflow-x',
-  overy: 'overflow-y',
-  patop: 'padding-top',
-  paleft: 'padding-left',
-  pabottom: 'padding-bottom',
-  paright: 'padding-right',
-  place: 'place-items',
-  rounding: 'border-radius',
-  w: 'width',
-  h: 'height',
-  wmin: 'min-width',
-  hmin: 'min-height',
-  hline: 'line-height',
-  wmax: 'max-width',
-  hmax: 'max-height',
-  fontSize: 'font-size',
-  fz: 'font-size',
-  family: 'font-family',
-  weight: 'font-weight',
-  x: 'left',
-  y: 'top',
-  yover: 'overflow-y',
-  xover: 'overflow-x',
-  z: 'z-index'
-};
-const TEAL = '#469990';
-const YELLOW = '#ffe119';
-const NEONYELLOW = '#efff04';
-var AU = {};
-var ColorDi;
-var DA = {};
-var dParent;
-var dSidebar;
-var dTable;
-var F;
-var P;
-var S = {};
-var T;
-var Z;
 function _minimizeCode(di, symlist = ['start'], nogo = []) {
   let done = {};
   let tbd = symlist;
@@ -105,11 +34,25 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
   return done;
 }
 function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
+function addImageWithLabel(image, dParent, imgStyles, labelStyles, imgSrc, labelText) {
+  let mp0Style = { margin: 0, padding: 0, display: 'block' };
+  let d = mDiv(dParent, mp0Style);
+  let imgStyle = addKeys(mp0Style, { h: 250 });
+  let img = mDom(d, imgStyle, { tag: 'img', src: image.path });
+  img.onload = () => {
+    let labelStyle = addKeys(mp0Style, { w: img.offsetWidth, box: true });
+    let label = mDom(d, {}, { tag: 'input', type: 'text', value: rName() });
+    mStyle(label, labelStyle);
+    label.onclick = ev => ev.target.select();
+    label.onkeydown = ev => { if (ev.keyCode === 13) { uploadSmallImage(ev) } }
+  }
+}
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
   let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
   if (m) return m.map(v => +v); else return null;
 }
+function allowDrop(event) { event.preventDefault(); }
 function alphaToHex(zero1) {
   zero1 = Math.round(zero1 * 100) / 100;
   var alpha = Math.round(zero1 * 255);
@@ -144,7 +87,7 @@ function capitalize(s) {
 }
 async function closureFromProject(project, ignoreList=[], addList=[]) {
   console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
-  let globlist = await codeParseFile('../basejs/allghuge.js');
+  let globlist = await codeParseFile('../basejs/allfguge.js');
   let funclist = await codeParseFile('../basejs/allfhuge.js');
   let list = globlist.concat(funclist); 
   let bykey = list2dict(list, 'key');
@@ -155,7 +98,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   html = removeCommentLines(html, '<!--', '-->');
   let dirhtml = `../${project}`;
   let files = extractFilesFromHtml(html, htmlFile);
-  files = files.filter(x => !x.includes('../all') && !x.includes('/test'));
+  files = files.filter(x => !x.includes('../all'));
   let olist = [];
   for (const path of files) {
     let opath = await codeParseFile(path);
@@ -187,7 +130,6 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   let nogos = valf(knownNogos[project], [])
   nogos = nogos.concat(ignoreList);
   let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
-  ['start','rest'].map(x=>delete byKeyMinimized[x]);
   for (const k in byKeyMinimized) {
     let code = byKeyMinimized[k].code;
     let lines = code.split('\n');
@@ -202,11 +144,9 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   funckeys = sortCaseInsensitive(funckeys);
   let closuretext = '';
   for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-  for (const k of funckeys) { 
-    closuretext += byKeyMinimized[k].code + '\n'; 
-  }
+  for (const k of funckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
   cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
-  cssfiles.unshift('../basejs/myclasses.css');
+  cssfiles.unshift('../basecommon/myclasses.css');
   let tcss = '';
   for (const path of cssfiles) { tcss += await route_path_text(path) + '\r\n'; }
   let t = replaceAllSpecialChars(tcss, '\t', '  ');
@@ -506,6 +446,10 @@ function colorsFromBFA(bg, fg, alpha) {
 function colorTrans(cAny, alpha = 0.5) {
   return colorFrom(cAny, alpha);
 }
+function createCard(dParent,key){
+  let card = 'card_'+key;
+  return mDom(dParent, { h: 110,w:70 }, { html: M.c52[card] });
+}
 function cssCleanupClause(t, kw) {
   let lines = t.split('\n');
   let comment = false;
@@ -537,6 +481,29 @@ function cssKeywordType(line) {
   else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
   else return null;
 }
+function dealCards(numPlayers) {
+  let hsz = handSize[numPlayers] ?? 13;
+  const totalCards = hsz * numPlayers;
+  const deck = [];
+  let n = 0;
+  while (n < totalCards) {
+    for (const suit of suits) {
+      for (const rank of ranks) {
+        deck.push(`${rank}${suit}`); n++;
+      }
+    }
+  }
+  shuffleArray(deck);
+  const playerHands = [];
+  for (let i = 0; i < numPlayers; i++) {
+    const hand = [];
+    for (let j = 0; j < hsz; j++) {
+      hand.push(deck.pop());
+    }
+    playerHands.push(hand);
+  }
+  return playerHands;
+}
 function detectSessionType() {
   let loc = window.location.href;
   DA.sessionType =
@@ -544,6 +511,12 @@ function detectSessionType() {
       : loc.includes(':40') ? 'nodejs'
         : loc.includes(':60') ? 'flask' : 'live';
   return DA.sessionType;
+}
+function displaySplayedHand(dParent, hand) {
+  const handContainer = mDom(dParent, { display: 'grid', gap: 5, wmax: 700, 'grid-template-columns': 'repeat(14, 20px) 70px' });
+  for (const card of hand) {
+    const cardDiv = createCard(handContainer,card); 
+  }
 }
 function download(jsonObject, fname) {
   json_str = JSON.stringify(jsonObject);
@@ -554,6 +527,14 @@ function downloadAsText(s, filename, ext = 'txt') {
     filename + "." + ext,
     "data:application/text",
     new Blob([s], { type: "" }));
+}
+function dropImage(event) {
+  console.log('HALLO JA BIN DA')
+  event.preventDefault(); 
+  const imageURL = event.dataTransfer.getData("URL");
+  const imageElement = document.getElementById("image");
+  imageElement.src = `proxy.php?url=${encodeURIComponent(imageURL)}`;
+  imageElement.onload = ev => uploadNewImage(ev, imageURL);
 }
 function ensureColorDict() {
   if (isdef(ColorDi)) return;
@@ -609,6 +590,10 @@ function ensureColorDict() {
     if (cnew.c[0] != '#' && isdef(ColorDi[cnew.c])) cnew.c = ColorDi[cnew.c].c;
     ColorDi[k] = cnew;
   }
+}
+function error(msg) {
+  let fname = getFunctionsNameThatCalledThisFunction();
+  console.log(fname, 'ERROR!!!!! ', msg);
 }
 function extractFilesFromHtml(html, htmlfile, ext = 'js') {
   let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
@@ -672,6 +657,7 @@ function fisherYates(arr) {
 }
 function get_keys(o) { return Object.keys(o); }
 function get_values(o) { return Object.values(o); }
+function getColorDictColor(c) { return isdef(ColorDict[c]) ? ColorDict[c].c : c; }
 function getColorHexes(x) {
   return [
     'f0f8ff',
@@ -976,6 +962,20 @@ function getColorNames() {
     'YellowGreen'
   ];
 }
+function getFunctionsNameThatCalledThisFunction() {
+  let c1 = getFunctionsNameThatCalledThisFunction.caller;
+  if (nundef(c1)) return 'no caller!';
+  let c2 = c1.caller;
+  if (nundef(c2)) return 'no caller!';
+  return c2.name;
+}
+function getRankValue(card) {
+  const rankMapping = {
+      '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
+      'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14
+  };
+  return rankMapping[card[0]];
+}
 function getRect(elem, relto) {
   if (isString(elem)) elem = document.getElementById(elem);
   let res = elem.getBoundingClientRect();
@@ -996,6 +996,12 @@ function getRect(elem, relto) {
   let r = { x: res.left, y: res.top, w: res.width, h: res.height };
   addKeys({ l: r.x, t: r.y, r: r.x + r.w, b: r.t + r.h }, r);
   return r;
+}
+function getSuitValue(card) {
+  const suitMapping = {
+      'S':0, 'H':1, 'C':2, 'D':3
+  };
+  return suitMapping[card[1]];
 }
 function HSLAToRGBA(hsla, isPct) {
   let ex = /^hsla\(((((([12]?[1-9]?\d)|[12]0\d|(3[0-5]\d))(\.\d+)?)|(\.\d+))(deg)?|(0|0?\.\d+)turn|(([0-6](\.\d+)?)|(\.\d+))rad)(((,\s?(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2},\s?)|((\s(([1-9]?\d(\.\d+)?)|100|(\.\d+))%){2}\s\/\s))((0?\.\d+)|[01]|(([1-9]?\d(\.\d+)?)|100|(\.\d+))%)\)$/i;
@@ -1148,9 +1154,7 @@ function initCodingUI() {
   [dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
   let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
   mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
-  mFlex(dta);
-  AU.ta = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
-  AU.css = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
+  AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
@@ -1180,6 +1184,17 @@ function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
     else lookupAddToList(di, [a[keyprop]], a);
   }
   return di;
+}
+function loadImages() {
+  const imageContainer = document.getElementById('image-container');
+  mFlexWrap(imageContainer);
+  mStyle(imageContainer, { gap: 10, margin: 0, padding: 0 })
+  fetch('load_images.php')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(image => addImageWithLabel(image, imageContainer));
+    })
+    .catch(error => console.error(error));
 }
 function lookup(dict, keys) {
   let d = dict;
@@ -1293,11 +1308,54 @@ function mDiv(dParent, styles, id, inner, classes, sizing) {
   if (isdef(sizing)) { setRect(d, sizing); }
   return d;
 }
+function mDom(dParent, styles = {}, opts = {}) {
+  let tag = valf(opts.tag, 'div');
+  let d = document.createElement(tag);
+  if (isdef(dParent)) mAppend(dParent, d);
+  if (tag == 'textarea') styles.wrap = 'hard';
+  const aliases = {
+    classes: 'className',
+    inner: 'innerHTML',
+    html: 'innerHTML',
+  };
+  for (const opt in opts) { d[valf(aliases[opt], opt)] = opts[opt] };
+  mStyle(d, styles);
+  return d;
+}
 function mFlex(d, or = 'h') {
   d = toElem(d);
   d.style.display = 'flex';
   d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
 }
+function mFlexWrap(d) { mFlex(d, 'w'); }
+async function mGetYaml(path = '../base/assets/m.txt') {
+  let res = await fetch(path);
+  let text = await res.text();
+  let di = jsyaml.load(text);
+  return di;
+}
+function mImageDropperForm(dParent) {
+  let html = `
+    <div id="dNewCollection" style="display:flex;align-items:center;position:relative">
+      <div style='width:400px;text-align:center;height:400px;'>
+        <img style='margin-top:50px;height:300px;' id="image">
+        <div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black' ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
+      </div>
+      <div id="dfNew" style="display:block;">
+        <form>
+          <span>Category:</span><br>
+          <input type="text" id="category" name="category" placeholder="Enter category"><br><br>
+          <span>Name:</span><br>
+          <input type="text" id="name" name="name" placeholder="Enter name">
+        </form>
+      </div>
+    </div>
+    `;
+  dParent = toElem(dParent);
+  dParent.innerHTML = html;
+}
+function mInsert(dParent, el, index = 0) { dParent.insertBefore(el, dParent.childNodes[index]); return el; }
+function mInsertFirst(dParent, el) { mInsert(dParent, el, 0); }
 function mRows100(dParent, spec, gap = 4) {
   let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
   grid.style.gridTemplateRows = spec;
@@ -1439,6 +1497,9 @@ function mTextArea100(dParent, styles = {}) {
   return t;
 }
 function nundef(x) { return x === null || x === undefined; }
+function onclickNew() {
+  mImageDropperForm('dMain')
+}
 function pSBC(p, c0, c1, l) {
   let r, g, b, P, f, t, h, i = parseInt, m = Math.round, a = typeof c1 == 'string';
   if (typeof p != 'number' || p < -1 || p > 1 || typeof c0 != 'string' || (c0[0] != 'r' && c0[0] != '#') || (c1 && !a)) return null;
@@ -1540,7 +1601,15 @@ function removeTrailingComments(line) {
   return line.substring(0, icomm);
 }
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
+function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
+function rLetter(except) { return rLetters(1, except)[0]; }
+function rLetters(n, except = []) {
+  let all = 'abcdefghijklmnopqrstuvwxyz';
+  for (const l of except) all = all.replace(l, '');
+  return rChoose(toLetters(all), n);
+}
+function rName(n = 1) { let arr = MyNames; return rChoose(arr, n); }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -1548,6 +1617,14 @@ async function route_path_text(url) {
   let data = await fetch(url);
   let text = await data.text();
   return text;
+}
+function rUID(prefix = null, n = null) {
+  return (prefix ?? rLetter()) + '_' + new Date().getTime() + '_' + Math.random().toString(36).substr(3, n ?? 4);
+  const timestamp = new Date().getTime(); 
+  const random = Math.random().toString(36).substr(2, 9); 
+  let res = `${prefix}${timestamp}${random}`;
+  if (n > 0) res = res.substr(0, n);
+  return res;
 }
 function saveFile(name, type, data) {
   if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
@@ -1590,18 +1667,81 @@ function setRect(elem, options) {
   }
   return r;
 }
+function showNavbar(pageTitle, titles, funcNames) {
+  if (nundef(funcNames)) {
+    funcNames = titles.map(x => `onclick${capitalize(x)}`);
+  }
+  let html = `
+    <nav class="navbar navbar-expand navbar-light bg-light">
+      <a class="navbar-brand" href="#">${pageTitle}</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">`;
+  for (let i = 0; i < titles.length; i++) {
+    html += `
+          <li class="nav-item active">
+          <a class="nav-link hoverHue" href="#" onclick="${funcNames[i]}()">${titles[i]}</a>
+        </li>
+      `;
+  }
+  html += `
+      </ul>
+      </div>
+    </nav>
+    `;
+  mInsertFirst(document.body, mCreateFrom(html));
+}
+function showPlayerHands(playerHands) {
+  const playersContainer = document.getElementById('players');
+  playersContainer.innerHTML = '';
+  let numPlayers = playerHands.length;
+  for (let i = 0; i < numPlayers; i++) {
+    const playerDiv = document.createElement('div');
+    playerDiv.innerHTML = `
+                    <h2>Player ${i + 1}</h2>
+                    <div id="player${i + 1}Hand"></div>
+                `;
+    playersContainer.appendChild(playerDiv);
+  }
+  for (let i = 0; i < numPlayers; i++) {
+    const playerHandElement = document.getElementById(`player${i + 1}Hand`);
+    displaySplayedHand(playerHandElement, sortCards(playerHands[i]))
+  }
+}
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 function simulateClick(elem) {
   var evt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
   var canceled = !elem.dispatchEvent(evt);
+}
+function sortCards(cards) {
+  return cards.sort((a, b) => {
+      const cardA = getSuitValue(a)*1000 + getRankValue(a);
+      const cardB = getSuitValue(b)*1000 + getRankValue(b);
+      return cardA - cardB;
+  });
 }
 function sortCaseInsensitive(list) {
   list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
   return list;
 }
+async function start() {
+  M = await mGetYaml('../base/assets/m.txt'); 
+  S.type = detectSessionType(); console.log('session',S)
+  showNavbar('Collections', ['home', 'new']);
+  onclickNew();
+}
 function stringAfter(sFull, sSub) {
   let idx = sFull.indexOf(sSub);
   if (idx < 0) return '';
   return sFull.substring(idx + sSub.length);
+}
+function stringAfterLast(sFull, sSub) {
+  let parts = sFull.split(sSub);
+  return arrLast(parts);
 }
 function stringBefore(sFull, sSub) {
   let idx = sFull.indexOf(sSub);
@@ -1626,6 +1766,66 @@ function toWords(s, allow_ = false) {
 }
 function trim(str) {
   return str.replace(/^\s+|\s+$/gm, '');
+}
+async function uploadNewImage(ev, url) {
+  let elem = ev.target;
+  let filename;
+  filename = stringAfterLast(url, '/');
+  filename = stringBefore(filename, '-');
+  filename += `${rUID('_', 10)}.png`;
+  console.log('filename', filename)
+  console.log('uploading!!!!', filename)
+  const canvas = document.createElement('canvas');
+  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
+  console.log('w', w, 'h', h);
+  canvas.width = elem.width;
+  canvas.height = elem.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(elem, 0, 0, w, h);
+  const imageData = canvas.toDataURL('image/png');
+  const response = await fetch('upload.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
+  });
+  if (response.ok) {
+    console.log('Image uploaded successfully!');
+  } else {
+    console.error('Error uploading image.');
+  }
+}
+async function uploadSmallImage(ev) {
+  let elem = mBy('img1');
+  let filename = 'hallo3.png'
+  if (isdef(ev)) {
+    let label = ev.target;
+    elem = label.parentNode.firstChild;
+    filename = label.value + '.png';
+    console.log('YES!!!!')
+  }
+  console.log('uploading!!!!',filename)
+  const canvas = document.createElement('canvas');
+  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
+  console.log('w', w, 'h', h);
+  canvas.width = elem.width;
+  canvas.height = elem.height;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(elem, 0, 0, w, h);
+  const imageData = canvas.toDataURL('image/png');
+  const response = await fetch('upload.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
+  });
+  if (response.ok) {
+    console.log('Image uploaded successfully!');
+  } else {
+    console.error('Error uploading image.');
+  }
 }
 function valf() {
   for (const arg of arguments) if (isdef(arg)) return arg;

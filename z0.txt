@@ -1092,6 +1092,73 @@ upload_php
 5:41 AM 9/21/2023 703
 5:44 AM 9/21/2023 706
 probier das upload_image aus
+5:54 AM 9/21/2023 716
+will ich das jetzt in testa oder in tiere machen?
+eigentlich in tiere!
+6:02 AM 9/21/2023 724
+wie sollen collections gesaved werden?
+each collection is a file, csv, each line is: coll,
+yaml: 
+coll1:
+ - collname,category,path_in_img
+ - mariposa,animals/insects/butterfly1.png,
+client kann machen 
+collectionLoad,Save,Add,Delete,Remove,New,
+6:12 AM 9/21/2023 734
+wenn ich ein neues file save: randomname,collname,
+=>load all collections first (alle img filenames
+emojis sind eigentlich einfach nur [128x128] png files!!!
+6:17 AM 9/21/2023 739
+wieviel platz nimmt img ein on disk? assets? base?
+img: 100MB
+assets: 517MB
+base: 540MB
+dh., assets is by far the largest of them!
+6:20 AM 9/21/2023 742
+7:01 AM 9/21/2023 783
+7:37 AM 9/21/2023 785
+schau mal wieso er beim andern nicht reloaded hat!
+7:50 AM 9/21/2023 798
+check ob es auch bei gleicher url passiert!
+12:58 PM 9/21/2023 800
+mach es onclick oder sogar gleich wenn fertig ist!
+1:15 PM 9/21/2023 817
+moecht ein ganz neues project machen! mit all den php files einzeln!
+das ist viel einfacher zu ueberblicken!
+ich kann auch ein dir baphp machen
+1:18 PM 9/21/2023 820
+activ 1pm koennt zum costco fahren?
+2:37 PM 9/21/2023 890
+geht nicht ist zuviel stress
+_____ fr 22.9.23 airport 900
+4:17 AM 9/22/2023 1
+was jetzt?
+choices:
+1. sammeln von funcs
+2. noc
+3. neues spiel game of life / minesweeper / negomino
+stealth - negotiation - deduction
+api: uploadSmallImage(imgElem,w,h,path)
+api: renameFile(path1,path2)
+js: danach callback: collectionAdd(collname,path)
+4:33 AM 9/22/2023 17
+createRectanglesInCircle: rect dims dazu?
+=>ich hatte mal das circular layout! gamesfull/legacy/board/ cCircle
+4:41 AM 9/22/2023 25
+ich brauch sowas wie: layCircle(x,y,w,h,n) returns centers
+oder layItems(w,h,shape) returns centers
+component: geo
+4:49 AM 9/22/2023 32
+wie soll ich die projects organisieren damit ich immer noch base verwenden kann? es geht eigentlich nur wenn ich in index.html die dirs setze
+jedes beispiel soll self-contained sein!!!
+4:54 AM 9/22/2023 37
+4:57 AM 9/22/2023 40
+bin wieder da! ma ganz neu!!!
+=> gib einfach alles in gu!
+5:01 AM 9/22/2023 44
+5:11 AM 9/22/2023 54
+extreme anxiety wenn ich schon hoere dass der gu aufs klo geht startet fof mode
+5:11 AM 9/22/2023 55
 
 
 
@@ -1101,9 +1168,6 @@ probier das upload_image aus
 
 
 
-
-tree removal free estimate:
-(425) 952-6262 to reserve your free at-home, no-obligation assessment and estimate!
 
 
 
@@ -2397,6 +2461,12 @@ klavier repertoire:
 
 https://entruempelung-raeumungen.at/preise-fuer-entrumpelung/
 
+tree removal free estimate:
+(425) 952-6262 to reserve your free at-home, no-obligation assessment and estimate!
+
+435076610 05076612700 selbstversicherung
+Amanda Sabine Leeb 5404 11 03 1999
+5076612700
 
 
 
