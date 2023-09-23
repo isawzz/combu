@@ -75,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['act
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'load_images') {
-	$dir = isset($_GET['path'])? $_GET['path']:'../base/assets/icons';
-	// $dir = '../base/assets/img/animals/bird'; // Directory path where images are stored
+	$dir = isset($_GET['path'])? $_GET['path']:'../../base/assets/icons';
+	// $dir = '../../base/assets/img/animals/bird'; // Directory path where images are stored
 	$images = [];
 	
 	// echo 'hallo hallo ' . $dir; exit;

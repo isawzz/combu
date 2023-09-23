@@ -338,10 +338,6 @@ html{
   padding: 1px 14px;
   font-size: 22px;
 }
-#bAdd{
-  margin-top: 2px;
-  float: right;
-}
 @keyframes appear{
   0% {
     opacity: 0;

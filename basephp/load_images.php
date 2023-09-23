@@ -1,5 +1,5 @@
 <?php
-$dir = '../base/animals'; // Directory path where images are stored
+$dir = '../../base/animals'; // Directory path where images are stored
 $images = [];
 
 if (is_dir($dir)) {

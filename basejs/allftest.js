@@ -20,10 +20,8 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
       if (nogo.some(x => w.startsWith(x))) continue;
       let idx = text.indexOf(w);
       let ch = text[idx - 1];
-      if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
       if (ch == "'" || '"`'.includes(ch)) continue;
       if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
-        console.log('first',w,'from',sym)
         addIf(tbd, w);
       }
     }
@@ -34,25 +32,11 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
   return done;
 }
 function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
-function addImageWithLabel(image, dParent, imgStyles, labelStyles, imgSrc, labelText) {
-  let mp0Style = { margin: 0, padding: 0, display: 'block' };
-  let d = mDiv(dParent, mp0Style);
-  let imgStyle = addKeys(mp0Style, { h: 250 });
-  let img = mDom(d, imgStyle, { tag: 'img', src: image.path });
-  img.onload = () => {
-    let labelStyle = addKeys(mp0Style, { w: img.offsetWidth, box: true });
-    let label = mDom(d, {}, { tag: 'input', type: 'text', value: rName() });
-    mStyle(label, labelStyle);
-    label.onclick = ev => ev.target.select();
-    label.onkeydown = ev => { if (ev.keyCode === 13) { uploadSmallImage(ev) } }
-  }
-}
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
   let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
   if (m) return m.map(v => +v); else return null;
 }
-function allowDrop(event) { event.preventDefault(); }
 function alphaToHex(zero1) {
   zero1 = Math.round(zero1 * 100) / 100;
   var alpha = Math.round(zero1 * 255);
@@ -84,6 +68,157 @@ function assertion(cond) {
 function capitalize(s) {
   if (typeof s !== 'string') return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+async function closureFromProject(project, ignoreList = [], addList = []) {
+  console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
+  let globlist = await codeParseFile('../basejs/allghuge.js');
+  let funclist = await codeParseFile('../basejs/allfhuge.js');
+  let list = globlist.concat(funclist); 
+  let bykey = list2dict(list, 'key');
+  let bytype = {};
+  for (const k in bykey) { let o = bykey[k]; lookupAddIfToList(bytype, [o.type], o); }
+  let htmlFile = `../${project}/index.html`;
+  let html = await route_path_text(htmlFile);
+  html = removeCommentLines(html, '<!--', '-->');
+  let dirhtml = `../${project}`;
+  let files = extractFilesFromHtml(html, htmlFile);
+  files = files.filter(x => !x.includes('../all') && !x.includes('/test'));
+  let olist = [];
+  for (const path of files) {
+    let opath = await codeParseFile(path);
+    olist = olist.concat(opath);
+  }
+  let mytype = {}, mykey = {};
+  for (const o of olist) { mykey[o.key] = o; }
+  for (const k in mykey) { let o = mykey[k]; lookupAddIfToList(mytype, [o.type], o); }
+  let dupltext = '';
+  for (const k in mykey) {
+    let onew = mykey[k];
+    let oold = bykey[k];
+    if (isdef(oold) && onew.code == oold.code) {
+    } else if (isdef(oold)) {
+      oold.oldcode = oold.code;
+      oold.code = onew.code;
+      dupltext += oold.oldcode + '\n' + oold.code + '\n';
+    } else {
+      bykey[k] = onew; 
+      lookupAddIfToList(bytype, [onew.type], onew);
+      list.push(onew);
+    }
+  }
+  let knownNogos = { codingfull: ['uiGetContact'], coding: ['uiGetContact', 'grid'] };
+  let seed = ['start'].concat(extractOnclickFromHtml(html)); console.log('seed', seed);
+  if (project == 'nature') seed = seed.concat(['branch_draw', 'leaf_draw', 'lsys_init', 'tree_init', 'lsys_add', 'tree_add', 'lsys_draw', 'tree_draw']);
+  seed = seed.concat(addList);
+  let nogos = valf(knownNogos[project], [])
+  nogos = nogos.concat(ignoreList);
+  let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
+  ['start', 'rest'].map(x => delete byKeyMinimized[x]);
+  for (const k in byKeyMinimized) {
+    let code = byKeyMinimized[k].code;
+    let lines = code.split('\n');
+    let newcode = '';
+    for (const l of lines) {
+      newcode += removeTrailingComments(l) + '\n';
+    }
+    byKeyMinimized[k].code = newcode.trim();
+  }
+  let cvckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type != 'function').map(x => x.key); //in order of appearance!
+  let funckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type == 'function').map(x => x.key); //in order of appearance!
+  funckeys = sortCaseInsensitive(funckeys);
+  let closuretext = '';
+  for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\r\n'; }
+  for (const k of funckeys) {
+    closuretext += byKeyMinimized[k].code + '\r\n';
+  }
+  cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
+  cssfiles.unshift('../basejs/myclasses.css');
+  let tcss = '';
+  for (const path of cssfiles) { tcss += await route_path_text(path) + '\r\n'; }
+  let t = replaceAllSpecialChars(tcss, '\t', '  ');
+  let lines = t.split('\r\n');
+  if (lines.length <= 2) lines = t.split('\n');
+  let allkeys = [], newlines = []; 
+  let di = {};
+  let testresult = '';
+  for (const line of lines) {
+    let type = cssKeywordType(line);
+    if (type) {
+      testresult += line[0] + '=';//addIf(testresult,line[0]); 
+      let newline = isLetter(line[0]) || line[0] == '*' ? line : line[0] == '@' ? stringAfter(line, ' ') : line.substring(1);
+      let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
+      key = key.trim();
+      di[key] = { type: type, key: key }
+      newline = key + stringAfter(newline, key);
+      if (key == '*') console.log('***', stringAfter(newline, key));
+      addIf(allkeys, key);
+      newlines.push(newline)
+      di[key] = { type: type, key: key }
+    } else {
+      newlines.push(line);
+    }
+  }
+  let neededkeys = [], code = closuretext;
+  for (const k of allkeys) {
+    if (['rubberBand'].includes(k)) continue;
+    let ktest = k.includes(' ') ? stringBefore(k, ' ') : k.includes(':') ? stringBefore(k, ':') : k;
+    if (['root'].some(x => x == k)) addIf(neededkeys, k);
+    else if (code.includes(`${ktest}`) || code.includes(`'${ktest}'`) || code.includes(`"${ktest}"`)) addIf(neededkeys, k);
+    else if (html.includes(`${ktest}`)) addIf(neededkeys, k);
+  }
+  let clause = '';
+  let state = 'search_kw';
+  for (const kw of neededkeys) {
+    let i = 0;
+    for (const line of newlines) {
+      if (line.startsWith(kw)) {
+        let w1 = line.includes('{') ? stringBefore(line, '{') : stringBefore(line, ',');
+        if (w1.trim() != kw) continue;
+        assertion(line.includes('{') || line.includes(','), `WEIRED LINE: ${kw} ${line}`);
+        if (line.includes('{')) {
+          clause = '{\n'; state = 'search_clause_end';
+        } else if (line.includes(',')) {
+          state = 'search_clause_start';
+        }
+      } else if (state == 'search_clause_start' && line.includes('{')) {
+        clause = '{\n'; state = 'search_clause_end';
+      } else if (state == 'search_clause_end') {
+        if (line[0] == '}') {
+          clause += line;
+          let cleanclause = cssCleanupClause(clause, kw);
+          lookupAddIfToList(di, [kw, 'clauses'], cleanclause);
+          lookupAddIfToList(di, [kw, 'fullclauses'], clause);
+          state = 'search_kw';
+        } else {
+          clause += line + '\n';
+        }
+      }
+    }
+  }
+  let dis = {};
+  for (const o of get_values(di)) {
+    if (nundef(o.clauses)) continue;
+    let x = lookup(dis, [o.type, o.key]); if (x) console.log('DUPL:', o.key, o.type)
+    lookupSet(dis, [o.type, o.key], o);
+  }
+  let csstext = '';
+  let types = ['root', 'tag', 'class', 'id', 'keyframes'];
+  let ditypes = { root: 58, tag: 't', class: 46, id: 35, keyframes: 64 }; // : tags . # @
+  if (types.includes('root')) types = ['root'].concat(arrMinus(types, ['root']));
+  types = types.map(x => ditypes[x]);
+  for (const type of types) {
+    if (nundef(dis[type])) continue;
+    let ksorted = sortCaseInsensitive(get_keys(dis[type]));
+    let prefix = type == 't' ? '' : String.fromCharCode(type);
+    if (prefix == '@') prefix += 'keyframes ';
+    for (const kw of ksorted) {
+      let startfix = prefix + kw;
+      for (const clause of dis[type][kw].clauses) {
+        csstext += startfix + clause;
+      }
+    }
+  }
+  return [closuretext, csstext];
 }
 function codeParseBlock(lines, i) {
   let l = lines[i];
@@ -320,7 +455,6 @@ function cssCleanupClause(t, kw) {
       }
     }
   }
-  if (kw == 'bAdd') console.log(res);
   return res;
 }
 function cssKeywordType(line) {
@@ -376,14 +510,6 @@ function downloadAsText(s, filename, ext = 'txt') {
     "data:application/text",
     new Blob([s], { type: "" }));
 }
-function dropImage(event) {
-  console.log('HALLO JA BIN DA')
-  event.preventDefault(); 
-  const imageURL = event.dataTransfer.getData("URL");
-  const imageElement = document.getElementById("image");
-  imageElement.src = `proxy.php?url=${encodeURIComponent(imageURL)}`;
-  imageElement.onload = ev => uploadNewImage(ev, imageURL);
-}
 function ensureColorDict() {
   if (isdef(ColorDi)) return;
   ColorDi = {};
@@ -438,10 +564,6 @@ function ensureColorDict() {
     if (cnew.c[0] != '#' && isdef(ColorDi[cnew.c])) cnew.c = ColorDi[cnew.c].c;
     ColorDi[k] = cnew;
   }
-}
-function error(msg) {
-  let fname = getFunctionsNameThatCalledThisFunction();
-  console.log(fname, 'ERROR!!!!! ', msg);
 }
 function extractFilesFromHtml(html, htmlfile, ext = 'js') {
   let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
@@ -810,13 +932,6 @@ function getColorNames() {
     'YellowGreen'
   ];
 }
-function getFunctionsNameThatCalledThisFunction() {
-  let c1 = getFunctionsNameThatCalledThisFunction.caller;
-  if (nundef(c1)) return 'no caller!';
-  let c2 = c1.caller;
-  if (nundef(c2)) return 'no caller!';
-  return c2.name;
-}
 function getRankValue(card) {
   const rankMapping = {
       '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
@@ -1002,7 +1117,10 @@ function initCodingUI() {
   [dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
   let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
   mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
-  AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
+  mFlex(dta);
+  AU.primary = mTextArea100(dta, { w: '50%', fz: 20, padding: 10, family: 'opensans' });
+  AU.secondary = mTextArea100(dta, { w: '50%', fz: 20, padding: 10, family: 'opensans' });
+  return [AU.primary,AU.secondary];
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
@@ -1032,17 +1150,6 @@ function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
     else lookupAddToList(di, [a[keyprop]], a);
   }
   return di;
-}
-function loadImages() {
-  const imageContainer = document.getElementById('image-container');
-  mFlexWrap(imageContainer);
-  mStyle(imageContainer, { gap: 10, margin: 0, padding: 0 })
-  fetch('load_images.php')
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(image => addImageWithLabel(image, imageContainer));
-    })
-    .catch(error => console.error(error));
 }
 function lookup(dict, keys) {
   let d = dict;
@@ -1175,35 +1282,12 @@ function mFlex(d, or = 'h') {
   d.style.display = 'flex';
   d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
 }
-function mFlexWrap(d) { mFlex(d, 'w'); }
-async function mGetYaml(path = '../base/assets/m.txt') {
+async function mGetYaml(path='../base/assets/m.txt'){
   let res = await fetch(path);
   let text = await res.text();
   let di = jsyaml.load(text);
   return di;
 }
-function mImageDropperForm(dParent) {
-  let html = `
-    <div id="dNewCollection" style="display:flex;align-items:center;position:relative">
-      <div style='width:400px;text-align:center;height:400px;'>
-        <img style='margin-top:50px;height:300px;' id="image">
-        <div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black' ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
-      </div>
-      <div id="dfNew" style="display:block;">
-        <form>
-          <span>Category:</span><br>
-          <input type="text" id="category" name="category" placeholder="Enter category"><br><br>
-          <span>Name:</span><br>
-          <input type="text" id="name" name="name" placeholder="Enter name">
-        </form>
-      </div>
-    </div>
-    `;
-  dParent = toElem(dParent);
-  dParent.innerHTML = html;
-}
-function mInsert(dParent, el, index = 0) { dParent.insertBefore(el, dParent.childNodes[index]); return el; }
-function mInsertFirst(dParent, el) { mInsert(dParent, el, 0); }
 function mRows100(dParent, spec, gap = 4) {
   let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
   grid.style.gridTemplateRows = spec;
@@ -1345,9 +1429,6 @@ function mTextArea100(dParent, styles = {}) {
   return t;
 }
 function nundef(x) { return x === null || x === undefined; }
-function onclickNew() {
-  mImageDropperForm('dMain')
-}
 function pSBC(p, c0, c1, l) {
   let r, g, b, P, f, t, h, i = parseInt, m = Math.round, a = typeof c1 == 'string';
   if (typeof p != 'number' || p < -1 || p > 1 || typeof c0 != 'string' || (c0[0] != 'r' && c0[0] != '#') || (c1 && !a)) return null;
@@ -1449,15 +1530,7 @@ function removeTrailingComments(line) {
   return line.substring(0, icomm);
 }
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
-function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
-function rLetter(except) { return rLetters(1, except)[0]; }
-function rLetters(n, except = []) {
-  let all = 'abcdefghijklmnopqrstuvwxyz';
-  for (const l of except) all = all.replace(l, '');
-  return rChoose(toLetters(all), n);
-}
-function rName(n = 1) { let arr = MyNames; return rChoose(arr, n); }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -1465,14 +1538,6 @@ async function route_path_text(url) {
   let data = await fetch(url);
   let text = await data.text();
   return text;
-}
-function rUID(prefix = null, n = null) {
-  return (prefix ?? rLetter()) + '_' + new Date().getTime() + '_' + Math.random().toString(36).substr(3, n ?? 4);
-  const timestamp = new Date().getTime(); 
-  const random = Math.random().toString(36).substr(2, 9); 
-  let res = `${prefix}${timestamp}${random}`;
-  if (n > 0) res = res.substr(0, n);
-  return res;
 }
 function saveFile(name, type, data) {
   if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
@@ -1515,29 +1580,6 @@ function setRect(elem, options) {
   }
   return r;
 }
-function showNavbar(pageTitle, titles, funcNames) {
-  if (nundef(funcNames)) {
-    funcNames = titles.map(x => `onclick${capitalize(x)}`);
-  }
-  let html = `
-    <nav class="navbar navbar-expand navbar-light bg-light">
-      <a class="navbar-brand" href="#">${pageTitle}</a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">`;
-  for (let i = 0; i < titles.length; i++) {
-    html += `
-          <li class="nav-item active">
-          <a class="nav-link hoverHue" href="#" onclick="${funcNames[i]}()">${titles[i]}</a>
-        </li>
-      `;
-  }
-  html += `
-      </ul>
-      </div>
-    </nav>
-    `;
-  mInsertFirst(document.body, mCreateFrom(html));
-}
 function showPlayerHands(playerHands) {
   const playersContainer = document.getElementById('players');
   playersContainer.innerHTML = '';
@@ -1576,20 +1618,10 @@ function sortCaseInsensitive(list) {
   list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
   return list;
 }
-async function start() {
-  M = await mGetYaml('../base/assets/m.txt'); 
-  S.type = detectSessionType(); console.log('session',S)
-  showNavbar('Collections', ['home', 'new']);
-  onclickNew();
-}
 function stringAfter(sFull, sSub) {
   let idx = sFull.indexOf(sSub);
   if (idx < 0) return '';
   return sFull.substring(idx + sSub.length);
-}
-function stringAfterLast(sFull, sSub) {
-  let parts = sFull.split(sSub);
-  return arrLast(parts);
 }
 function stringBefore(sFull, sSub) {
   let idx = sFull.indexOf(sSub);
@@ -1606,9 +1638,6 @@ function stringCount(s, sSub, caseInsensitive = true) {
   let count = (s.match(m)).length;
   return count;
 }
-function test1_loadAllAnimals() {
-  loadImages();
-}
 function toElem(d) { return isString(d) ? mBy(d) : d; }
 function toLetters(s) { return [...s]; }
 function toWords(s, allow_ = false) {
@@ -1617,66 +1646,6 @@ function toWords(s, allow_ = false) {
 }
 function trim(str) {
   return str.replace(/^\s+|\s+$/gm, '');
-}
-async function uploadNewImage(ev, url) {
-  let elem = ev.target;
-  let filename;
-  filename = stringAfterLast(url, '/');
-  filename = stringBefore(filename, '-');
-  filename += `${rUID('_', 10)}.png`;
-  console.log('filename', filename)
-  console.log('uploading!!!!', filename)
-  const canvas = document.createElement('canvas');
-  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
-  console.log('w', w, 'h', h);
-  canvas.width = elem.width;
-  canvas.height = elem.height;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(elem, 0, 0, w, h);
-  const imageData = canvas.toDataURL('image/png');
-  const response = await fetch('upload.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
-  });
-  if (response.ok) {
-    console.log('Image uploaded successfully!');
-  } else {
-    console.error('Error uploading image.');
-  }
-}
-async function uploadSmallImage(ev) {
-  let elem = mBy('img1');
-  let filename = 'hallo3.png'
-  if (isdef(ev)) {
-    let label = ev.target;
-    elem = label.parentNode.firstChild;
-    filename = label.value + '.png';
-    console.log('YES!!!!')
-  }
-  console.log('uploading!!!!',filename)
-  const canvas = document.createElement('canvas');
-  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
-  console.log('w', w, 'h', h);
-  canvas.width = elem.width;
-  canvas.height = elem.height;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(elem, 0, 0, w, h);
-  const imageData = canvas.toDataURL('image/png');
-  const response = await fetch('upload.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
-  });
-  if (response.ok) {
-    console.log('Image uploaded successfully!');
-  } else {
-    console.error('Error uploading image.');
-  }
 }
 function valf() {
   for (const arg of arguments) if (isdef(arg)) return arg;

@@ -1,58 +1,139 @@
-function _minimizeCode(di, symlist = ['start'], nogo = []) {
-  let done = {};
-  let tbd = symlist;
-  let MAX = 1000000, i = 0;
-  let visited = {
-    autocomplete: true, Card: true, change: true, config: true, grid: true, hallo: true,
-    jQuery: true, init: true,
-    Number: true, sat: true, step: true, PI: true
-  };
-  while (!isEmpty(tbd)) {
-    if (++i > MAX) break;
-    let sym = tbd[0];
-    if (isdef(visited[sym])) { tbd.shift(); continue; }
-    visited[sym] = true;
-    let o = di[sym];
-    if (nundef(o)) { tbd.shift(); continue; }
-    let text = o.code;
-    let words = toWords(text, true);
-    for (const w of words) {
-      if (nogo.some(x => w.startsWith(x))) continue;
-      let idx = text.indexOf(w);
-      let ch = text[idx - 1];
-      if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
-      if (ch == "'" || '"`'.includes(ch)) continue;
-      if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
-        console.log('first',w,'from',sym)
-        addIf(tbd, w);
-      }
-    }
-    assertion(sym == tbd[0], 'W T F')
-    tbd.shift();
-    done[sym] = o;
+const BLUE = '#4363d8';
+const BRAUN = '#331606';
+const BROWN = '#96613d';
+const FIREBRICK = '#800000';
+const GREEN = '#3cb44b';
+const BLUEGREEN = '#004054';
+const LIGHTBLUE = '#42d4f4';
+const LIGHTGREEN = '#afff45';
+const names = ['felix', 'amanda', 'sabine', 'tom', 'taka', 'microbe', 'dwight', 'jim', 'michael', 'pam', 'kevin', 'darryl', 'lauren', 'anuj', 'david', 'holly'];
+const OLIVE = '#808000';
+const ORANGE = '#f58231';
+const NEONORANGE = '#ff6700';
+const PURPLE = '#911eb4';
+const RED = '#e6194B';
+const STYLE_PARAMS = {
+  align: 'text-align',
+  valign: 'align-items',
+  acontent: 'align-content',
+  aitems: 'align-items',
+  aspectRatio: 'aspect-ratio',
+  bg: 'background-color',
+  dir: 'flex-direction',
+  fg: 'color',
+  hgap: 'column-gap',
+  vgap: 'row-gap',
+  jcontent: 'justify-content',
+  jitems: 'justify-items',
+  justify: 'justify-content',
+  matop: 'margin-top',
+  maleft: 'margin-left',
+  mabottom: 'margin-bottom',
+  maright: 'margin-right',
+  origin: 'transform-origin',
+  overx: 'overflow-x',
+  overy: 'overflow-y',
+  patop: 'padding-top',
+  paleft: 'padding-left',
+  pabottom: 'padding-bottom',
+  paright: 'padding-right',
+  place: 'place-items',
+  rounding: 'border-radius',
+  w: 'width',
+  h: 'height',
+  wmin: 'min-width',
+  hmin: 'min-height',
+  hline: 'line-height',
+  wmax: 'max-width',
+  hmax: 'max-height',
+  fontSize: 'font-size',
+  fz: 'font-size',
+  family: 'font-family',
+  weight: 'font-weight',
+  x: 'left',
+  y: 'top',
+  yover: 'overflow-y',
+  xover: 'overflow-x',
+  z: 'z-index'
+};
+const TEAL = '#469990';
+const YELLOW = '#ffe119';
+const NEONYELLOW = '#efff04';
+const YELLOW2 = '#fff620';
+const YELLOW3 = '#ffed01';
+const ColorDict = {
+  black: { c: 'black', E: 'black', D: 'schwarz' },
+  blue: { c: 'blue', E: 'blue', D: 'blau' },
+  BLUE: { c: '#4363d8', E: 'blue', D: 'blau' },
+  BLUEGREEN: { c: BLUEGREEN, E: 'bluegreen', D: 'blaugrün' },
+  blue1: { c: BLUE, E: 'blue', D: 'blau' },
+  BRAUN: { c: BRAUN, E: 'brown', D: 'braun' },
+  BROWN: { c: BROWN, E: 'brown', D: 'braun' },
+  brown: { c: BRAUN, E: 'brown', D: 'braun' },
+  deepyellow: { c: YELLOW3, E: 'yellow', D: 'gelb' },
+  FIREBRICK: { c: '#800000', E: 'darkred', D: 'rotbraun' },
+  gold: { c: 'gold', E: 'gold', D: 'golden' },
+  green: { c: 'green', E: 'green', D: 'grün' },
+  GREEN: { c: '#3cb44b', E: 'green', D: 'grün' },
+  green1: { c: GREEN, E: 'green', D: 'grün' },
+  grey: { c: 'grey', E: 'grey', D: 'grau' },
+  lightblue: { c: LIGHTBLUE, E: 'lightblue', D: 'hellblau' },
+  LIGHTBLUE: { c: '#42d4f4', E: 'lightblue', D: 'hellblau' },
+  lightgreen: { c: LIGHTGREEN, E: 'lightgreen', D: 'hellgrün' },
+  LIGHTGREEN: { c: '#afff45', E: 'lightgreen', D: 'hellgrün' },
+  lightyellow: { c: YELLOW2, E: 'lightyellow', D: 'gelb' },
+  olive: { c: OLIVE, E: 'olive', D: 'oliv' },
+  OLIVE: { c: '#808000', E: 'olive', D: 'oliv' },
+  orange: { c: ORANGE, E: 'orange', D: 'orange' },
+  ORANGE: { c: '#f58231', E: 'orange', D: 'orange' },
+  pink: { c: 'deeppink', E: 'pink', D: 'rosa' },
+  purple: { c: PURPLE, E: 'purple', D: 'lila' },
+  PURPLE: { c: '#911eb4', E: 'purple', D: 'lila' },
+  red: { c: 'red', E: 'red', D: 'rot' },
+  RED: { c: '#e6194B', E: 'red', D: 'rot' },
+  red1: { c: RED, E: 'red', D: 'rot' },
+  skyblue: { c: 'deepskyblue', E: 'skyblue', D: 'himmelblau' },
+  teal: { c: TEAL, E: 'teal', D: 'blaugrün' },
+  TEAL: { c: '#469990', E: 'teal', D: 'blaugrün' },
+  violet: { c: 'indigo', E: 'violet', D: 'violett' },
+  white: { c: 'white', E: 'white', D: 'weiss' },
+  yellow: { c: 'yellow', E: 'yellow', D: 'gelb' },
+  YELLOW: { c: '#ffe119', E: 'yellow', D: 'gelb' },
+  YELLOW2: { c: YELLOW2, E: 'yellow', D: 'gelb' },
+  YELLOW3: { c: YELLOW3, E: 'yellow', D: 'gelb' },
+};
+var c52;
+var ColorDi;
+var dParent;
+var M = {};
+var P;
+var S = {};
+class Player {
+  constructor(id, color) {
+    this.id = id;
+    this.color = getColorDictColor(color);
   }
-  return done;
 }
-function addIf(arr, el) { if (!arr.includes(el)) arr.push(el); }
-function addImageWithLabel(image, dParent, imgStyles, labelStyles, imgSrc, labelText) {
-  let mp0Style = { margin: 0, padding: 0, display: 'block' };
-  let d = mDiv(dParent, mp0Style);
-  let imgStyle = addKeys(mp0Style, { h: 250 });
-  let img = mDom(d, imgStyle, { tag: 'img', src: image.path });
-  img.onload = () => {
-    let labelStyle = addKeys(mp0Style, { w: img.offsetWidth, box: true });
-    let label = mDom(d, {}, { tag: 'input', type: 'text', value: rName() });
-    mStyle(label, labelStyle);
-    label.onclick = ev => ev.target.select();
-    label.onkeydown = ev => { if (ev.keyCode === 13) { uploadSmallImage(ev) } }
-  }
-}
+const suits = ['S', 'H', 'C', 'D'];
+const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+const handSize = {
+  "5": 20,
+  "6": 17,
+  "7": 14,
+  "8": 13,
+  "9": 11,
+  "10": 10,
+  "11": 9,
+  "12": 8,
+  "13": 8,
+  "14": 7,
+  "15": 6
+};
 function addKeys(ofrom, oto) { for (const k in ofrom) if (nundef(oto[k])) oto[k] = ofrom[k]; return oto; }
 function allNumbers(s) {
   let m = s.match(/\-.\d+|\-\d+|\.\d+|\d+\.\d+|\d+\b|\d+(?=\w)/g);
   if (m) return m.map(v => +v); else return null;
 }
-function allowDrop(event) { event.preventDefault(); }
 function alphaToHex(zero1) {
   zero1 = Math.round(zero1 * 100) / 100;
   var alpha = Math.round(zero1 * 255);
@@ -64,7 +145,6 @@ function alphaToHex(zero1) {
   return hex;
 }
 function arrLast(arr) { return arr.length > 0 ? arr[arr.length - 1] : null; }
-function arrMinus(a, b) { if (isList(b)) return a.filter(x => !b.includes(x)); else return a.filter(x => x != b); }
 function arrRange(from = 1, to = 10, step = 1) { let res = []; for (let i = from; i <= to; i += step)res.push(i); return res; }
 function arrRemovip(arr, el) {
   let i = arr.indexOf(el);
@@ -72,50 +152,9 @@ function arrRemovip(arr, el) {
   return i;
 }
 function arrShuffle(arr) { if (isEmpty(arr)) return []; else return fisherYates(arr); }
-function assertion(cond) {
-  if (!cond) {
-    let args = [...arguments];
-    for (const a of args) {
-      console.log('\n', a);
-    }
-    throw new Error('TERMINATING!!!')
-  }
-}
 function capitalize(s) {
   if (typeof s !== 'string') return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
-}
-function codeParseBlock(lines, i) {
-  let l = lines[i];
-  let type = l[0] == 'a' ? ithWord(l, 1) : ithWord(l, 0);
-  let key = l[0] == 'a' ? ithWord(l, 2, true) : ithWord(l, 1, true);
-  let code = l + '\n'; i++; l = lines[i];
-  while (i < lines.length && !(['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x)) && !l.startsWith('}'))) {
-    if (!(l.trim().startsWith('//') || isEmptyOrWhiteSpace(l))) code += l + '\n';
-    i++; l = lines[i];
-  }
-  code = replaceAllSpecialChars(code, '\t', '  ');
-  code = code.trim();
-  return [{ key: key, type: type, code: code }, i];
-}
-function codeParseBlocks(text) {
-  let lines = text.split('\r\n');
-  lines = lines.map(x => removeTrailingComments(x));
-  let i = 0, o = null, res = [];
-  while (i < lines.length) {
-    let l = lines[i];
-    if (['var', 'const', 'cla', 'func', 'async'].some(x => l.startsWith(x))) {
-      [o, iLineAfterBlock] = codeParseBlock(lines, i);
-      i = iLineAfterBlock;
-      res.push(o)
-    } else i++;
-  }
-  return res;
-}
-async function codeParseFile(path) {
-  let text = await route_path_text(path);
-  let olist = codeParseBlocks(text);
-  return olist; 
 }
 function coin(percent = 50) { return Math.random() * 100 < percent; }
 function colorChannelMixer(colorChannelA, colorChannelB, amountToMix) {
@@ -298,37 +337,6 @@ function createCard(dParent,key){
   let card = 'card_'+key;
   return mDom(dParent, { h: 110,w:70 }, { html: M.c52[card] });
 }
-function cssCleanupClause(t, kw) {
-  let lines = t.split('\n');
-  let comment = false;
-  let state = 'copy';
-  let res = '';
-  for (const line of lines) {
-    let lt = line.trim();
-    let [cstart, cend, mstart] = [lt.startsWith('/*'), lt.endsWith('*/'), line.includes('/*')];
-    if (state == 'skip') {
-      if (cend) state = 'copy';
-      continue;
-    } else if (state == 'copy') {
-      if (cstart && cend) { continue; }
-      else if (cstart) { state = 'skip'; continue; }
-      else if (mstart) {
-        res += stringBefore(line, '/*') + '\n';
-        if (!cend) state = 'skip';
-      } else {
-        res += line + '\n';
-      }
-    }
-  }
-  if (kw == 'bAdd') console.log(res);
-  return res;
-}
-function cssKeywordType(line) {
-  if (isLetter(line[0]) || line[0] == '*' && line[1] != '/') return 't';
-  else if (toLetters(':.#').some(x => line[0] == x)) return (line.charCodeAt(0)); //[0].charkey());
-  else if (line.startsWith('@keyframes')) return (line.charCodeAt(0));
-  else return null;
-}
 function dealCards(numPlayers) {
   let hsz = handSize[numPlayers] ?? 13;
   const totalCards = hsz * numPlayers;
@@ -352,37 +360,11 @@ function dealCards(numPlayers) {
   }
   return playerHands;
 }
-function detectSessionType() {
-  let loc = window.location.href;
-  DA.sessionType =
-    loc.includes('telecave') ? 'telecave' : loc.includes('8080') ? 'php'
-      : loc.includes(':40') ? 'nodejs'
-        : loc.includes(':60') ? 'flask' : 'live';
-  return DA.sessionType;
-}
 function displaySplayedHand(dParent, hand) {
   const handContainer = mDom(dParent, { display: 'grid', gap: 5, wmax: 700, 'grid-template-columns': 'repeat(14, 20px) 70px' });
   for (const card of hand) {
     const cardDiv = createCard(handContainer,card); 
   }
-}
-function download(jsonObject, fname) {
-  json_str = JSON.stringify(jsonObject);
-  saveFile(fname + '.json', 'data:application/json', new Blob([json_str], { type: '' }));
-}
-function downloadAsText(s, filename, ext = 'txt') {
-  saveFileAtClient(
-    filename + "." + ext,
-    "data:application/text",
-    new Blob([s], { type: "" }));
-}
-function dropImage(event) {
-  console.log('HALLO JA BIN DA')
-  event.preventDefault(); 
-  const imageURL = event.dataTransfer.getData("URL");
-  const imageElement = document.getElementById("image");
-  imageElement.src = `proxy.php?url=${encodeURIComponent(imageURL)}`;
-  imageElement.onload = ev => uploadNewImage(ev, imageURL);
 }
 function ensureColorDict() {
   if (isdef(ColorDi)) return;
@@ -439,42 +421,6 @@ function ensureColorDict() {
     ColorDi[k] = cnew;
   }
 }
-function error(msg) {
-  let fname = getFunctionsNameThatCalledThisFunction();
-  console.log(fname, 'ERROR!!!!! ', msg);
-}
-function extractFilesFromHtml(html, htmlfile, ext = 'js') {
-  let prefix = ext == 'js' ? 'script src="' : 'link rel="stylesheet" href="';
-  let dirhtml = stringBeforeLast(htmlfile, '/');
-  let project = stringAfter(dirhtml, '/'); if (project.includes('/')) project = stringBefore(project, '/');
-  let parts = html.split(prefix);
-  parts.shift();
-  let files = parts.map(x => stringBefore(x, '"'));
-  files = files.filter(x => !x.includes('alibs/') && !x.includes('assets/'));
-  let files2 = [];
-  for (const f of files) {
-    if (f.startsWith(dirhtml)) { files2.push(f); continue; }
-    if (f.startsWith('./')) { files2.push(dirhtml + f.substring(1)); continue; }
-    if (f.startsWith('../') && stringCount(dirhtml, '../') == 1) {
-      files2.push(f); continue;
-    }
-    if (!f.includes('/')) { files2.push(dirhtml + '/' + f); continue; }
-    if (isLetter(f[0])) { files2.push(dirhtml + '/' + f); continue; }
-    console.log('PROBLEM!', f)
-  }
-  files = files2;
-  return files;
-}
-function extractOnclickFromHtml(html) {
-  let symlist = [];
-  let onclicks = html.split('onclick="');
-  onclicks.shift();
-  for (const oncl of onclicks) {
-    let code = stringBefore(oncl, '(');
-    symlist.push(code);
-  }
-  return symlist;
-}
 function firstNumber(s) {
   if (s) {
     let m = s.match(/-?\d+/);
@@ -484,12 +430,6 @@ function firstNumber(s) {
     }
   }
   return null;
-}
-function firstWordIncluding(s, allowed = '_-') {
-  let res = '', i = 0;
-  while (!isLetter(s[i]) && !isDigit(s[i]) && !allowed.includes(s[i])) i++;
-  while (isLetter(s[i]) || isDigit(s[i]) || allowed.includes(s[i])) { res += s[i]; i++; }
-  return res;
 }
 function fisherYates(arr) {
   if (arr.length == 2 && coin()) { return arr; }
@@ -503,8 +443,6 @@ function fisherYates(arr) {
   }
   return arr;
 }
-function get_keys(o) { return Object.keys(o); }
-function get_values(o) { return Object.values(o); }
 function getColorDictColor(c) { return isdef(ColorDict[c]) ? ColorDict[c].c : c; }
 function getColorHexes(x) {
   return [
@@ -810,13 +748,6 @@ function getColorNames() {
     'YellowGreen'
   ];
 }
-function getFunctionsNameThatCalledThisFunction() {
-  let c1 = getFunctionsNameThatCalledThisFunction.caller;
-  if (nundef(c1)) return 'no caller!';
-  let c2 = c1.caller;
-  if (nundef(c2)) return 'no caller!';
-  return c2.name;
-}
 function getRankValue(card) {
   const rankMapping = {
       '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9,
@@ -997,52 +928,18 @@ function hue(h) {
   var b = 2 - Math.abs(h * 6 - 4);
   return [Math.floor(r * 255), Math.floor(g * 255), Math.floor(b * 255)];
 }
-function initCodingUI() {
-  mStyle('dMain', { bg: 'silver' });
-  [dTable, dSidebar] = mCols100('dMain', '1fr auto', 0);
-  let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
-  mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
-  AU.ta = mTextArea100(dta, { fz: 20, padding: 10, family: 'opensans' });
-}
 function isdef(x) { return x !== null && x !== undefined; }
-function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
-function isDigit(s) { return /^[0-9]$/i.test(s); }
 function isEmpty(arr) {
   return arr === undefined || !arr
     || (isString(arr) && (arr == 'undefined' || arr == ''))
     || (Array.isArray(arr) && arr.length == 0)
     || Object.entries(arr).length === 0;
 }
-function isEmptyOrWhiteSpace(s) { return isEmpty(s.trim()); }
-function isLetter(s) { return /^[a-zA-Z]$/i.test(s); }
 function isList(arr) { return Array.isArray(arr); }
 function isNumber(x) { return x !== ' ' && x !== true && x !== false && isdef(x) && (x == 0 || !isNaN(+x)); }
 function isString(param) { return typeof param == 'string'; }
-function ithWord(s, n, allow_) {
-  let ws = toWords(s, allow_);
-  return ws[Math.min(n, ws.length - 1)];
-}
 function last(arr) {
   return arr.length > 0 ? arr[arr.length - 1] : null;
-}
-function list2dict(arr, keyprop = 'id', uniqueKeys = true) {
-  let di = {};
-  for (const a of arr) {
-    if (uniqueKeys) lookupSet(di, [a[keyprop]], a);
-    else lookupAddToList(di, [a[keyprop]], a);
-  }
-  return di;
-}
-function loadImages() {
-  const imageContainer = document.getElementById('image-container');
-  mFlexWrap(imageContainer);
-  mStyle(imageContainer, { gap: 10, margin: 0, padding: 0 })
-  fetch('load_images.php')
-    .then(response => response.json())
-    .then(data => {
-      data.forEach(image => addImageWithLabel(image, imageContainer));
-    })
-    .catch(error => console.error(error));
 }
 function lookup(dict, keys) {
   let d = dict;
@@ -1058,48 +955,6 @@ function lookup(dict, keys) {
   }
   return d;
 }
-function lookupAddIfToList(dict, keys, val) {
-  let lst = lookup(dict, keys);
-  if (isList(lst) && lst.includes(val)) return;
-  lookupAddToList(dict, keys, val);
-}
-function lookupAddToList(dict, keys, val) {
-  let d = dict;
-  let ilast = keys.length - 1;
-  let i = 0;
-  for (const k of keys) {
-    if (i == ilast) {
-      if (nundef(k)) {
-        console.assert(false, 'lookupAddToList: last key indefined!' + keys.join(' '));
-        return null;
-      } else if (isList(d[k])) {
-        d[k].push(val);
-      } else {
-        d[k] = [val];
-      }
-      return d[k];
-    }
-    if (nundef(k)) continue;
-    if (d[k] === undefined) d[k] = {};
-    d = d[k];
-    i += 1;
-  }
-  return d;
-}
-function lookupSet(dict, keys, val) {
-  let d = dict;
-  let ilast = keys.length - 1;
-  let i = 0;
-  for (const k of keys) {
-    if (nundef(k)) continue;
-    if (d[k] === undefined) d[k] = (i == ilast ? val : {});
-    if (nundef(d[k])) d[k] = (i == ilast ? val : {});
-    d = d[k];
-    if (i == ilast) return d;
-    i += 1;
-  }
-  return d;
-}
 function makeUnitString(nOrString, unit = 'px', defaultVal = '100%') {
   if (nundef(nOrString)) return defaultVal;
   if (isNumber(nOrString)) nOrString = '' + nOrString + unit;
@@ -1107,15 +962,6 @@ function makeUnitString(nOrString, unit = 'px', defaultVal = '100%') {
 }
 function mAppend(d, child) { toElem(d).appendChild(child); return child; }
 function mBy(id) { return document.getElementById(id); }
-function mCenterCenterFlex(d, gap) { mCenterFlex(d, true, true, true, gap); }
-function mCenterFlex(d, hCenter = true, vCenter = false, wrap = true, gap = null) {
-  let styles = { display: 'flex' };
-  if (hCenter) styles['justify-content'] = 'center';
-  styles['align-content'] = vCenter ? 'center' : 'flex-start';
-  if (wrap) styles['flex-wrap'] = 'wrap';
-  if (gap) styles.gap = gap;
-  mStyle(d, styles);
-}
 function mClass(d) {
   d = toElem(d);
   if (arguments.length == 2) {
@@ -1128,33 +974,6 @@ function mClass(d) {
       }
     }
   } else for (let i = 1; i < arguments.length; i++) d.classList.add(arguments[i]);
-}
-function mCols100(dParent, spec, gap = 4) {
-  let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
-  grid.style.gridTemplateColumns = spec;
-  let res = [];
-  for (const i of range(stringCount(spec, ' ') + 1)) {
-    let d = mDiv(grid, { h: '100%', w: '100%', box: true })
-    res.push(d);
-  }
-  return res;
-}
-function mCreate(tag, styles, id) { let d = document.createElement(tag); if (isdef(id)) d.id = id; if (isdef(styles)) mStyle(d, styles); return d; }
-function mCreateFrom(htmlString) {
-  var div = document.createElement('div');
-  div.innerHTML = htmlString.trim();
-  return div.firstChild;
-}
-function mDiv(dParent, styles, id, inner, classes, sizing) {
-  dParent = toElem(dParent);
-  let d = mCreate('div');
-  if (dParent) mAppend(dParent, d);
-  if (isdef(styles)) mStyle(d, styles);
-  if (isdef(classes)) mClass(d, classes);
-  if (isdef(id)) d.id = id;
-  if (isdef(inner)) d.innerHTML = inner;
-  if (isdef(sizing)) { setRect(d, sizing); }
-  return d;
 }
 function mDom(dParent, styles = {}, opts = {}) {
   let tag = valf(opts.tag, 'div');
@@ -1170,49 +989,11 @@ function mDom(dParent, styles = {}, opts = {}) {
   mStyle(d, styles);
   return d;
 }
-function mFlex(d, or = 'h') {
-  d = toElem(d);
-  d.style.display = 'flex';
-  d.style.flexFlow = (or == 'v' ? 'column' : 'row') + ' ' + (or == 'w' ? 'wrap' : 'nowrap');
-}
-function mFlexWrap(d) { mFlex(d, 'w'); }
-async function mGetYaml(path = '../base/assets/m.txt') {
+async function mGetYaml(path='../base/assets/m.txt'){
   let res = await fetch(path);
   let text = await res.text();
   let di = jsyaml.load(text);
   return di;
-}
-function mImageDropperForm(dParent) {
-  let html = `
-    <div id="dNewCollection" style="display:flex;align-items:center;position:relative">
-      <div style='width:400px;text-align:center;height:400px;'>
-        <img style='margin-top:50px;height:300px;' id="image">
-        <div style='position:absolute;width:300px;height:300px;left:50px;top:50px;border:dotted 1px black' ondragover="allowDrop(event)" ondrop="dropImage(event)">drop here!</div>
-      </div>
-      <div id="dfNew" style="display:block;">
-        <form>
-          <span>Category:</span><br>
-          <input type="text" id="category" name="category" placeholder="Enter category"><br><br>
-          <span>Name:</span><br>
-          <input type="text" id="name" name="name" placeholder="Enter name">
-        </form>
-      </div>
-    </div>
-    `;
-  dParent = toElem(dParent);
-  dParent.innerHTML = html;
-}
-function mInsert(dParent, el, index = 0) { dParent.insertBefore(el, dParent.childNodes[index]); return el; }
-function mInsertFirst(dParent, el) { mInsert(dParent, el, 0); }
-function mRows100(dParent, spec, gap = 4) {
-  let grid = mDiv(dParent, { padding: gap, gap: gap, box: true, display: 'grid', h: '100%', w: '100%' })
-  grid.style.gridTemplateRows = spec;
-  let res = [];
-  for (const i of range(stringCount(spec, ' ') + 1)) {
-    let d = mDiv(grid, { h: '100%', w: '100%', box: true })
-    res.push(d);
-  }
-  return res;
 }
 function mStyle(elem, styles, unit = 'px') {
   elem = toElem(elem);
@@ -1336,18 +1117,7 @@ function mStyle(elem, styles, unit = 'px') {
     }
   }
 }
-function mTextArea100(dParent, styles = {}) {
-  mCenterCenterFlex(dParent)
-  let html = `<textarea style="width:100%;height:100%;box-sizing:border-box" wrap="hard"></textarea>`;
-  let t = mCreateFrom(html);
-  mStyle(t, styles);
-  mAppend(dParent, t);
-  return t;
-}
 function nundef(x) { return x === null || x === undefined; }
-function onclickNew() {
-  mImageDropperForm('dMain')
-}
 function pSBC(p, c0, c1, l) {
   let r, g, b, P, f, t, h, i = parseInt, m = Math.round, a = typeof c1 == 'string';
   if (typeof p != 'number' || p < -1 || p > 1 || typeof c0 != 'string' || (c0[0] != 'r' && c0[0] != '#') || (c1 && !a)) return null;
@@ -1385,17 +1155,6 @@ function pSBCr(d) {
   }
   return x;
 }
-function range(f, t, st = 1) {
-  if (nundef(t)) {
-    t = f - 1;
-    f = 0;
-  }
-  let arr = [];
-  for (let i = f; i <= t; i += st) {
-    arr.push(i);
-  }
-  return arr;
-}
 function rChoose(arr, n = 1, func = null, exceptIndices = null) {
   let indices = arrRange(0, arr.length - 1);
   if (isdef(exceptIndices)) {
@@ -1426,117 +1185,12 @@ function rColor(cbrightness, c2, alpha = null) {
   }
   return s;
 }
-function removeCommentLines(text, cstart, cend) {
-  let lines = text.split('\n');
-  let inComment = false, res = '';
-  for (const line of lines) {
-    let lt = line.trim();
-    if (lt.startsWith(cstart) && lt.endsWith(cend)) { continue; }
-    if (lt.startsWith(cstart)) { inComment = true; continue; }
-    if (lt.endsWith(cend)) { inComment = false; continue; }
-    res += line + '\n';
-  }
-  return res;
-}
 function removeInPlace(arr, el) {
   arrRemovip(arr, el);
 }
-function removeTrailingComments(line) {
-  let icomm = line.indexOf('//');
-  let ch = line[icomm - 1];
-  if (icomm <= 0 || ch == "'" || ':"`'.includes(ch)) return line;
-  if ([':', '"', "'", '`'].some(x => line.indexOf(x) >= 0 && line.indexOf(x) < icomm)) return line;
-  return line.substring(0, icomm);
-}
-function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
-function rest() { }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
-function rLetter(except) { return rLetters(1, except)[0]; }
-function rLetters(n, except = []) {
-  let all = 'abcdefghijklmnopqrstuvwxyz';
-  for (const l of except) all = all.replace(l, '');
-  return rChoose(toLetters(all), n);
-}
-function rName(n = 1) { let arr = MyNames; return rChoose(arr, n); }
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-async function route_path_text(url) {
-  let data = await fetch(url);
-  let text = await data.text();
-  return text;
-}
-function rUID(prefix = null, n = null) {
-  return (prefix ?? rLetter()) + '_' + new Date().getTime() + '_' + Math.random().toString(36).substr(3, n ?? 4);
-  const timestamp = new Date().getTime(); 
-  const random = Math.random().toString(36).substr(2, 9); 
-  let res = `${prefix}${timestamp}${random}`;
-  if (n > 0) res = res.substr(0, n);
-  return res;
-}
-function saveFile(name, type, data) {
-  if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
-  var a = $("<a style='display: none;'/>");
-  var url = window.URL.createObjectURL(new Blob([data], { type: type }));
-  a.attr('href', url);
-  a.attr('download', name);
-  $('body').append(a);
-  a[0].click();
-  setTimeout(function () {
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  }, 500);
-}
-function saveFileAtClient(name, type, data) {
-  if (data != null && navigator.msSaveBlob) return navigator.msSaveBlob(new Blob([data], { type: type }), name);
-  let a = document.createElement('a');
-  a.style.display = 'none';
-  let url = window.URL.createObjectURL(new Blob([data], { type: type }));
-  a.href = url;
-  a.download = name;
-  document.body.appendChild(a);
-  simulateClick(a);
-  setTimeout(function () {
-    window.URL.revokeObjectURL(url);
-    a.remove();
-  }, 500);
-}
-function setRect(elem, options) {
-  let r = getRect(elem);
-  elem.rect = r;
-  elem.setAttribute('rect', `${r.w} ${r.h} ${r.t} ${r.l} ${r.b} ${r.r}`);
-  if (isDict(options)) {
-    if (options.hgrow) mStyle(elem, { hmin: r.h });
-    else if (options.hfix) mStyle(elem, { h: r.h });
-    else if (options.hshrink) mStyle(elem, { hmax: r.h });
-    if (options.wgrow) mStyle(elem, { wmin: r.w });
-    else if (options.wfix) mStyle(elem, { w: r.w });
-    else if (options.wshrink) mStyle(elem, { wmax: r.w });
-  }
-  return r;
-}
-function showNavbar(pageTitle, titles, funcNames) {
-  if (nundef(funcNames)) {
-    funcNames = titles.map(x => `onclick${capitalize(x)}`);
-  }
-  let html = `
-    <nav class="navbar navbar-expand navbar-light bg-light">
-      <a class="navbar-brand" href="#">${pageTitle}</a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">`;
-  for (let i = 0; i < titles.length; i++) {
-    html += `
-          <li class="nav-item active">
-          <a class="nav-link hoverHue" href="#" onclick="${funcNames[i]}()">${titles[i]}</a>
-        </li>
-      `;
-  }
-  html += `
-      </ul>
-      </div>
-    </nav>
-    `;
-  mInsertFirst(document.body, mCreateFrom(html));
 }
 function showPlayerHands(playerHands) {
   const playersContainer = document.getElementById('players');
@@ -1561,10 +1215,6 @@ function shuffleArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
-function simulateClick(elem) {
-  var evt = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
-  var canceled = !elem.dispatchEvent(evt);
-}
 function sortCards(cards) {
   return cards.sort((a, b) => {
       const cardA = getSuitValue(a)*1000 + getRankValue(a);
@@ -1572,111 +1222,14 @@ function sortCards(cards) {
       return cardA - cardB;
   });
 }
-function sortCaseInsensitive(list) {
-  list.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
-  return list;
-}
-async function start() {
-  M = await mGetYaml('../base/assets/m.txt'); 
-  S.type = detectSessionType(); console.log('session',S)
-  showNavbar('Collections', ['home', 'new']);
-  onclickNew();
-}
-function stringAfter(sFull, sSub) {
-  let idx = sFull.indexOf(sSub);
-  if (idx < 0) return '';
-  return sFull.substring(idx + sSub.length);
-}
-function stringAfterLast(sFull, sSub) {
-  let parts = sFull.split(sSub);
-  return arrLast(parts);
-}
-function stringBefore(sFull, sSub) {
-  let idx = sFull.indexOf(sSub);
-  if (idx < 0) return sFull;
-  return sFull.substring(0, idx);
-}
 function stringBeforeLast(sFull, sSub) {
   let parts = sFull.split(sSub);
   return sFull.substring(0, sFull.length - arrLast(parts).length - 1);
 }
-function stringCount(s, sSub, caseInsensitive = true) {
-  let temp = "Welcome to W3Docs";
-  let m = new RegExp(sSub, 'g' + (caseInsensitive ? 'i' : ''));
-  let count = (s.match(m)).length;
-  return count;
-}
-function test1_loadAllAnimals() {
-  loadImages();
-}
 function toElem(d) { return isString(d) ? mBy(d) : d; }
-function toLetters(s) { return [...s]; }
 function toWords(s, allow_ = false) {
   let arr = allow_ ? s.split(/[\W]+/) : s.split(/[\W|_]+/);
   return arr.filter(x => !isEmpty(x));
-}
-function trim(str) {
-  return str.replace(/^\s+|\s+$/gm, '');
-}
-async function uploadNewImage(ev, url) {
-  let elem = ev.target;
-  let filename;
-  filename = stringAfterLast(url, '/');
-  filename = stringBefore(filename, '-');
-  filename += `${rUID('_', 10)}.png`;
-  console.log('filename', filename)
-  console.log('uploading!!!!', filename)
-  const canvas = document.createElement('canvas');
-  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
-  console.log('w', w, 'h', h);
-  canvas.width = elem.width;
-  canvas.height = elem.height;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(elem, 0, 0, w, h);
-  const imageData = canvas.toDataURL('image/png');
-  const response = await fetch('upload.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
-  });
-  if (response.ok) {
-    console.log('Image uploaded successfully!');
-  } else {
-    console.error('Error uploading image.');
-  }
-}
-async function uploadSmallImage(ev) {
-  let elem = mBy('img1');
-  let filename = 'hallo3.png'
-  if (isdef(ev)) {
-    let label = ev.target;
-    elem = label.parentNode.firstChild;
-    filename = label.value + '.png';
-    console.log('YES!!!!')
-  }
-  console.log('uploading!!!!',filename)
-  const canvas = document.createElement('canvas');
-  let [w, h] = [elem.offsetWidth, elem.offsetHeight];
-  console.log('w', w, 'h', h);
-  canvas.width = elem.width;
-  canvas.height = elem.height;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(elem, 0, 0, w, h);
-  const imageData = canvas.toDataURL('image/png');
-  const response = await fetch('upload.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: `imageData=${encodeURIComponent(imageData)}&filename=${encodeURIComponent(filename)}`,
-  });
-  if (response.ok) {
-    console.log('Image uploaded successfully!');
-  } else {
-    console.error('Error uploading image.');
-  }
 }
 function valf() {
   for (const arg of arguments) if (isdef(arg)) return arg;

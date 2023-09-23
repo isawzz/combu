@@ -91,10 +91,8 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
       if (nogo.some(x => w.startsWith(x))) continue;
       let idx = text.indexOf(w);
       let ch = text[idx - 1];
-      if (w.startsWith('lsys')) console.log('.....ch', w, ch, sym)
       if (ch == "'" || '"`'.includes(ch)) continue;
       if (nundef(done[w]) && nundef(visited[w]) && w != sym && isdef(di[w])) {
-        console.log('first',w,'from',sym)
         addIf(tbd, w);
       }
     }
@@ -128,7 +126,7 @@ function arrRemovip(arr, el) {
   if (i > -1) arr.splice(i, 1);
   return i;
 }
-function arrShufflip(arr) { if (isEmpty(arr)) return []; else return fisherYates(arr); }
+function arrShuffle(arr) { if (isEmpty(arr)) return []; else return fisherYates(arr); }
 function assertion(cond) {
   if (!cond) {
     let args = [...arguments];
@@ -142,7 +140,7 @@ function capitalize(s) {
   if (typeof s !== 'string') return '';
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
-async function closureFromProject(project, ignoreList=[], addList=[]) {
+async function closureFromProject(project, ignoreList = [], addList = []) {
   console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
   let globlist = await codeParseFile('../basejs/allghuge.js');
   let funclist = await codeParseFile('../basejs/allfhuge.js');
@@ -170,7 +168,6 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
     let oold = bykey[k];
     if (isdef(oold) && onew.code == oold.code) {
     } else if (isdef(oold)) {
-      console.log('override w/ DIFFERENT code', k);//override code with new code but keep old code!
       oold.oldcode = oold.code;
       oold.code = onew.code;
       dupltext += oold.oldcode + '\n' + oold.code + '\n';
@@ -187,7 +184,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   let nogos = valf(knownNogos[project], [])
   nogos = nogos.concat(ignoreList);
   let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
-  ['start','rest'].map(x=>delete byKeyMinimized[x]);
+  ['start', 'rest'].map(x => delete byKeyMinimized[x]);
   for (const k in byKeyMinimized) {
     let code = byKeyMinimized[k].code;
     let lines = code.split('\n');
@@ -201,9 +198,9 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
   let funckeys = list.filter(x => isdef(byKeyMinimized[x.key]) && x.type == 'function').map(x => x.key); //in order of appearance!
   funckeys = sortCaseInsensitive(funckeys);
   let closuretext = '';
-  for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-  for (const k of funckeys) { 
-    closuretext += byKeyMinimized[k].code + '\n'; 
+  for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\r\n'; }
+  for (const k of funckeys) {
+    closuretext += byKeyMinimized[k].code + '\r\n';
   }
   cssfiles = extractFilesFromHtml(html, htmlFile, 'css');
   cssfiles.unshift('../basejs/myclasses.css');
@@ -222,9 +219,6 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
       let newline = isLetter(line[0]) || line[0] == '*' ? line : line[0] == '@' ? stringAfter(line, ' ') : line.substring(1);
       let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
       key = key.trim();
-      if (isdef(di[key]) && type != di[key].type) {
-        console.log('duplicate key', key, type, di[key].type);
-      }
       di[key] = { type: type, key: key }
       newline = key + stringAfter(newline, key);
       if (key == '*') console.log('***', stringAfter(newline, key));
@@ -528,7 +522,6 @@ function cssCleanupClause(t, kw) {
       }
     }
   }
-  if (kw == 'bAdd') console.log(res);
   return res;
 }
 function cssKeywordType(line) {
@@ -1149,8 +1142,9 @@ function initCodingUI() {
   let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
   mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
   mFlex(dta);
-  AU.ta = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
-  AU.css = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
+  AU.primary = mTextArea100(dta, { w: '50%', fz: 20, padding: 10, family: 'opensans' });
+  AU.secondary = mTextArea100(dta, { w: '50%', fz: 20, padding: 10, family: 'opensans' });
+  return [AU.primary,AU.secondary];
 }
 function isdef(x) { return x !== null && x !== undefined; }
 function isDict(d) { let res = (d !== null) && (typeof (d) == 'object') && !isList(d); return res; }
@@ -1497,7 +1491,7 @@ function rChoose(arr, n = 1, func = null, exceptIndices = null) {
     let idx = Math.floor(Math.random() * indices.length);
     return arr[indices[idx]];
   }
-  arrShufflip(indices);
+  arrShuffle(indices);
   return indices.slice(0, n).map(x => arr[x]);
 }
 function rColor(cbrightness, c2, alpha = null) {
@@ -1541,6 +1535,7 @@ function removeTrailingComments(line) {
 }
 function replaceAllSpecialChars(str, sSub, sBy) { return str.split(sSub).join(sBy); }
 function rHue() { return (rNumber(0, 36) * 10) % 360; }
+
 function rNumber(min = 0, max = 100) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }

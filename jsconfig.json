@@ -4,7 +4,7 @@
     "target": "es6"
   },
   "include": [
-    "../basecommon/*", 
+    "../basejs/*", 
     "." 
   ],
   "exclude": [
@@ -13,8 +13,8 @@
     "_unused",
     "flask",
     "../y/*",
-    "../../base/alibs/*",
-    "../../base/assets/*",
+    "../../../base/alibs/*",
+    "../../../base/assets/*",
     "_hideTEMP",
     "_projects",
   ]

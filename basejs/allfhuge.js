@@ -1509,7 +1509,7 @@ function _rChoose(arr, n = 1, func = null, exceptIndices = null) {
     let idx = Math.floor(Math.random() * arr1.length);
     return arr1[idx];
   }
-  arrShufflip(arr1);
+  arrShuffle(arr1);
   return arr1.slice(0, n);
 }
 function _recFindCollections(key, o, sets) {
@@ -9348,7 +9348,7 @@ function arrRotate(arr, count) {
   unshift.apply(arr1, splice.call(arr1, count % len, len));
   return arr1;
 }
-function arrShufflip(arr) { if (isEmpty(arr)) return []; else return fisherYates(arr); }
+function arrShuffle(arr) { if (isEmpty(arr)) return []; else return fisherYates(arr); }
 function arrSplitAtIndex(arr, i) {
   return [arr.slice(0, i), arr.slice(i)];
 }
@@ -42420,6 +42420,14 @@ function mGetStyleX(elem, prop) {
   if (nundef(val)) val = elem.style[prop];
   if (val.endsWith('px')) return firstNumber(val); else return val;
 }
+async function mGetYaml(path='../base/assets/m.txt'){
+	let res = await fetch(path);
+	let text = await res.text();
+	let di = jsyaml.load(text);
+	//console.log('di',di);
+	return di;
+
+}
 function mgPos(card, el, x = 0, y = 0, unit = '%', anchor = 'center') {
   mAppend(iG(card), el);
   let box = el.getBBox();
@@ -53137,7 +53145,7 @@ function rChoose(arr, n = 1, func = null, exceptIndices = null) {
     let idx = Math.floor(Math.random() * indices.length);
     return arr[indices[idx]];
   }
-  arrShufflip(indices);
+  arrShuffle(indices);
   return indices.slice(0, n).map(x => arr[x]);
 }
 function rCoin(percent = 50) {

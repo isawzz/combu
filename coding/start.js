@@ -1,9 +1,7 @@
 
 async function start() {
-	S.type = detectSessionType();	initCodingUI();
-	let glitches = ['startsWith', 'endsWith'];
-	let text = '<please call closureFromProject>', css='';
-
+	S.type = detectSessionType();
+	let [taPrim,taSec] = initCodingUI();
 	//#region tests
 
 	// let text=await intersectAnimeAndAllfuncs();
@@ -15,28 +13,30 @@ async function start() {
 	// let csstext = await cssSelectFrom('../base/alibs/w3.css',['root','class','keyframes']);
 	//downloadAsText(text, 'closure', 'js');
 	//downloadAsText(css, 'final', 'css');
+	//#endregion
 
-	// [text, css] = await closureFromProject('spiel', glitches); 
-	// [text, css] = await closureFromProject('testa', glitches); 
-	// [text, css] = await closureFromProject('testphp', glitches); 
-	// [text, css] = await closureFromProject('tiere', glitches.concat(['expand', 'drop']), ['allowDrop','dropImage']);
+	let glitches = ['startsWith', 'endsWith'];
+	let prim = '<please call closureFromProject>', sec = '';
+	// [prim, sec] = await closureFromProject('coding', glitches, ['downloadAsText']);
+	// [prim, sec] = await closureFromProject('spiel', glitches); 
+	[prim, sec] = await combineClosures(['coding','spiel']); 
+
+	// [prim, sec] = await closureFromProject('testa', glitches); 
+	// [prim, sec] = await closureFromProject('testphp', glitches); 
+	// [prim, sec] = await closureFromProject('tiere', glitches.concat(['expand', 'drop']), ['allowDrop','dropImage']);
 
 	// cssFromFiles(files, dir = '', types = ['root', 'tag', 'class', 'id', 'keyframes'])
 	//downloadAsText(css,'final','css');
 
-	//#endregion
+	taPrim.value = prim;
+	taSec.value = sec;
 
-	[text, css] = await closureFromProject('coding', glitches, ['downloadAsText']); 
-	// text = await combineClosures(['coding','spiel','testa','tiere']); 
-	AU.ta.value = text; 
-	AU.css.value = css; 
 }
 
-async function combineClosures(projectList){
-	let files = projectList.map(x=>`../${x}/closure.js`);
+async function combineClosures(projectList) {
+	let files = projectList.map(x => `../${x}/closure.js`);
 	let [globtext, functext, functextold] = await codebaseFromFiles(files);
-	downloadAsText(globtext,'globs','js');
-	return functext;
+	return [functext,globtext];
 }
 function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	let done = {};
@@ -76,9 +76,9 @@ function _minimizeCode(di, symlist = ['start'], nogo = []) {
 	}
 	return done;
 }
-async function closureFromProject(project, ignoreList=[], addList=[]) {
+async function closureFromProject(project, ignoreList = [], addList = []) {
 
-	//console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
+	console.log('HAAAAAAAAAAAAALLLLLLLLLLLOOOOOOOOOOOO')
 
 	//get the dicts
 	let globlist = await codeParseFile('../basejs/allghuge.js');
@@ -140,7 +140,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 	nogos = nogos.concat(ignoreList);
 
 	let byKeyMinimized = _minimizeCode(bykey, seed, nogos);
-	['start','rest'].map(x=>delete byKeyMinimized[x]);
+	['start', 'rest'].map(x => delete byKeyMinimized[x]);
 
 
 	for (const k in byKeyMinimized) {
@@ -163,9 +163,9 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 
 	//generate
 	let closuretext = '';
-	for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\n'; }
-	for (const k of funckeys) { 
-		closuretext += byKeyMinimized[k].code + '\n'; 
+	for (const k of cvckeys) { closuretext += byKeyMinimized[k].code + '\r\n'; }
+	for (const k of funckeys) {
+		closuretext += byKeyMinimized[k].code + '\r\n';
 	}
 
 	//css closure as well!
@@ -197,7 +197,7 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 			let key = line.includes('{') ? stringBefore(newline, '{') : stringBefore(newline, ','); //firstWordIncluding(newline, '_-: >').trim();
 			key = key.trim();
 			// testresult += key + '\n';
-			// if (isdef(di[key]) && type != di[key].type) { console.log('duplicate key', key, type, di[key].type);}
+			// if (isdef(di[key]) && type != di[key].type) { console.log('duplicate key', key, type, di[key].type); }
 			di[key] = { type: type, key: key }
 			newline = key + stringAfter(newline, key);
 			if (key == '*') console.log('***', stringAfter(newline, key));
@@ -284,8 +284,8 @@ async function closureFromProject(project, ignoreList=[], addList=[]) {
 }
 async function codebaseExtendFromProject(project) {
 	// read in codebase
-	let globlist = await codeParseFile('../basejs/allg.js');
-	let funclist = await codeParseFile('../basejs/allf.js');
+	let globlist = await codeParseFile('../basejs/allghuge.js');
+	let funclist = await codeParseFile('../basejs/allfhuge.js');
 	let list = globlist.concat(funclist); //keylist in order of loading!
 	let bykey = list2dict(list, 'key');
 	let bytype = {};
@@ -305,7 +305,7 @@ async function codebaseExtendFromProject(project) {
 	// downloadAsText(functextold, 'allfuncs_old', 'js');
 	return [globtext, functext, functextold];
 }
-async function codebaseFromFiles(files, bykey={}, bytype={}, list=[]) {
+async function codebaseFromFiles(files, bykey = {}, bytype = {}, list = []) {
 	let olist = [];
 	for (const path of files) {
 		let opath = await codeParseFile(path);
@@ -541,13 +541,13 @@ function cssKeywordType(line) {
 	else return null;
 	//return toLetters('*:.@#').some(x => line[0] == x) || isLetter(line[0]); 
 }
-async function extractKeywords(path,trimmedlines=false) {
+async function extractKeywords(path, trimmedlines = false) {
 	let text = await route_path_text(path);
 	let lines = text.split('\n');
 	// console.log('lines',lines);
 	let kws = [];
 	for (const line of lines) {
-		let l=trimmedlines?line.trim():line;
+		let l = trimmedlines ? line.trim() : line;
 		if (l.startsWith('function')) kws.push(ithWord(l, 1, true));
 		if (l.startsWith('async')) kws.push(ithWord(l, 2, true));
 		if (l.startsWith('const')) kws.push(ithWord(l, 1, true));
@@ -567,17 +567,18 @@ function initCodingUI() {
 	let [dtitle, dta] = mRows100(dTable, 'auto 1fr', 2);
 	mDiv(dtitle, { padding: 10, fg: 'white', fz: 24 }, null, 'OUTPUT:');
 	mFlex(dta);
-	AU.ta = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
-	AU.css = mTextArea100(dta, { w:'50%', fz: 20, padding: 10, family: 'opensans' });
+	AU.primary = mTextArea100(dta, { w: '50%', fz: 20, padding: 10, family: 'opensans' });
+	AU.secondary = mTextArea100(dta, { w: '50%', fz: 20, padding: 10, family: 'opensans' });
+	return [AU.primary,AU.secondary];
 
 }
-async function intersectAnimeAndAllfuncs(){
-	let kws = await extractKeywords('../animex/anime.js',true);
-	console.log('kws',kws); //return;
-	let kws1 = await extractKeywords('../basejs/allf.js');
+async function intersectAnimeAndAllfuncs() {
+	let kws = await extractKeywords('../animex/anime.js', true);
+	console.log('kws', kws); //return;
+	let kws1 = await extractKeywords('../basejs/allfhuge.js');
 	let inter = intersection(kws, kws1);
 	console.log('keywords', inter);
-	text=inter.join()
+	text = inter.join()
 	return text
 }
 function mCols100(dParent, spec, gap = 4) {

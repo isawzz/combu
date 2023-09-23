@@ -81,7 +81,7 @@ if ($cmd == "yaml") {
   $row = mysqli_fetch_assoc($res);
   $result->event = $row;
 }else if ($cmd == "assets") {
-	$path = '../../base/assets/';
+	$path = '../../../base/assets/';
 	$c52 = file_get_contents($path . 'c52.yaml');
 	$syms = file_get_contents($path . 'allSyms.yaml');
 	$symGSG = file_get_contents($path . 'symGSG.yaml');

@@ -1159,12 +1159,130 @@ bin wieder da! ma ganz neu!!!
 5:11 AM 9/22/2023 54
 extreme anxiety wenn ich schon hoere dass der gu aufs klo geht startet fof mode
 5:11 AM 9/22/2023 55
+zurueckkommen zu parasympaticus! 
+htdocs neu!
+aroot bleibt fuer core projects damit es nicht breaked
+repo wird ein self-contained replica von 
+5:18 AM 9/22/2023 62
+am besten waer wenn ich die assets in uebergeordnetem dir haette!
+5:34 AM 9/22/2023 88
+coding project geht jetzt
+jetzt mach ein neues project!
+testx ... soll NICHT MEHR in allf.js sein!!!!
+6:00 AM 9/22/2023 124
+hab jetzt basejs und basephp -
+../basejs => ../../basejs
+6:42 AM 9/22/2023 166
+php aufrufe gehen nicht!!!
+7:14 AM 9/22/2023 198
+7:29 AM 9/22/2023 203
+8:30 AM 9/22/2023
+a1pm
+4:24 PM 9/22/2023 260
+5:27 PM 9/22/2023 261
+1pm active ewew
+6:30 PM 9/22/2023 320
+6:43 PM 9/22/2023 321
+1pm active!
+_____ sa 23.9.23 airport 400
+6:39 AM 9/23/2023 400
+basephp
+mach collect aus testa testphp und tiere
+6:47 AM 9/23/2023 408
+will ich das oder das neue spiel machen?
+wie geht das neue spiel?
+die spieler werden im kreis angeordnet, jeder sieht seine nachbarn
+geh mal zu games j'accuse dafuer
+sieht nicht schlecht aus, brauche aber eine VIEL einfachere art von implemetation
+7:09 AM 9/23/2023 430
+- correct kleingeschriebene globals! in spiel, dan repeat code gen!
+handSize ist ein dict und kommt nur in dealCards vor!
+7:21 AM 9/23/2023 442
+brauch cards functions from somewhere else!
+7:23 AM 9/23/2023 444
+wo ist neuester code fuer card games?
+wahrscheinlich eh in accuse
+schau noch zu beethoven
+7:42 AM 9/23/2023 463
+ok, also es gibt sowas wie number_cards (accuse: get_number_card)
+scheinbar wird jede sec gepollt
+7:58 AM 9/23/2023 479
+M needs games von Config
+8:04 AM 9/23/2023 485
+M.emoji.list muss alpha sortiert werden!!!
+8:24 AM 9/23/2023 505
+how did I generate M? in _hideTemp/cala/tiere
+mPostYaml und post_yaml.php und test8_saveM
+8:33 AM 9/23/2023 514
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+notes herges.
+when triggering subject:
+may get angry
+when angry: screams, threatens (this is my last warning, you got n minutes...), blocks the way, holds me, puts his foot in the door and try to grab me, if locked rattles on door, sometimes as long as 10 or more minutes
+says abusive things, puts me down: that I have no idea about anything, that I cant do anything, that I am not allowed to do ..., as if he was my owner,
+(you are trash...)
+
+never crossed the line of hitting me, but scared me and still I know the person he really is, which is a very gentle person, also sweet and happy and relaxed. 
+
+very possessive / jealous / controlling
+
+interrupts when sees me speaking to people, turns it into joke
+
+wants to be in charge and also control things.
+
+says felix is not allowed to do anything related to money and both kids are to get no more money from us (even though Amanda has severe health problems)
+
+says now that if we dont do what he wants he will fight us to get back his 'responsibilities'. which makes no sense, since none of us wants or needs him to take responsibility for any issue. the only thing that would help me if he would relax and enjoy his life without threatening or doing potentially damaging things (like 'investments' buying insurance policies...)
+
+=>we have a good insurance and enough savings, 401k... to lead a worry free life. none of us leads a wasteful life, basically, going for walks, being on computer. there is no reason for any major changes.
+
+gudrun encouragement led to escalation!
+=>please do NOT encourage him to take control of his former responsibilities 
+
+danger of not being able to take care of him. not sure what would happen if I was to leave him alone. I dont thing it would be very good.
+
+cognitively: 
+- good days, bad days
+- sometimes very active, sometimes no action at all
+- obsessing about things (like were some item is supposed to be, even in kitchen). 
+- routine tasks go well
+- money obsession (everything is 'too expensive')
+
+=>doing much better now than right after travel and in vienna.
 
 
 
