@@ -1214,6 +1214,602 @@ M.emoji.list muss alpha sortiert werden!!!
 how did I generate M? in _hideTemp/cala/tiere
 mPostYaml und post_yaml.php und test8_saveM
 8:33 AM 9/23/2023 514 a1pm
+_____ so 24.9.23 airport 600
+6:46 AM 9/24/2023 600
+7:23 AM 9/24/2023 637
+- wo krieg ich gute colors her?
+_____ mo 25.9.23 airport 700
+4:28 AM 9/25/2023 700
+fe github
+5:31 AM 9/25/2023 763
+jetzt versuch ich alle emojis so zu saven dass
+emoji-symbol => emoji word => unicode text habe
+dann nehm ich das 
+5:40 AM 9/25/2023 772
+remove the whole thing
+6:25 AM 9/25/2023 817
+7:16 AM 9/25/2023 860
+7:22 AM 9/25/2023 862
+revert to orig
+1. added NotoColorEmoji.ttf font to fonts
+2. reverted to ladder emoji in content/research/cladder.md
+3. added @font-face in styles.css (ganz oben) and updated .project-page-emoji
+.project-page-emoji {
+    display: flex;
+    font-size: 1.8em;
+    font-family: 'Noto Color Emoji', sans-serif;
+    margin-right: 10px;
+}
+4. in script.js addProjectToGallery added class to the emoji span: 
+    const emoji = info.emoji ? `<span class='project-page-emoji'>${info.emoji}</span>` : '';
+Hostinger.com google 
+1:25 PM 9/25/2023 900
+5:00 PM 9/25/2023 950
+installing Ubuntu 2204 (koennte wenn das jetzt nicht klappt mit 2004 versuchen!
+goto putty.org, download, install, start putty.exe (from start menu)
+ssh root@69.48.163.130
+IP: 69.48.163.130
+port: 7822
+
+in vs code: ssh -p 7822 root@69.48.163.130
+
+https://69.48.163.130:2087 (geht nicht!)
+
+nach install ubuntu:
+sudo apt update && sudo apt upgrade
+sudo su -
+sh <(curl https://cyberpanel.net/install.sh || wget -O - https://cyberpanel.net/install.sh)
+
+
+to test cyberpanel: https://69.48.163.130:8090
+
+ich hab keine ahnung was der eigentlich macht!!!
+
+sudo iptables -L
+sudo iptables-legacy -L
+iptables -I INPUT 4 -p tcp -m tcp --dport 8090 -j ACCEPT
+iptables-legacy -L INPUT --line-numbers
+sudo iptables-legacy -L
+das ganze wird restartet mit ubuntu2004
+6:02 PM 9/25/2023 1
+open a port: iptables -I INPUT 4 -p tcp -m tcp --dport [PORT] -j ACCEPT
+7:12 PM 9/25/2023 30
+it worked!!!!!!!!!!!!!!!!!!!
+_____ di 26.9.23 airport 30
+4:20 AM 9/26/2023 30
+cyberpanel admin wGN1...
+left menu: Packages, List Packages, Edit
+set domains, disk space, bandwidth all to 0
+create website: vidulusludorum.net, agfa@vid..., SSL und Create mail domain
+list websites, manage
+ab 6'30 installiert er wordpress, das will ich eigentlich nicht!
+=>nur anschauen!
+
+dnschecker.org
+
+ionos login, Domains, vidulusludorum.com 
+created subdomain: agfa.vidululudorum.com
+adjust destination of new subdomain A record edited to 69.48.163.130
+
+fang nochmal ganz von vorn an!!!
+
+/var/lib/dpkg/info/pure-ftpd-mysql.postinst: 34: update-inetd: not found
+
+
+6:15 AM 9/26/2023 140
+trial 3: complete reinstall von ubuntu 20-04
+
+first steps: 
+sudo apt update
+sudo apt install nodejs npm
+node -v
+	v10.19.0
+npm -v
+	6.14.4
+
+OK na wenigstens etwas!!!
+
+das dofe cyberpanel brauch ich zu NICHTS!
+
+hab minimal app.js uploaded und node app.js gemacht, listens on 3000
+
+69.48.163.130:3000
+
+scheinbar firewalled
+
+sudo apt install ufw
+sudo ufw status (geht nicht weil server.vidulusludorum.com nicht geht!)
+
+sudo ufw status | grep "69.48.163.130"
+sudo ufw status | grep "server.vidulusludorum.com"
+sudo ufw allow 80/tcp
+sudo ufw allow 3000/tcp
+
+sudo ufw enable
+
+________________________________________________________________
+trial 4: nochmal das ganze!!!!!!
+port 7822 muss offen sein!!!! sonst kann ich nicht draufgehen!
+
+ssh root@server.vidulusludorum.com 
+ssh -p 7822 root@69.48.163.130
+ssh -p 7822 root@server.vidulusludorum.com
+
+
+ich schau mir jetzt das VNC zeug an: das ist sowas wie eine virtual shell damit ich reinkomm wenn firewall ssh blockiert!
+
+ich versteh den VNC username nicht!!!
+hab pwd zu agfafam gesetzt aber root, admin, geht beides nicht!
+
+sudo apt update
+sudo apt install nodejs npm
+sudo npm cache clean -f
+
+(n is a node updater)
+
+sudo npm install -g n
+sudo n stable
+
+==>
+  installing : node-v18.18.0
+       mkdir : /usr/local/n/versions/node/18.18.0
+       fetch : https://nodejs.org/dist/v18.18.0/node-v18.18.0-linux-x64.tar.xz       
+     copying : node/18.18.0
+   installed : v18.18.0 (with npm 9.8.1)
+
+Note: the node command changed location and the old location may be remembered in your current shell.
+         old : /usr/bin/node
+         new : /usr/local/bin/node
+
+=>after exit (ssh) and starting a new shell, node -v shows version 18.18!!!!!
+
+YEAH!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+http://server.vidulusludorum.com:3000
+
+sudo apt install ufw
+sudo ufw status (geht nicht weil server.vidulusludorum.com nicht geht!)
+sudo ufw status | grep "69.48.163.130"
+sudo ufw status | grep "server.vidulusludorum.com"
+
+sudo ufw allow 80/tcp
+sudo ufw allow 3000/tcp
+sudo ufw allow 7822/tcp
+sudo ufw allow 22/tcp
+
+sudo ufw enable
+
+apache2 -v
+Server version: Apache/2.4.41 (Ubuntu)
+Server built:   2023-03-08T17:32:54
+_____________________
+>ifconfig
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0 
+
+venet0: flags=211<UP,BROADCAST,POINTOPOINT,RUNNING,NOARP>  mtu 1500        inet 127.0.0.1  netmask 255.255.255.255  broadcast 0.0.0.0 
+ destination 127.0.0.1
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 0  (UNSPEC)
+        RX packets 36055  bytes 208269885 (208.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 18640  bytes 1863738 (1.8 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+venet0:0: flags=211<UP,BROADCAST,POINTOPOINT,RUNNING,NOARP>  mtu 1500
+        inet 69.48.163.130  netmask 255.255.255.0  broadcast 69.48.163.255  destination 69.48.163.130     
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 0  (UNSPEC)
+
+enter 69.48.163.130 or server.vidulusludorum.com in browser: apache2 page!
+==>/var/www/html/index.html
+==>apache2 laeuft auf port 80
+____________________
+sudo systemctl status apache2
+apache2.service - The Apache HTTP Server
+     Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2023-09-26 13:57:23 UTC; 12h ago
+       Docs: https://httpd.apache.org/docs/2.4/
+   Main PID: 273 (apache2)
+     CGroup: /system.slice/apache2.service
+             ├─273 /usr/sbin/apache2 -k start
+             └─274 /usr/sbin/apache2 -k start
+
+Sep 26 13:57:23 server.vidulusludorum.com systemd[1]: Starting The Apache HTTP Server...
+____________________ close vim: q
+____________________ npm install -g nodemon
+
+_____ mi 27.9.23 airport 200
+5:26 AM 9/27/2023 200
+____________________
+on root, goto /etc/apache2/sites-available
+sudo nano 000-default.conf ...nano not available!
+or
+cat 000-default.conf
+more 000-default.conf
+
+____________________ ubuntu view processes
+ps
+ps -u root
+ps aux
+pstree
+top
+
+ps -u root:
+root@server:~# ps -u root
+    PID TTY          TIME CMD
+      1 ?        00:00:05 systemd
+      2 ?        00:00:00 kthreadd/4a603e
+      3 ?        00:00:00 khelper
+    158 ?        00:00:00 cron
+    165 ?        00:00:00 systemd-logind
+    231 ?        00:00:00 saslauthd
+    234 ?        00:00:00 saslauthd
+    273 ?        00:00:02 apache2
+    431 ?        00:00:00 xinetd
+    826 ?        00:00:00 agetty
+   2250 ?        00:00:00 unattended-upgr
+   9144 ?        00:00:00 systemd-udevd
+  13189 ?        00:00:00 systemd-journal
+  16023 ?        00:00:00 sshd
+  21652 ?        00:00:00 agetty
+  23800 ?        00:00:00 sshd
+  23811 ?        00:00:00 sftp-server
+  23819 ?        00:00:00 sshd
+  23833 pts/0    00:00:00 bash
+  23873 pts/0    00:00:00 node
+  23885 pts/0    00:00:00 ps
+____________________ get PID: pgrep NAME
+NAME can be apache2 or xinetd
+____________________ end process: kill PID or pkill NAME
+
+_____ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+7822                       ALLOW       Anywhere
+22                         ALLOW       Anywhere
+7822/tcp                   ALLOW       Anywhere
+22/tcp                     ALLOW       Anywhere
+3000/tcp                   ALLOW       Anywhere
+80/tcp                     ALLOW       Anywhere
+8080/tcp                   ALLOW       Anywhere
+443/tcp                    ALLOW       Anywhere
+7822 (v6)                  ALLOW       Anywhere (v6)
+22 (v6)                    ALLOW       Anywhere (v6)
+7822/tcp (v6)              ALLOW       Anywhere (v6)
+22/tcp (v6)                ALLOW       Anywhere (v6)
+3000/tcp (v6)              ALLOW       Anywhere (v6)
+80/tcp (v6)                ALLOW       Anywhere (v6)
+8080/tcp (v6)              ALLOW       Anywhere (v6)
+443/tcp (v6)               ALLOW       Anywhere (v6)
+_____ pgrep node
+23873 (laeuft also noch!)
+_____ add a node js site to apache2
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+in vs code, make file:
+<VirtualHost *:80>
+    ServerName server.vidulusludorum.com
+    DocumentRoot /var/www/html
+    ProxyRequests Off
+    ProxyPass / http://localhost:3000/
+    ProxyPassReverse / http://localhost:3000/
+</VirtualHost>
+upload test0.conf to /etc/apache2/sites-available/test0.conf
+sudo a2ensite test0.conf
+sudo systemctl restart apache2
+
+_____ add another website in web2 (in /var/www)
+make subdir web2 under var/www, add simple index.html, upload
+set permissions: 
+	sudo chown -R $USER:$USER /var/www/web2
+	sudo chmod -R 755 /var/www
+_____ install pm2: sudo npm install -g pm2
+
+_____ in /var/www/web2: sudo chmod 755 app.js
+
+_____ sudo pm2 start app.js
+[PM2] Starting /var/www/web2/app.js in fork_mode (1 instance)
+[PM2] Done.
+┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+│ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
+├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
+│ 0  │ app                │ fork     │ 0    │ online    │ 0%       │ 22.5mb   │
+└────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
+
+_____ to start pm2 automatically: sudo pm2 startup systemd
+
+_____ config apache2
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo service apache2 restart 
+
+_____ iptables
+cd /etc/sysconfig/iptables
+
+_____ live chat:
+??? pre-installed applications cPanel, Webuzo where?
+??? VNC what is the username? (pwd is agfafam)
+??? do I have to stop apache2 to make it work?
+_____ ssl
+sudo a2enmod ssl
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+sudo apt update
+sudo apt install nano
+(sudo nano /etc/apache2/sites-available/myssl.conf) instead edit myssl.conf in vs code and upload
+sudo a2ensite myssl.conf
+systemctl reload apache2
+https://server.vidulusludorum.com
+
+sudo a2ensite default-ssl.conf
+
+_____ sudo lsof -i -P -n | grep LISTEN
+(show listening ports)
+_____ sudo lsof -i TCP:80
+(who is listening on port 80)
+
+5:04 PM 9/27/2023 300
+wie hab ich das ssl zeug gemacht?
+_____ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.6 LTS
+Release:        20.04
+Codename:       focal
+
+
+_____ sudo apt update
+sudo apt install snapd
+
+_____ uname -r
+kernel version: 5.4.0
+
+_____ sudo apt install linux-headers-$(uname -r)
+
+_____ sudo apt install linux-image-generic
+(this command upgrades ubuntu!)
+(had to do this because squashfs modules were missing!
+
+_____ _________________________________________________
+_____ _________________________________________________
+_____ _________________________________________________
+here starts trial 4!
+sudo dnf install -y curl
+curl -fsSL https://rpm.nodesource.com/setup_lts.x | sudo bash -
+sudo dnf install -y nodejs
+
+node -v
+v18.17.1
+npm -v
+9.6.7
+_____ 
+sudo systemctl status firewalld
+sudo dnf install firewalld
+sudo systemctl start firewalld
+sudo systemctl enable firewalld
+sudo firewall-cmd --zone=public --add-port=3000/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=7822/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=22/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=443/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=80/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=3001/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=4001/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=5001/tcp --permanent
+sudo firewall-cmd --zone=public --add-port=6001/tcp --permanent
+sudo firewall-cmd --reload
+_____ do 28.9.23 airport 400
+6:17 AM 9/28/2023 400
+the nginx configuration file /etc/nginx/nginx.conf
+6:31 AM 9/28/2023 414
+servername:  server.vidulusludorum.com
+choices: 
+- ssl mit nginx
+- node auf port 80?
+- alles auf node umstellen!
+- flask test (ev mit reverse proxy)
+_____ stop start apache:
+sudo systemctl status httpd
+sudo systemctl stop httpd
+sudo systemctl status httpd
+sudo systemctl disable httpd
+sudo systemctl start httpd
+7:00 AM 9/28/2023 443
+installing snapd scheint zu functionieren!
+nein doch nicht!
+aber auf apache konnt ich es jetzt deployen!
+ich koennt schauen ob ich dieselben certificates auch auf nginx verwenden kann
+7:50 AM 9/28/2023 493
+=>upload nginx.conf
+11:57 AM 9/28/2023 593
+POST
+backflow zeug=>ken?
+11:58 AM 9/28/2023 650
+5:42 PM 9/28/2023 670
+was jetzt?
+moecht eigentlich nginx und apache combinieren
+5:55 PM 9/28/2023 677
+7:00 PM 9/28/2023 707
+hat geklappt!!!
+in vs code mach ma und fe
+7:09 PM 9/28/2023 716
+open port 5000
+7:11 PM 9/28/2023 718
+upload nginx
+get a flask app from nodemaster, put it in fe
+7:15 PM 9/28/2023 722
+=>first, kit close, gu nachspeise! 1pm
+7:57 PM 9/28/2023 762
+install python!!!
+fe flask runs on 5000
+mach ein ma, 
+9:06 PM 9/28/2023 800
+_____ fr 29.9.23 airport 800
+4:55 AM 9/29/2023 800
+5:16 AM 9/29/2023 821
+move app.py to test0
+5:23 AM 9/29/2023 828
+rename app.py to flaskapp.py and app.js to nodeapp.js
+5:45 AM 9/29/2023 850
+6:09 AM 9/29/2023 874
+6:11 AM 9/29/2023 876
+jetzt was? das fe zeug geht eh!
+6:18 AM 9/29/2023 883
+- jetzt will ich fe app auch auf ssl starten koennen
+6:27 AM 9/29/2023 892
+- wie start ich jetzt fe app for real?
+6:53 AM 9/29/2023 918
+- was a firewall issue!!!
+7:12 AM 9/29/2023 937
+===> proxy_pass http://0.0.0.0:3000; #0.0.0.0 ist WICHTIG!!!!!
+7:14 AM 9/29/2023 939
+check servername
+7:22 AM 9/29/2023 947
+10:24 AM 9/29/2023 50
+10:39 AM 9/29/2023 64
+curl http://localhost:3000
+https://www.youtube.com/watch?v=5NwwuSWrCdw
+10:41 AM 9/29/2023 66
+reactivate working nginx conf
+12:01 PM 9/29/2023 100
+- hol einfach mal das base zeug!
+ok ich upload erstmal die images dann schauma weiter! 
+wie kann ich die verwenden?
+12:51 PM 9/29/2023 101
+- bis jetzt geh garnix!
+,oecht einfach nur dass er das bild ladet!
+2:21 PM 9/29/2023 110
+1opm
+4:01 PM 9/29/2023 210
+4:20 PM 9/29/2023 211
+ls -ld assets
+4:39 PM 9/29/2023 230
+jetzt geht es!
+und die assets sind wirklich im uebergeordneten dir! richtig cool!!!
+jetzt hol ich mir ein eis!
+sudo certbot certonly --manual --preferred-challenges=dns --email a_leeb@yahoo.com --server https://acme-v02.api.letsencrypt.org/directory --agree-tos -d *.vidulusludorum.com
+_acme-challenge.vidulusludorum.com
+Fzq_y8Kt7-MvpVByvamd2Ts9uz-WcvJ4Q1ygz7WrNXA
+/etc/letsencrypt/renewal/vidulusludorum.com.conf
+https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.vidulusludorum.com
+6:21 PM 9/29/2023 235
+ich versteh das alles nicht!
+simplify:
+was geht schon?
+6:50 PM 9/29/2023 245
+was ist zu tun? a1pm dann ma locally testen
+7:14 PM 9/29/2023 250
+_____ sa 30.9.23 airport 250
+6:12 AM 9/30/2023 250
+so also wie fang ich an?
+erstmal ein ma
+6:47 AM 9/30/2023 285
+modify fontsize in folders panel vs code
+ich brauch die info nicht mehr
+ich brauch nur ein file dass mir 
+dict: friendly => emoname(ist img file),emotext,cat,char
+7:15 AM 9/30/2023 303
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+this is extremely weired!!!
+
+sudo certbot certonly --webroot -w /path/to/your/document/root -d agfa.vidulusludorum.com
+
+sudo certbot certonly --webroot -w /usr/share/nginx/html -d agfa.vidulusludorum.com
+
+
+ps -p 66890
+
+http://server.vidulusludorum.com:5001/
+http://server.vidulusludorum.com:8000/
+
+test0 soll nodeapp.js und flaskapp.py enthalten, beide machen dasselbe
+mit detectSessionType! (keine ahnung wie ich das mache???)
+und gibt aus: I am Flask server, I am NodeJs server
+fe soll fe's website haben und drauf einen feedback link
+ma soll all meine apps haben
+am soll combu haben
+gu soll so eine website wie fuer den fe fuer den gu haben
+la soll irgendwas haben
+
+
+
+
+
+
+
+
+
+
+gu zum schwimmen einteilen! mo mi fr
+
+
+_____ 
+
+_____ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
